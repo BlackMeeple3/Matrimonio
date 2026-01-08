@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ci sposiamo - mimì e cocò</title>
     <style>
+        :root {
+            /* Colori Principali */
+            --bg-primary: #000;
+            --bg-overlay: rgba(0, 0, 0, 0.5);
+            --bg-modal: #fff;
+            --bg-modal-overlay: rgba(0, 0, 0, 0.9);
+            --bg-secondary: #f9f9f9;
+            --bg-warning: #fff3cd;
+            
+            /* Colori Testo */
+            --text-primary: #fff;
+            --text-secondary: #666;
+            --text-dark: #333;
+            
+            /* Colori Accento */
+            --accent-color: #42b983;
+            --warning-color: #ffc107;
+            --border-color: #fff;
+            
+            /* Font */
+            --font-main: 'Arial', sans-serif;
+            --font-mono: 'Courier New', monospace;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,9 +36,9 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: var(--font-main);
             overflow-x: hidden;
-            background: #000;
+            background: var(--bg-primary);
         }
 
         /* Hero Section */
@@ -26,7 +50,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            background: #000;
+            background: var(--bg-primary);
         }
 
         .hero::before {
@@ -50,7 +74,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: var(--bg-overlay);
             opacity: 0;
             animation: fadeInOverlay 1.5s ease-in-out 3.5s forwards;
         }
@@ -61,7 +85,7 @@
             z-index: 10;
             width: 120px;
             height: 120px;
-            border: 3px solid #fff;
+            border: 3px solid var(--border-color);
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -76,8 +100,15 @@
             width: 50px;
             height: 50px;
             fill: none;
-            stroke: #fff;
+            stroke: var(--text-primary);
             stroke-width: 2;
+        }
+
+        .heart-icon img {
+            height: 65%;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
 
         /* Lines */
@@ -85,7 +116,7 @@
             position: relative;
             z-index: 10;
             height: 2px;
-            background: #fff;
+            background: var(--border-color);
             margin: 30px 0;
         }
 
@@ -103,7 +134,7 @@
         .main-title {
             position: relative;
             z-index: 10;
-            color: #fff;
+            color: var(--text-primary);
             font-size: 4rem;
             font-weight: 300;
             letter-spacing: 20px;
@@ -116,7 +147,7 @@
         .subtitle {
             position: relative;
             z-index: 10;
-            color: #fff;
+            color: var(--text-primary);
             font-size: 1.5rem;
             font-weight: 300;
             letter-spacing: 3px;
@@ -142,14 +173,15 @@
             width: 320px;
             padding: 25px 40px;
             background: transparent;
-            color: #fff;
-            border: 2px solid #fff;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
             font-size: 1.2rem;
             letter-spacing: 8px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.4s ease;
             font-weight: 300;
+            font-family: var(--font-main);
         }
 
         .menu-btn:hover {
@@ -165,7 +197,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: var(--bg-modal-overlay);
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.5s ease;
@@ -180,7 +212,7 @@
 
         .modal-content {
             position: relative;
-            background: #fff;
+            background: var(--bg-modal);
             max-width: 800px;
             width: 90%;
             max-height: 90vh;
@@ -206,7 +238,7 @@
             background: none;
             border: none;
             font-size: 2rem;
-            color: #333;
+            color: var(--text-dark);
             cursor: pointer;
             transition: transform 0.3s ease;
         }
@@ -217,11 +249,12 @@
 
         .modal h2 {
             font-size: 2.5rem;
-            color: #333;
+            color: var(--text-dark);
             margin-bottom: 30px;
             font-weight: 300;
             letter-spacing: 3px;
             text-transform: uppercase;
+            font-family: var(--font-main);
         }
 
         .modal-image {
@@ -236,19 +269,20 @@
         .modal p {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 20px;
+            font-family: var(--font-main);
         }
 
         .modal strong {
-            color: #333;
+            color: var(--text-dark);
             font-weight: 600;
         }
 
         .modal a {
-            color: #42b983;
+            color: var(--accent-color);
             text-decoration: none;
-            border-bottom: 1px dotted #42b983;
+            border-bottom: 1px dotted var(--accent-color);
             transition: all 0.3s ease;
         }
 
@@ -257,21 +291,21 @@
         }
 
         .iban-box {
-            background: #f9f9f9;
-            border-left: 4px solid #42b983;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-color);
             padding: 20px;
             margin: 30px 0;
-            font-family: 'Courier New', monospace;
+            font-family: var(--font-mono);
             font-size: 1.3rem;
             letter-spacing: 2px;
             text-align: center;
-            color: #333;
+            color: var(--text-dark);
             font-weight: 600;
         }
 
         .deadline-box {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
+            background: var(--bg-warning);
+            border-left: 4px solid var(--warning-color);
             padding: 20px;
             margin: 30px 0;
             text-align: center;
@@ -355,13 +389,6 @@
                 width: 100px;
                 height: 100px;
             }
-            .heart-icon img {
-    height: 65%;
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
 
             .heart-icon svg {
                 width: 40px;
@@ -405,10 +432,9 @@
     <div class="hero">
         <div class="line line-top"></div>
         
-<div class="heart-icon">
-    <img src="spiga.png" alt="Spiga di grano">
-</div>
-
+        <div class="heart-icon">
+            <img src="spiga.png" alt="Spiga di grano">
+        </div>
 
         <h1 class="main-title">CI SPOSIAMO</h1>
         <p class="subtitle">CHI L'AVREBBE MAI DETTO!</p>
