@@ -63,23 +63,25 @@
             height: 300px;
         }
 
-        /* Figure stilizzate */
-        .figure {
-            position: absolute;
-            bottom: 50px;
-            width: 40px;
-            transition: all 0.8s ease;
-        }
+/* Figure stilizzate */
+.figure {
+    position: absolute;
+    bottom: 50px;
+    width: 40px;
+    transition: all 0.8s ease;
+}
 
-        .man {
-            left: 60px;
-            animation: manWalk 2s ease-in-out 0.5s forwards;
-        }
+/* Uomo */
+.man {
+    left: 60px;
+    animation: manWalk 3s ease-in-out 0.5s forwards;
+}
 
-        .woman {
-            right: 60px;
-            animation: womanWait 2s ease-in-out 0.5s forwards;
-        }
+/* Donna */
+.woman {
+    right: 60px;
+    animation: womanMove 3s ease-in-out 0.5s infinite;
+}
 
 /* Corpo maschile */
 .figure-body {
@@ -95,9 +97,10 @@
     width: 30px;
     height: 70px;
     background: var(--text-primary);
-    border-radius: 15px 15px 40px 40px; /* gonna più ampia in basso */
+    border-radius: 15px 15px 40px 40px;
     position: relative;
     transform-origin: bottom center;
+    animation: dressSwing 2s ease-in-out infinite;
 }
 
 /* Teste */
@@ -111,8 +114,8 @@
     left: 1px;
 }
 
-/* Baloon parlante */
-.speech {
+/* Baloon parlanti */
+.speech-woman {
     position: absolute;
     bottom: 80px;
     left: 50%;
@@ -124,22 +127,33 @@
     border-radius: 5px;
     white-space: nowrap;
     opacity: 0;
-    animation: speechAppear 0.5s ease forwards;
+    animation: womanSpeak 2s ease-in-out 4.5s infinite;
 }
 
-/* Uomo parla subito */
-.man .speech {
-    animation-delay: 1s;
+.speech-man {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: manSpeak 0.8s ease-out 4.5s forwards;
 }
 
-/* Donna parla dopo */
-.woman .speech {
-    animation-delay: 2s;
-}
-
-/* Animazione comparsa testo */
-@keyframes speechAppear {
-    to { opacity: 1; }
+/* Cuoricino donna */
+.heart {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    opacity: 0;
+    animation: heartAppear 0.5s ease-out 4.5s forwards;
 }
 
 /* Movimento uomo */
@@ -159,7 +173,7 @@
     75% { right: 62px; transform: translateY(-3px); }
 }
 
-/* Gonna oscilla */
+/* Oscillazione gonna donna */
 @keyframes dressSwing {
     0%,100% { transform: rotate(0deg); }
     25% { transform: rotate(3deg); }
@@ -167,138 +181,83 @@
     75% { transform: rotate(-3deg); }
 }
 
-/* Applicazione animazioni */
-.man {
-    animation: manWalk 3s ease-in-out 0.5s forwards;
+/* Animazione testo uomo (sale quando compare il bouquet) */
+@keyframes manSpeak {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    20% { opacity: 1; transform: translate(-50%, -10px); }
+    100% { opacity: 0; transform: translate(-50%, -50px); }
 }
 
-.woman {
-    animation: womanMove 3s ease-in-out 0.5s infinite;
+/* Animazione testo donna (sale e scompare continuamente) */
+@keyframes womanSpeak {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    10% { opacity: 1; transform: translate(-50%, -5px); }
+    50% { opacity: 1; transform: translate(-50%, -20px); }
+    90% { opacity: 0; transform: translate(-50%, -30px); }
+    100% { opacity: 0; transform: translate(-50%, 0); }
 }
 
-.figure-dress {
-    animation: dressSwing 2s ease-in-out infinite;
+/* Animazione cuore donna */
+@keyframes heartAppear {
+    0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(-10px) scale(1.2); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(-10px) scale(1); }
 }
 
+/* Bouquet */
+.bouquet {
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    width: 30px;
+    height: 40px;
+    opacity: 0;
+    transform: scale(0);
+    animation: bouquetAppear 0.5s ease-out 4.5s forwards;
+}
 
+.bouquet-flowers {
+    width: 30px;
+    height: 25px;
+    background: var(--accent-color);
+    border-radius: 50% 50% 0 0;
+    position: relative;
+}
 
-        /* Bouquet */
-        .bouquet {
-            position: absolute;
-            bottom: 50px;
-            left: 100px;
-            width: 30px;
-            height: 40px;
-            opacity: 0;
-            transform: scale(0);
-            animation: bouquetAppear 0.5s ease-out 4.5s forwards;
-        }
+.bouquet-flowers::before,
+.bouquet-flowers::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    top: 2px;
+}
 
-        .bouquet-flowers {
-            width: 30px;
-            height: 25px;
-            background: var(--accent-color);
-            border-radius: 50% 50% 0 0;
-            position: relative;
-        }
+.bouquet-flowers::before { left: -5px; }
+.bouquet-flowers::after { right: -5px; }
 
-        .bouquet-flowers::before,
-        .bouquet-flowers::after {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            top: 2px;
-        }
+/* Stelo */
+.bouquet-stem {
+    width: 4px;
+    height: 15px;
+    background: var(--accent-color);
+    margin: 0 auto;
+}
 
-        .bouquet-flowers::before {
-            left: -5px;
-        }
+/* Animazione bouquet */
+@keyframes bouquetAppear {
+    0% { opacity: 0; transform: scale(0) translateY(0); }
+    50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); left: 150px; }
+}
 
-        .bouquet-flowers::after {
-            right: -5px;
-        }
+/* Fade out intro */
+@keyframes fadeOutIntro {
+    to { opacity: 0; visibility: hidden; z-index: -1; }
+}
 
-        .bouquet-stem {
-            width: 4px;
-            height: 15px;
-            background: var(--accent-color);
-            margin: 0 auto;
-        }
-
-        /* Animazioni */
-        @keyframes manWalk {
-            0% {
-                left: 60px;
-                transform: translateY(0);
-            }
-            40% {
-                left: 100px;
-                transform: translateY(0);
-            }
-            50% {
-                left: 100px;
-                transform: translateY(0) rotate(0deg);
-            }
-            60% {
-                left: 100px;
-                transform: translateY(10px) rotate(10deg) scale(0.95);
-            }
-            100% {
-                left: 100px;
-                transform: translateY(10px) rotate(10deg) scale(0.95);
-            }
-        }
-
-        @keyframes womanWait {
-            0%, 40% {
-                right: 60px;
-                transform: rotate(0deg);
-            }
-            45% {
-                transform: rotate(-5deg);
-            }
-            50% {
-                transform: rotate(5deg);
-            }
-            55% {
-                transform: rotate(-5deg);
-            }
-            60% {
-                right: 60px;
-                transform: rotate(0deg);
-            }
-            100% {
-                right: 60px;
-                transform: rotate(0deg);
-            }
-        }
-
-        @keyframes bouquetAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0) translateY(0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2) translateY(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-                left: 150px;
-            }
-        }
-
-        @keyframes fadeOutIntro {
-            to {
-                opacity: 0;
-                visibility: hidden;
-                z-index: -1;
-            }
-        }
 
         /* Hero Section */
         .hero {
@@ -693,25 +652,25 @@
             <!-- Uomo -->
 <!-- Uomo -->
 <div class="figure man">
-    <div class="speech">bla</div>
+    <div class="speech-man">bla</div>
     <div class="figure-head"></div>
     <div class="figure-body"></div>
 </div>
 
 <!-- Donna -->
 <div class="figure woman">
-    <div class="speech">bla bla bla bla bla bla</div>
+    <div class="speech-woman">bla bla bla bla bla bla</div>
+    <div class="heart">❤️</div>
     <div class="figure-head"></div>
     <div class="figure-dress"></div>
 </div>
 
-            <!-- Bouquet -->
-            <div class="bouquet">
-                <div class="bouquet-flowers"></div>
-                <div class="bouquet-stem"></div>
-            </div>
-        </div>
-    </div>
+<!-- Bouquet -->
+<div class="bouquet">
+    <div class="bouquet-flowers"></div>
+    <div class="bouquet-stem"></div>
+</div>
+
 
     <!-- Hero Section -->
     <div class="hero">
