@@ -3,229 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mimì e cocò - Ci sposiamo</title>
+    <title>Ci sposiamo - Ilaria e Claudio</title>
     <style>
-        * {
+        /* Reset e base */
+        html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, section, header, nav {
             margin: 0;
             padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        html {
             box-sizing: border-box;
         }
 
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            line-height: 1.8;
-            color: #333;
-            background: #fff;
+            line-height: 1;
+            -webkit-text-size-adjust: none;
         }
 
-        header {
-            text-align: center;
-            padding: 4rem 2rem 2rem;
-            background: linear-gradient(to bottom, #f8f8f8 0%, #fff 100%);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: #666;
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
-        }
-
-        header h2 {
-            font-size: 3rem;
-            font-weight: 400;
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        header p {
-            font-size: 1.2rem;
+        /* Typography base */
+        body, input, select, textarea {
             color: #888;
+            font-family: "Source Sans Pro", Helvetica, sans-serif;
+            font-size: 16pt;
+            font-weight: 300;
+            line-height: 1.75;
+        }
+
+        @media screen and (max-width: 1680px) {
+            body, input, select, textarea {
+                font-size: 14pt;
+            }
+        }
+
+        @media screen and (max-width: 1280px) {
+            body, input, select, textarea {
+                font-size: 12pt;
+            }
+        }
+
+        @media screen and (max-width: 360px) {
+            body, input, select, textarea {
+                font-size: 11pt;
+            }
+        }
+
+        a {
+            transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+            border-bottom: dotted 1px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+            color: #42b983 !important;
+        }
+
+        strong, b {
+            color: #555;
+            font-weight: 600;
+        }
+
+        em, i {
             font-style: italic;
         }
 
-        nav {
-            background: #fff;
-            border-bottom: 1px solid #e0e0e0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        p {
+            margin: 0 0 2em 0;
         }
 
-        nav ul {
-            list-style: none;
+        h1, h2, h3, h4, h5, h6 {
+            color: #555;
+            font-weight: 300;
+            line-height: 1.5;
+            margin: 0 0 1em 0;
+        }
+
+        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+            color: inherit;
+            border-bottom: 0;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            line-height: 1.2;
+            letter-spacing: -0.035em;
+        }
+
+        @media screen and (max-width: 736px) {
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        /* Banner/Header */
+        #banner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: default;
+            height: 100vh;
+            min-height: 35em;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            background-color: #3c3b3b;
+            color: #d3d3d3;
+        }
+
+        #banner:before {
+            transition: opacity 3s ease;
+            transition-delay: 1.25s;
+            content: '';
+            display: block;
+            background-color: #2e3141;
+            height: 100%;
+            left: 0;
+            opacity: 0.45;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+        }
+
+        #banner h1 {
+            font-size: 3.5em;
+            color: #fff;
+            margin: 0 0 0.5em 0;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        #banner p {
+            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.75);
+            position: relative;
+            z-index: 2;
+            margin: 0;
+        }
+
+        #banner .content {
+            position: relative;
+            z-index: 2;
+            padding: 4.5em 0 3em 0;
+        }
+
+        @media screen and (max-width: 736px) {
+            #banner {
+                min-height: 0;
+                height: auto;
+                padding: 6em 2em 4em 2em;
+            }
+
+            #banner h1 {
+                font-size: 2em;
+            }
+
+            #banner p {
+                font-size: 1.25em;
+            }
+        }
+
+        /* Navigation */
+        #nav {
+            background-color: #f7f7f7;
+            color: #636363;
+            cursor: default;
             display: flex;
             justify-content: center;
-            padding: 1.5rem;
-            flex-wrap: wrap;
+            padding: 0;
+            position: relative;
+            z-index: 10000;
         }
 
-        nav li {
-            margin: 0 2rem;
+        #nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
         }
 
-        nav a {
-            text-decoration: none;
-            color: #666;
-            font-size: 1rem;
+        #nav li {
+            display: inline-block;
+            padding: 0;
+        }
+
+        #nav a {
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+            color: inherit;
+            display: block;
+            font-size: 0.8em;
+            letter-spacing: 0.225em;
+            padding: 1.5em 2em;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: color 0.3s;
-            font-weight: 400;
+            border-bottom: 0;
         }
 
-        nav a:hover {
-            color: #333;
+        #nav a:hover {
+            background-color: rgba(0, 0, 0, 0.025);
         }
 
-        section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        section h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: #333;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .section-image {
-            width: 100%;
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 2rem;
-            border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-
-        .cerimonia-img {
-            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200');
-        }
-
-        .festa-img {
-            background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200');
-        }
-
-        .partecipa-img {
-            background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200');
-        }
-
-        .content {
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 2;
-        }
-
-        .content strong {
-            color: #333;
-            font-weight: 600;
-        }
-
-        .content a {
-            color: #4a90e2;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s;
-        }
-
-        .content a:hover {
-            border-bottom-color: #4a90e2;
-        }
-
-        .iban-box {
-            background: #f8f8f8;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-            text-align: center;
-            border-left: 4px solid #4a90e2;
-        }
-
-        .iban-box code {
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            color: #333;
-            font-weight: 600;
-            font-family: 'Courier New', monospace;
-        }
-
-        footer {
-            background: #2c2c2c;
-            color: #999;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
-
-        .deadline {
-            background: #fff3cd;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 4px;
-            border-left: 4px solid #ffc107;
-            text-align: center;
-        }
-
-        .deadline strong {
-            color: #333;
-            font-size: 1.2rem;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            header h2 {
-                font-size: 2.2rem;
-            }
-
-            nav ul {
+        @media screen and (max-width: 736px) {
+            #nav ul {
                 flex-direction: column;
-                align-items: center;
             }
 
-            nav li {
-                margin: 0.5rem 0;
-            }
-
-            section {
-                padding: 3rem 1.5rem;
-            }
-
-            section h2 {
-                font-size: 2rem;
-            }
-
-            .section-image {
-                height: 300px;
-            }
-
-            .iban-box code {
-                font-size: 1rem;
-                word-break: break-all;
+            #nav a {
+                padding: 1em 2em;
             }
         }
 
-        .smooth-scroll {
-            scroll-behavior: smooth;
+        /* Main content */
+        #main {
+            padding: 0;
+        }
+
+        #main > section {
+            border-top: solid 1px rgba(160, 160, 160, 0.3);
+            margin: 5em 0 0 0;
+            padding: 5em 0 0 0;
+        }
+
+        #main > section:first-child {
+            border-top: 0;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        /* Wrapper */
+        .wrapper {
+            padding: 5em 0 3em 0;
+        }
+
+        .wrapper > .inner {
+            margin: 0 auto;
+            width: 60em;
+            padding: 0 2em;
+        }
+
+        @media screen and (max-width: 1280px) {
+            .wrapper > .inner {
+                width: 90%;
+            }
+        }
+
+        @media screen and (max-width: 736px) {
+            .wrapper {
+                padding: 3em 0 1em 0;
+            }
+
+            .wrapper > .inner {
+                width: 100%;
+            }
+        }
+
+        /* Image */
+        .image {
+            border: 0;
+            display: inline-block;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .image img {
+            display: block;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .image.fit {
+            display: block;
+            margin: 0 0 2em 0;
+            width: 100%;
+        }
+
+        /* Spotlight */
+        .spotlight {
+            display: flex;
+            align-items: center;
+            margin: 0 0 2em 0;
+        }
+
+        .spotlight .content {
+            flex: 1;
+        }
+
+        .spotlight .image {
+            display: inline-block;
+            margin-left: 4em;
+            width: 30em;
+        }
+
+        @media screen and (max-width: 980px) {
+            .spotlight {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .spotlight .content {
+                width: 100%;
+            }
+
+            .spotlight .image {
+                margin: 0 0 2em 0;
+                width: 100%;
+            }
+        }
+
+        /* Footer */
+        #footer {
+            background-color: #f7f7f7;
+            color: #bbb;
+            padding: 4em 0 2em 0;
+            text-align: center;
+        }
+
+        #footer .copyright {
+            font-size: 0.8em;
+            line-height: 1em;
+        }
+
+        #footer .copyright a {
+            color: inherit;
+        }
+
+        /* IBAN styling */
+        .iban-box {
+            background: #f9f9f9;
+            border-left: solid 4px #42b983;
+            padding: 1.5em;
+            margin: 2em 0;
+            font-family: "Courier New", monospace;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            text-align: center;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* Body */
+        body {
+            background: #fff;
         }
     </style>
 </head>
-<body class="smooth-scroll">
-    <header>
-        <h1>Ilaria e Claudio</h1>
-        <h2>Ci sposiamo</h2>
-        <p>Chi l'avrebbe mai detto!</p>
-    </header>
+<body>
 
-    <nav>
+    <!-- Banner -->
+    <section id="banner">
+        <div class="content">
+            <h1>Ci sposiamo</h1>
+            <p>Chi l'avrebbe mai detto!</p>
+        </div>
+    </section>
+
+    <!-- Nav -->
+    <nav id="nav">
         <ul>
             <li><a href="#cerimonia">Cerimonia</a></li>
             <li><a href="#festa">Festa</a></li>
@@ -233,79 +383,84 @@
         </ul>
     </nav>
 
-    <section id="cerimonia">
-        <h2>Cerimonia</h2>
-        <div class="section-image cerimonia-img"></div>
-        <div class="content">
-            <p>
-                La cerimonia di rito civile avverrà <strong>sabato 6 dicembre 2025</strong> alle ore <strong>11:30</strong> presso il <strong>Comune di Arenzano (GE)</strong>.
-            </p>
-            <p>
-                Il palazzo comunale si trova all'interno del parco Sauli Pallavicino (<a href="https://maps.app.goo.gl/7AHgE6iJSrZyQuhn6" target="_blank">mappa</a>).
-            </p>
-            <p>
-                Consigliamo di parcheggiare nella vicina Piazza Paolo Rodocanachi (<a href="https://maps.app.goo.gl/NuvgTw1mUvqg6awy5" target="_blank">mappa</a>) dalla quale si può accedere a piedi al palazzo comunale.
-            </p>
-        </div>
-    </section>
+    <!-- Main -->
+    <div id="main">
 
-    <section id="festa">
-        <h2>Festa</h2>
-        <div class="section-image festa-img"></div>
-        <div class="content">
-            <p>
-                Saremo lieti di festeggiare con voi presso il <strong><a href="https://www.agueta.it/" target="_blank">Ristorante Agueta du Sciria</a></strong>, situato poco sopra il borgo di Arenzano in Via Pecorara 18/A.
-            </p>
-            <p>
-                Clicca <a href="https://maps.app.goo.gl/1LWRH44QsfFFvwh3A" target="_blank">qui</a> per farti portare da Google Maps all'Agueta.
-            </p>
-        </div>
-    </section>
-
-    <section id="partecipa">
-        <h2>Partecipa</h2>
-        <div class="section-image partecipa-img"></div>
-        
-        <div class="deadline">
-            <p>
-                Ti preghiamo di <strong>confermare la tua presenza entro il 31 ottobre</strong>.
-            </p>
-        </div>
-
-        <div class="content">
-            <p>
-                Stiamo organizzando il viaggio di nozze dei nostri sogni in Sud America!<br>
-                Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN cointestato:
-            </p>
-            
-            <div class="iban-box">
-                <code>IT10T0366901600529834339306</code>
+        <!-- Cerimonia -->
+        <section id="cerimonia" class="wrapper">
+            <div class="inner">
+                <div class="spotlight">
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=800&fit=crop" alt="Cerimonia">
+                    </div>
+                    <div class="content">
+                        <h2>Cerimonia</h2>
+                        <p>La cerimonia di rito civile avverrà <strong>sabato 6 dicembre 2025</strong> alle ore <strong>11:30</strong> presso il <strong>Comune di Arenzano (GE)</strong>.</p>
+                        <p>Il palazzo comunale si trova all'interno del parco Sauli Pallavicino (<a href="https://maps.app.goo.gl/7AHgE6iJSrZyQuhn6" target="_blank">mappa</a>).</p>
+                        <p>Consigliamo di parcheggiare nella vicina Piazza Paolo Rodocanachi (<a href="https://maps.app.goo.gl/NuvgTw1mUvqg6awy5" target="_blank">mappa</a>) dalla quale si può accedere a piedi al palazzo comunale.</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <p style="text-align: center; font-style: italic; margin-top: 2rem;">
-                Grazie!
-            </p>
+        <!-- Festa -->
+        <section id="festa" class="wrapper">
+            <div class="inner">
+                <div class="spotlight">
+                    <div class="content">
+                        <h2>Festa</h2>
+                        <p>Saremo lieti di festeggiare con voi presso il <strong><a href="https://www.agueta.it/" target="_blank">Ristorante Agueta du Sciria</a></strong>, situato poco sopra il borgo di Arenzano in Via Pecorara 18/A</p>
+                        <p>Clicca <a href="https://maps.app.goo.gl/1LWRH44QsfFFvwh3A" target="_blank">qui</a> per farti portare da Google Maps all'Agueta</p>
+                    </div>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&h=800&fit=crop" alt="Festa">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partecipa -->
+        <section id="partecipa" class="wrapper">
+            <div class="inner">
+                <div class="spotlight">
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=800&fit=crop" alt="Partecipa">
+                    </div>
+                    <div class="content">
+                        <h2>Partecipa</h2>
+                        <p>Ti preghiamo di <strong>confermare la tua presenza entro il 31 ottobre</strong>.</p>
+                        <p>Stiamo organizzando il viaggio di nozze dei nostri sogni in Sud America!<br>
+                        Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN cointestato:</p>
+                        <div class="iban-box">IT10T0366901600529834339306</div>
+                        <p style="text-align: center;"><em>Grazie!</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="copyright">
+            &copy; Vaccaglione 2025
         </div>
-    </section>
-
-    <footer>
-        <p>© Vaccaglione 2025</p>
     </footer>
 
     <script>
-        // Smooth scroll per i link di navigazione
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                        behavior: 'smooth'
                     });
                 }
             });
         });
     </script>
+
 </body>
 </html>
