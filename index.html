@@ -29,7 +29,6 @@
     --font-mono: 'Courier New', monospace; /* Font monospace per box IBAN e testo tecnico */
 }
 
-
         * {
             margin: 0;
             padding: 0;
@@ -40,6 +39,191 @@
             font-family: var(--font-main);
             overflow-x: hidden;
             background: var(--bg-primary);
+        }
+
+        /* Intro Animation */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            animation: fadeOutIntro 1s ease-out 6s forwards;
+            pointer-events: none;
+        }
+
+        .intro-scene {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Figure stilizzate */
+        .figure {
+            position: absolute;
+            bottom: 50px;
+            width: 40px;
+            transition: all 0.8s ease;
+        }
+
+        .man {
+            left: 60px;
+            animation: manWalk 2s ease-in-out 0.5s forwards;
+        }
+
+        .woman {
+            right: 60px;
+            animation: womanWait 2s ease-in-out 0.5s forwards;
+        }
+
+        /* Corpo figure */
+        .figure-body {
+            width: 40px;
+            height: 60px;
+            background: var(--text-primary);
+            border-radius: 20px 20px 5px 5px;
+            position: relative;
+        }
+
+        .figure-head {
+            width: 30px;
+            height: 30px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            position: absolute;
+            top: -35px;
+            left: 5px;
+        }
+
+        .figure-dress {
+            width: 60px;
+            height: 70px;
+            background: var(--text-primary);
+            border-radius: 30px 30px 40px 40px;
+            position: relative;
+        }
+
+        /* Bouquet */
+        .bouquet {
+            position: absolute;
+            bottom: 50px;
+            left: 100px;
+            width: 30px;
+            height: 40px;
+            opacity: 0;
+            transform: scale(0);
+            animation: bouquetAppear 0.5s ease-out 4.5s forwards;
+        }
+
+        .bouquet-flowers {
+            width: 30px;
+            height: 25px;
+            background: var(--accent-color);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+        }
+
+        .bouquet-flowers::before,
+        .bouquet-flowers::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--text-primary);
+            border-radius: 50%;
+            top: 2px;
+        }
+
+        .bouquet-flowers::before {
+            left: -5px;
+        }
+
+        .bouquet-flowers::after {
+            right: -5px;
+        }
+
+        .bouquet-stem {
+            width: 4px;
+            height: 15px;
+            background: var(--accent-color);
+            margin: 0 auto;
+        }
+
+        /* Animazioni */
+        @keyframes manWalk {
+            0% {
+                left: 60px;
+                transform: translateY(0);
+            }
+            40% {
+                left: 100px;
+                transform: translateY(0);
+            }
+            50% {
+                left: 100px;
+                transform: translateY(0) rotate(0deg);
+            }
+            60% {
+                left: 100px;
+                transform: translateY(10px) rotate(10deg) scale(0.95);
+            }
+            100% {
+                left: 100px;
+                transform: translateY(10px) rotate(10deg) scale(0.95);
+            }
+        }
+
+        @keyframes womanWait {
+            0%, 40% {
+                right: 60px;
+                transform: rotate(0deg);
+            }
+            45% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+            55% {
+                transform: rotate(-5deg);
+            }
+            60% {
+                right: 60px;
+                transform: rotate(0deg);
+            }
+            100% {
+                right: 60px;
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes bouquetAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                left: 150px;
+            }
+        }
+
+        @keyframes fadeOutIntro {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
 
         /* Hero Section */
@@ -428,6 +612,29 @@
     </style>
 </head>
 <body>
+
+    <!-- Intro Animation -->
+    <div class="intro-overlay">
+        <div class="intro-scene">
+            <!-- Uomo -->
+            <div class="figure man">
+                <div class="figure-head"></div>
+                <div class="figure-body"></div>
+            </div>
+
+            <!-- Donna -->
+            <div class="figure woman">
+                <div class="figure-head"></div>
+                <div class="figure-dress"></div>
+            </div>
+
+            <!-- Bouquet -->
+            <div class="bouquet">
+                <div class="bouquet-flowers"></div>
+                <div class="bouquet-stem"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <div class="hero">
