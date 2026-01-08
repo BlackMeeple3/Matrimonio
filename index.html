@@ -3,462 +3,493 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ci sposiamo - Ilaria e Claudio</title>
+    <title>Ci sposiamo - mimì e cocò</title>
     <style>
-        /* Reset e base */
-        html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, li, section, header, nav {
+        * {
             margin: 0;
             padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-        }
-
-        html {
             box-sizing: border-box;
         }
 
-        *, *:before, *:after {
-            box-sizing: inherit;
-        }
-
         body {
-            line-height: 1;
-            -webkit-text-size-adjust: none;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background: #000;
         }
 
-        /* Typography base */
-        body, input, select, textarea {
-            color: #888;
-            font-family: "Source Sans Pro", Helvetica, sans-serif;
-            font-size: 16pt;
-            font-weight: 300;
-            line-height: 1.75;
-        }
-
-        @media screen and (max-width: 1680px) {
-            body, input, select, textarea {
-                font-size: 14pt;
-            }
-        }
-
-        @media screen and (max-width: 1280px) {
-            body, input, select, textarea {
-                font-size: 12pt;
-            }
-        }
-
-        @media screen and (max-width: 360px) {
-            body, input, select, textarea {
-                font-size: 11pt;
-            }
-        }
-
-        a {
-            transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-            border-bottom: dotted 1px;
-            color: inherit;
-            text-decoration: none;
-        }
-
-        a:hover {
-            border-bottom-color: transparent;
-            color: #42b983 !important;
-        }
-
-        strong, b {
-            color: #555;
-            font-weight: 600;
-        }
-
-        em, i {
-            font-style: italic;
-        }
-
-        p {
-            margin: 0 0 2em 0;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            color: #555;
-            font-weight: 300;
-            line-height: 1.5;
-            margin: 0 0 1em 0;
-        }
-
-        h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-            color: inherit;
-            border-bottom: 0;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            line-height: 1.2;
-            letter-spacing: -0.035em;
-        }
-
-        @media screen and (max-width: 736px) {
-            h1 {
-                font-size: 2.5em;
-            }
-        }
-
-        h2 {
-            font-size: 2em;
-        }
-
-        h3 {
-            font-size: 1.5em;
-        }
-
-        /* Banner/Header */
-        #banner {
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            cursor: default;
-            height: 100vh;
-            min-height: 35em;
+            align-items: center;
             overflow: hidden;
-            position: relative;
-            text-align: center;
-            background-color: #3c3b3b;
-            color: #d3d3d3;
+            background: #000;
         }
 
-        #banner:before {
-            transition: opacity 3s ease;
-            transition-delay: 1.25s;
+        .hero::before {
             content: '';
-            display: block;
-            background-color: #2e3141;
-            height: 100%;
-            left: 0;
-            opacity: 0.45;
             position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: fadeInBg 2s ease-in-out 3s forwards;
         }
 
-        #banner h1 {
-            font-size: 3.5em;
-            color: #fff;
-            margin: 0 0 0.5em 0;
-            padding: 0;
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            animation: fadeInOverlay 1.5s ease-in-out 3.5s forwards;
+        }
+
+        /* Heart Icon */
+        .heart-icon {
             position: relative;
-            z-index: 2;
-        }
-
-        #banner p {
-            font-size: 1.5em;
-            color: rgba(255, 255, 255, 0.75);
-            position: relative;
-            z-index: 2;
-            margin: 0;
-        }
-
-        #banner .content {
-            position: relative;
-            z-index: 2;
-            padding: 4.5em 0 3em 0;
-        }
-
-        @media screen and (max-width: 736px) {
-            #banner {
-                min-height: 0;
-                height: auto;
-                padding: 6em 2em 4em 2em;
-            }
-
-            #banner h1 {
-                font-size: 2em;
-            }
-
-            #banner p {
-                font-size: 1.25em;
-            }
-        }
-
-        /* Navigation */
-        #nav {
-            background-color: #f7f7f7;
-            color: #636363;
-            cursor: default;
+            z-index: 10;
+            width: 120px;
+            height: 120px;
+            border: 3px solid #fff;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
-            padding: 0;
-            position: relative;
-            z-index: 10000;
-        }
-
-        #nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        #nav li {
-            display: inline-block;
-            padding: 0;
-        }
-
-        #nav a {
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            color: inherit;
-            display: block;
-            font-size: 0.8em;
-            letter-spacing: 0.225em;
-            padding: 1.5em 2em;
-            text-transform: uppercase;
-            border-bottom: 0;
-        }
-
-        #nav a:hover {
-            background-color: rgba(0, 0, 0, 0.025);
-        }
-
-        @media screen and (max-width: 736px) {
-            #nav ul {
-                flex-direction: column;
-            }
-
-            #nav a {
-                padding: 1em 2em;
-            }
-        }
-
-        /* Main content */
-        #main {
-            padding: 0;
-        }
-
-        #main > section {
-            border-top: solid 1px rgba(160, 160, 160, 0.3);
-            margin: 5em 0 0 0;
-            padding: 5em 0 0 0;
-        }
-
-        #main > section:first-child {
-            border-top: 0;
-            margin-top: 0;
-            padding-top: 0;
-        }
-
-        /* Wrapper */
-        .wrapper {
-            padding: 5em 0 3em 0;
-        }
-
-        .wrapper > .inner {
-            margin: 0 auto;
-            width: 60em;
-            padding: 0 2em;
-        }
-
-        @media screen and (max-width: 1280px) {
-            .wrapper > .inner {
-                width: 90%;
-            }
-        }
-
-        @media screen and (max-width: 736px) {
-            .wrapper {
-                padding: 3em 0 1em 0;
-            }
-
-            .wrapper > .inner {
-                width: 100%;
-            }
-        }
-
-        /* Image */
-        .image {
-            border: 0;
-            display: inline-block;
-            position: relative;
-            border-radius: 4px;
-        }
-
-        .image img {
-            display: block;
-            border-radius: 4px;
-            width: 100%;
-        }
-
-        .image.fit {
-            display: block;
-            margin: 0 0 2em 0;
-            width: 100%;
-        }
-
-        /* Spotlight */
-        .spotlight {
-            display: flex;
             align-items: center;
-            margin: 0 0 2em 0;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: fadeInHeart 1s ease-out 4s forwards;
         }
 
-        .spotlight .content {
-            flex: 1;
+        .heart-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
         }
 
-        .spotlight .image {
-            display: inline-block;
-            margin-left: 4em;
-            width: 30em;
+        /* Lines */
+        .line {
+            position: relative;
+            z-index: 10;
+            height: 2px;
+            background: #fff;
+            margin: 30px 0;
         }
 
-        @media screen and (max-width: 980px) {
-            .spotlight {
-                flex-direction: column-reverse;
-                text-align: center;
-            }
-
-            .spotlight .content {
-                width: 100%;
-            }
-
-            .spotlight .image {
-                margin: 0 0 2em 0;
-                width: 100%;
-            }
+        .line-top {
+            width: 0;
+            animation: expandLine 1.5s ease-out 1s forwards;
         }
 
-        /* Footer */
-        #footer {
-            background-color: #f7f7f7;
-            color: #bbb;
-            padding: 4em 0 2em 0;
+        .line-bottom {
+            width: 0;
+            animation: expandLine 1.5s ease-out 1s forwards;
+        }
+
+        /* Text */
+        .main-title {
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 20px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInText 1.5s ease-out 0.5s forwards;
             text-align: center;
         }
 
-        #footer .copyright {
-            font-size: 0.8em;
-            line-height: 1em;
-        }
-
-        #footer .copyright a {
-            color: inherit;
-        }
-
-        /* IBAN styling */
-        .iban-box {
-            background: #f9f9f9;
-            border-left: solid 4px #42b983;
-            padding: 1.5em;
-            margin: 2em 0;
-            font-family: "Courier New", monospace;
-            font-size: 1.1em;
-            letter-spacing: 0.1em;
+        .subtitle {
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: fadeInText 1.5s ease-out 2.5s forwards;
             text-align: center;
-            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Menu Buttons */
+        .menu-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 60px;
+            opacity: 0;
+            animation: fadeInMenu 1s ease-out 5s forwards;
+        }
+
+        .menu-btn {
+            width: 320px;
+            padding: 25px 40px;
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 300;
+        }
+
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            letter-spacing: 12px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            background: #fff;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 60px 50px;
+            border-radius: 0;
+            transform: scale(0.7);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #333;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .modal p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .modal strong {
+            color: #333;
             font-weight: 600;
         }
 
-        /* Body */
-        body {
-            background: #fff;
+        .modal a {
+            color: #42b983;
+            text-decoration: none;
+            border-bottom: 1px dotted #42b983;
+            transition: all 0.3s ease;
+        }
+
+        .modal a:hover {
+            border-bottom-color: transparent;
+        }
+
+        .iban-box {
+            background: #f9f9f9;
+            border-left: 4px solid #42b983;
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            text-align: center;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .deadline-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes fadeInBg {
+            to {
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes fadeInOverlay {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInHeart {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInMenu {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes expandLine {
+            to {
+                width: 500px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+                letter-spacing: 10px;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .menu-btn {
+                width: 280px;
+                font-size: 1rem;
+                letter-spacing: 5px;
+                padding: 20px 30px;
+            }
+
+            .menu-btn:hover {
+                letter-spacing: 8px;
+            }
+
+            @keyframes expandLine {
+                to {
+                    width: 300px;
+                }
+            }
+
+            .modal-content {
+                padding: 50px 30px;
+            }
+
+            .modal h2 {
+                font-size: 2rem;
+            }
+
+            .heart-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .heart-icon svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2rem;
+                letter-spacing: 8px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            .menu-btn {
+                width: 240px;
+                font-size: 0.9rem;
+                letter-spacing: 4px;
+            }
+
+            @keyframes expandLine {
+                to {
+                    width: 200px;
+                }
+            }
+
+            .iban-box {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Banner -->
-    <section id="banner">
-        <div class="content">
-            <h1>Ci sposiamo</h1>
-            <p>Chi l'avrebbe mai detto!</p>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="line line-top"></div>
+        
+        <div class="heart-icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
         </div>
-    </section>
 
-    <!-- Nav -->
-    <nav id="nav">
-        <ul>
-            <li><a href="#cerimonia">Cerimonia</a></li>
-            <li><a href="#festa">Festa</a></li>
-            <li><a href="#partecipa">Partecipa</a></li>
-        </ul>
-    </nav>
+        <h1 class="main-title">CI SPOSIAMO</h1>
+        <p class="subtitle">CHI L'AVREBBE MAI DETTO!</p>
 
-    <!-- Main -->
-    <div id="main">
+        <div class="line line-bottom"></div>
 
-        <!-- Cerimonia -->
-        <section id="cerimonia" class="wrapper">
-            <div class="inner">
-                <div class="spotlight">
-                    <div class="image fit">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=800&fit=crop" alt="Cerimonia">
-                    </div>
-                    <div class="content">
-                        <h2>Cerimonia</h2>
-                        <p>La cerimonia di rito civile avverrà <strong>sabato 6 dicembre 2025</strong> alle ore <strong>11:30</strong> presso il <strong>Comune di Arenzano (GE)</strong>.</p>
-                        <p>Il palazzo comunale si trova all'interno del parco Sauli Pallavicino (<a href="https://maps.app.goo.gl/7AHgE6iJSrZyQuhn6" target="_blank">mappa</a>).</p>
-                        <p>Consigliamo di parcheggiare nella vicina Piazza Paolo Rodocanachi (<a href="https://maps.app.goo.gl/NuvgTw1mUvqg6awy5" target="_blank">mappa</a>) dalla quale si può accedere a piedi al palazzo comunale.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Festa -->
-        <section id="festa" class="wrapper">
-            <div class="inner">
-                <div class="spotlight">
-                    <div class="content">
-                        <h2>Festa</h2>
-                        <p>Saremo lieti di festeggiare con voi presso il <strong><a href="https://www.agueta.it/" target="_blank">Ristorante Agueta du Sciria</a></strong>, situato poco sopra il borgo di Arenzano in Via Pecorara 18/A</p>
-                        <p>Clicca <a href="https://maps.app.goo.gl/1LWRH44QsfFFvwh3A" target="_blank">qui</a> per farti portare da Google Maps all'Agueta</p>
-                    </div>
-                    <div class="image fit">
-                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200&h=800&fit=crop" alt="Festa">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Partecipa -->
-        <section id="partecipa" class="wrapper">
-            <div class="inner">
-                <div class="spotlight">
-                    <div class="image fit">
-                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=800&fit=crop" alt="Partecipa">
-                    </div>
-                    <div class="content">
-                        <h2>Partecipa</h2>
-                        <p>Ti preghiamo di <strong>confermare la tua presenza entro il 31 ottobre</strong>.</p>
-                        <p>Stiamo organizzando il viaggio di nozze dei nostri sogni in Sud America!<br>
-                        Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN cointestato:</p>
-                        <div class="iban-box">IT10T0366901600529834339306</div>
-                        <p style="text-align: center;"><em>Grazie!</em></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <div class="menu-container">
+            <button class="menu-btn" onclick="openModal('cerimonia')">CERIMONIA</button>
+            <button class="menu-btn" onclick="openModal('festa')">FESTA</button>
+            <button class="menu-btn" onclick="openModal('partecipa')">PARTECIPA</button>
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="copyright">
-            &copy; Vaccaglione 2025
+    <!-- Modal Cerimonia -->
+    <div id="modal-cerimonia" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('cerimonia')">&times;</button>
+            <h2>Cerimonia</h2>
+            <div class="modal-image" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200');"></div>
+            <p>La cerimonia di rito civile avverrà <strong>sabato 6 dicembre 2025</strong> alle ore <strong>11:30</strong> presso il <strong>Comune di Arenzano (GE)</strong>.</p>
+            <p>Il palazzo comunale si trova all'interno del parco Sauli Pallavicino (<a href="https://maps.app.goo.gl/7AHgE6iJSrZyQuhn6" target="_blank">mappa</a>).</p>
+            <p>Consigliamo di parcheggiare nella vicina Piazza Paolo Rodocanachi (<a href="https://maps.app.goo.gl/NuvgTw1mUvqg6awy5" target="_blank">mappa</a>) dalla quale si può accedere a piedi al palazzo comunale.</p>
         </div>
-    </footer>
+    </div>
+
+    <!-- Modal Festa -->
+    <div id="modal-festa" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('festa')">&times;</button>
+            <h2>Festa</h2>
+            <div class="modal-image" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200');"></div>
+            <p>Saremo lieti di festeggiare con voi presso il <strong><a href="https://www.agueta.it/" target="_blank">Ristorante Agueta du Sciria</a></strong>, situato poco sopra il borgo di Arenzano in Via Pecorara 18/A.</p>
+            <p>Clicca <a href="https://maps.app.goo.gl/1LWRH44QsfFFvwh3A" target="_blank">qui</a> per farti portare da Google Maps all'Agueta.</p>
+        </div>
+    </div>
+
+    <!-- Modal Partecipa -->
+    <div id="modal-partecipa" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal('partecipa')">&times;</button>
+            <h2>Partecipa</h2>
+            <div class="modal-image" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200');"></div>
+            
+            <div class="deadline-box">
+                <p><strong>Ti preghiamo di confermare la tua presenza entro il 31 ottobre</strong></p>
+            </div>
+
+            <p>Stiamo organizzando il viaggio di nozze dei nostri sogni in Sud America!<br>
+            Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN cointestato:</p>
+            
+            <div class="iban-box">IT10T0366901600529834339306</div>
+
+            <p style="text-align: center; font-style: italic; margin-top: 30px;">Grazie!</p>
+        </div>
+    </div>
 
     <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+        function openModal(name) {
+            const modal = document.getElementById('modal-' + name);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(name) {
+            const modal = document.getElementById('modal-' + name);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Chiudi modal cliccando fuori
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             });
+        });
+
+        // Chiudi modal con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
         });
     </script>
 
