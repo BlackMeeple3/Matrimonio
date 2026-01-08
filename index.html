@@ -5,83 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davide & Alexandra</title>
     <style>
- :root {
+:root {
     /* SFONDI PRINCIPALI */
-    --bg-primary: #FAEBD7;             /* Sfondo principale della pagina e hero */
-    --bg-overlay: rgba(0, 0, 0, 0.5); /* Overlay scuro sopra l'immagine hero */
-    --bg-modal: #fff;               /* Sfondo dei modali */
-    --bg-modal-overlay: rgba(0, 0, 0, 0.9); /* Sfondo semi-trasparente quando il modale è aperto */
-    --bg-secondary: #f9f9f9;        /* Sfondo box secondari (es. IBAN) */
-    --bg-warning: #fff3cd;          /* Sfondo box di avviso o scadenza (deadline) */
+    --bg-primary: #FAEBD7;
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --bg-modal: #fff;
+    --bg-modal-overlay: rgba(0, 0, 0, 0.9);
+    --bg-secondary: #f9f9f9;
+    --bg-warning: #fff3cd;
 
     /* COLORI TESTO */
-    --text-primary: #fff;           /* Testo principale (titoli, hero, bottoni) */
-    --text-secondary: #666;         /* Testo secondario (paragrafi nei modali) */
-    --text-dark: #333;              /* Testo scuro in evidenza (titoli modali, strong, chiudi modale) */
+    --text-primary: #fff;
+    --text-secondary: #666;
+    --text-dark: #333;
 
     /* COLORI ACCENTO / BORDI */
-    --accent-color: #42b983;        /* Colore dei link, dei bordi evidenziati e box IBAN */
-    --warning-color: #ffc107;       /* Colore bordi box warning/scadenza */
-    --border-color: #fff;           /* Colore bordi linee, cuore e altri elementi decorativi */
+    --accent-color: #42b983;
+    --warning-color: #ffc107;
+    --border-color: #fff;
 
     /* FONT */
-    --font-main: 'Arial', sans-serif;  /* Font principale di tutta la pagina */
-    --font-mono: 'Courier New', monospace; /* Font monospace per box IBAN e testo tecnico */
+    --font-main: 'Arial', sans-serif;
+    --font-mono: 'Courier New', monospace;
 }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: var(--font-main);
-            overflow-x: hidden;
-            background: var(--bg-primary);
-        }
+body {
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    background: var(--bg-primary);
+}
 
-        /* Intro Animation */
-        .intro-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-primary);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 1;
-            animation: fadeOutIntro 1s ease-out 6s forwards;
-        }
+/* Intro Animation */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    animation: fadeOutIntro 1s ease-out 6s forwards;
+}
 
-        .intro-scene {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
+.intro-scene {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
 
-        /* Figure stilizzate */
-        .figure {
-            position: absolute;
-            bottom: 50px;
-            width: 40px;
-            transition: all 0.8s ease;
-        }
+/* Figure stilizzate */
+.figure {
+    position: absolute;
+    bottom: 50px;
+    width: 40px;
+    transition: all 0.8s ease;
+}
 
-        .man {
-            left: 60px;
-            animation: manWalk 2s ease-in-out 0.5s forwards;
-        }
-
-        .woman {
-            right: 60px;
-            animation: womanWait 2s ease-in-out 0.5s forwards;
-        }
-
-/* Corpo maschile */
 .figure-body {
     width: 20px;
     height: 60px;
@@ -90,17 +79,16 @@
     position: relative;
 }
 
-/* Corpo femminile con gonna */
 .figure-dress {
     width: 30px;
     height: 70px;
     background: var(--text-primary);
-    border-radius: 15px 15px 40px 40px; /* gonna più ampia in basso */
+    border-radius: 15px 15px 40px 40px;
     position: relative;
     transform-origin: bottom center;
+    animation: dressSwing 2s ease-in-out infinite;
 }
 
-/* Teste */
 .figure-head {
     width: 18px;
     height: 18px;
@@ -111,8 +99,20 @@
     left: 1px;
 }
 
-/* Baloon parlante */
-.speech {
+/* Uomo */
+.man {
+    left: 60px;
+    animation: manWalk 3s ease-in-out 0.5s forwards;
+}
+
+/* Donna */
+.woman {
+    right: 60px;
+    animation: womanMove 3s ease-in-out 0.5s infinite;
+}
+
+/* Baloon parlanti */
+.speech-man {
     position: absolute;
     bottom: 80px;
     left: 50%;
@@ -124,25 +124,77 @@
     border-radius: 5px;
     white-space: nowrap;
     opacity: 0;
-    animation: speechAppear 0.5s ease forwards;
+    animation: manSpeak 0.8s ease-out 4.5s forwards;
 }
 
-/* Uomo parla subito */
-.man .speech {
-    animation-delay: 1s;
+.speech-woman {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-primary);
+    color: var(--bg-primary);
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: womanSpeak 2s ease-in-out 4.5s infinite;
 }
 
-/* Donna parla dopo */
-.woman .speech {
-    animation-delay: 2s;
+/* Cuoricino donna */
+.heart {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    opacity: 0;
+    animation: heartAppear 0.5s ease-out 4.5s forwards;
 }
 
-/* Animazione comparsa testo */
-@keyframes speechAppear {
-    to { opacity: 1; }
+/* Bouquet */
+.bouquet {
+    position: absolute;
+    bottom: 50px;
+    left: 100px;
+    width: 30px;
+    height: 40px;
+    opacity: 0;
+    transform: scale(0);
+    animation: bouquetAppear 0.5s ease-out 4.5s forwards;
 }
 
-/* Movimento uomo */
+.bouquet-flowers {
+    width: 30px;
+    height: 25px;
+    background: var(--accent-color);
+    border-radius: 50% 50% 0 0;
+    position: relative;
+}
+
+.bouquet-flowers::before,
+.bouquet-flowers::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    top: 2px;
+}
+
+.bouquet-flowers::before { left: -5px; }
+.bouquet-flowers::after { right: -5px; }
+
+.bouquet-stem {
+    width: 4px;
+    height: 15px;
+    background: var(--accent-color);
+    margin: 0 auto;
+}
+
+/* Animazioni */
 @keyframes manWalk {
     0% { left: 60px; transform: translateY(0); }
     25% { left: 85px; transform: translateY(-5px); }
@@ -151,7 +203,6 @@
     100% { left: 120px; transform: translateY(0); }
 }
 
-/* Movimento donna avanti/indietro */
 @keyframes womanMove {
     0%,100% { right: 60px; transform: translateY(0); }
     25% { right: 58px; transform: translateY(-3px); }
@@ -159,7 +210,6 @@
     75% { right: 62px; transform: translateY(-3px); }
 }
 
-/* Gonna oscilla */
 @keyframes dressSwing {
     0%,100% { transform: rotate(0deg); }
     25% { transform: rotate(3deg); }
@@ -167,522 +217,322 @@
     75% { transform: rotate(-3deg); }
 }
 
-/* Applicazione animazioni */
-.man {
-    animation: manWalk 3s ease-in-out 0.5s forwards;
+@keyframes manSpeak {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    20% { opacity: 1; transform: translate(-50%, -10px); }
+    100% { opacity: 0; transform: translate(-50%, -50px); }
 }
 
-.woman {
-    animation: womanMove 3s ease-in-out 0.5s infinite;
+@keyframes womanSpeak {
+    0% { opacity: 0; transform: translate(-50%, 0); }
+    10% { opacity: 1; transform: translate(-50%, -5px); }
+    50% { opacity: 1; transform: translate(-50%, -20px); }
+    90% { opacity: 0; transform: translate(-50%, -30px); }
+    100% { opacity: 0; transform: translate(-50%, 0); }
 }
 
-.figure-dress {
-    animation: dressSwing 2s ease-in-out infinite;
+@keyframes heartAppear {
+    0% { opacity: 0; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(-10px) scale(1.2); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(-10px) scale(1); }
 }
 
+@keyframes bouquetAppear {
+    0% { opacity: 0; transform: scale(0) translateY(0); }
+    50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); left: 150px; }
+}
 
+@keyframes fadeOutIntro {
+    to { opacity: 0; visibility: hidden; z-index: -1; }
+}
 
-        /* Bouquet */
-        .bouquet {
-            position: absolute;
-            bottom: 50px;
-            left: 100px;
-            width: 30px;
-            height: 40px;
-            opacity: 0;
-            transform: scale(0);
-            animation: bouquetAppear 0.5s ease-out 4.5s forwards;
-        }
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
 
-        .bouquet-flowers {
-            width: 30px;
-            height: 25px;
-            background: var(--accent-color);
-            border-radius: 50% 50% 0 0;
-            position: relative;
-        }
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: fadeInBg 2s ease-in-out 9s forwards;
+}
 
-        .bouquet-flowers::before,
-        .bouquet-flowers::after {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            top: 2px;
-        }
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-overlay);
+    opacity: 0;
+    animation: fadeInOverlay 1.5s ease-in-out 9.5s forwards;
+}
 
-        .bouquet-flowers::before {
-            left: -5px;
-        }
+.heart-icon {
+    position: relative;
+    z-index: 10;
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: scale(0.5);
+    animation: fadeInHeart 1s ease-out 10s forwards;
+}
 
-        .bouquet-flowers::after {
-            right: -5px;
-        }
+.heart-icon img {
+    height: 65%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
 
-        .bouquet-stem {
-            width: 4px;
-            height: 15px;
-            background: var(--accent-color);
-            margin: 0 auto;
-        }
+.line {
+    position: relative;
+    z-index: 10;
+    height: 2px;
+    background: var(--border-color);
+    margin: 30px 0;
+}
 
-        /* Animazioni */
-        @keyframes manWalk {
-            0% {
-                left: 60px;
-                transform: translateY(0);
-            }
-            40% {
-                left: 100px;
-                transform: translateY(0);
-            }
-            50% {
-                left: 100px;
-                transform: translateY(0) rotate(0deg);
-            }
-            60% {
-                left: 100px;
-                transform: translateY(10px) rotate(10deg) scale(0.95);
-            }
-            100% {
-                left: 100px;
-                transform: translateY(10px) rotate(10deg) scale(0.95);
-            }
-        }
+.line-top {
+    width: 0;
+    animation: expandLine 1.5s ease-out 7.5s forwards;
+}
 
-        @keyframes womanWait {
-            0%, 40% {
-                right: 60px;
-                transform: rotate(0deg);
-            }
-            45% {
-                transform: rotate(-5deg);
-            }
-            50% {
-                transform: rotate(5deg);
-            }
-            55% {
-                transform: rotate(-5deg);
-            }
-            60% {
-                right: 60px;
-                transform: rotate(0deg);
-            }
-            100% {
-                right: 60px;
-                transform: rotate(0deg);
-            }
-        }
+.line-bottom {
+    width: 0;
+    animation: expandLine 1.5s ease-out 7.5s forwards;
+}
 
-        @keyframes bouquetAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0) translateY(0);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2) translateY(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-                left: 150px;
-            }
-        }
+.main-title {
+    position: relative;
+    z-index: 10;
+    color: var(--text-primary);
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: 20px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInText 1.5s ease-out 7s forwards;
+    text-align: center;
+}
 
-        @keyframes fadeOutIntro {
-            to {
-                opacity: 0;
-                visibility: hidden;
-                z-index: -1;
-            }
-        }
+.subtitle {
+    position: relative;
+    z-index: 10;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: fadeInText 1.5s ease-out 9s forwards;
+    text-align: center;
+    margin-top: 10px;
+}
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: var(--bg-primary);
-        }
+.menu-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 60px;
+    opacity: 0;
+    animation: fadeInMenu 1s ease-out 11s forwards;
+}
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            animation: fadeInBg 2s ease-in-out 9s forwards;
-        }
+.menu-btn {
+    width: 320px;
+    padding: 25px 40px;
+    background: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 300;
+    font-family: var(--font-main);
+}
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-overlay);
-            opacity: 0;
-            animation: fadeInOverlay 1.5s ease-in-out 9.5s forwards;
-        }
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    letter-spacing: 12px;
+}
 
-        /* Heart Icon */
-        .heart-icon {
-            position: relative;
-            z-index: 10;
-            width: 120px;
-            height: 120px;
-            border: 3px solid var(--border-color);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: scale(0.5);
-            animation: fadeInHeart 1s ease-out 10s forwards;
-        }
+/* Modali */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-modal-overlay);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
 
-        .heart-icon svg {
-            width: 50px;
-            height: 50px;
-            fill: none;
-            stroke: var(--text-primary);
-            stroke-width: 2;
-        }
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
 
-        .heart-icon img {
-            height: 65%;
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
+.modal-content {
+    position: relative;
+    background: var(--bg-modal);
+    max-width: 800px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 60px 50px;
+    border-radius: 0;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
 
-        /* Lines */
-        .line {
-            position: relative;
-            z-index: 10;
-            height: 2px;
-            background: var(--border-color);
-            margin: 30px 0;
-        }
+.modal.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
 
-        .line-top {
-            width: 0;
-            animation: expandLine 1.5s ease-out 7.5s forwards;
-        }
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-        .line-bottom {
-            width: 0;
-            animation: expandLine 1.5s ease-out 7.5s forwards;
-        }
+.close-btn:hover {
+    transform: rotate(90deg);
+}
 
-        /* Text */
-        .main-title {
-            position: relative;
-            z-index: 10;
-            color: var(--text-primary);
-            font-size: 4rem;
-            font-weight: 300;
-            letter-spacing: 20px;
-            text-transform: uppercase;
-            opacity: 0;
-            animation: fadeInText 1.5s ease-out 7s forwards;
-            text-align: center;
-        }
+.modal h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 30px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: var(--font-main);
+}
 
-        .subtitle {
-            position: relative;
-            z-index: 10;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            opacity: 0;
-            animation: fadeInText 1.5s ease-out 9s forwards;
-            text-align: center;
-            margin-top: 10px;
-        }
+.modal-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
 
-        /* Menu Buttons */
-        .menu-container {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            margin-top: 60px;
-            opacity: 0;
-            animation: fadeInMenu 1s ease-out 11s forwards;
-        }
+.modal p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-family: var(--font-main);
+}
 
-        .menu-btn {
-            width: 320px;
-            padding: 25px 40px;
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-color);
-            font-size: 1.2rem;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            font-weight: 300;
-            font-family: var(--font-main);
-        }
+.modal strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
 
-        .menu-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            letter-spacing: 12px;
-        }
+.modal a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent-color);
+    transition: all 0.3s ease;
+}
 
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-modal-overlay);
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
+.modal a:hover {
+    border-bottom-color: transparent;
+}
 
-        .modal.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 1;
-        }
+.iban-box {
+    background: var(--bg-secondary);
+    border-left: 4px solid var(--accent-color);
+    padding: 20px;
+    margin: 30px 0;
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-align: center;
+    color: var(--text-dark);
+    font-weight: 600;
+}
 
-        .modal-content {
-            position: relative;
-            background: var(--bg-modal);
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 60px 50px;
-            border-radius: 0;
-            transform: scale(0.7);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
+.deadline-box {
+    background: var(--bg-warning);
+    border-left: 4px solid var(--warning-color);
+    padding: 20px;
+    margin: 30px 0;
+    text-align: center;
+}
 
-        .modal.active .modal-content {
-            transform: scale(1);
-            opacity: 1;
-        }
+/* Animazioni generali */
+@keyframes fadeInBg { to { opacity: 0.6; } }
+@keyframes fadeInOverlay { to { opacity: 1; } }
+@keyframes fadeInText { to { opacity: 1; } }
+@keyframes fadeInHeart { to { opacity: 1; transform: scale(1); } }
+@keyframes fadeInMenu { to { opacity: 1; } }
+@keyframes expandLine { to { width: 500px; } }
 
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title { font-size: 2.5rem; letter-spacing: 10px; }
+    .subtitle { font-size: 1.2rem; }
+    .menu-btn { width: 280px; font-size: 1rem; letter-spacing: 5px; padding: 20px 30px; }
+    .menu-btn:hover { letter-spacing: 8px; }
+    @keyframes expandLine { to { width: 300px; } }
+    .modal-content { padding: 50px 30px; }
+    .modal h2 { font-size: 2rem; }
+    .heart-icon { width: 100px; height: 100px; }
+    .heart-icon img { height: 50px; }
+}
 
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .modal h2 {
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            margin-bottom: 30px;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-family: var(--font-main);
-        }
-
-        .modal-image {
-            width: 100%;
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
-
-        .modal p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-family: var(--font-main);
-        }
-
-        .modal strong {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .modal a {
-            color: var(--accent-color);
-            text-decoration: none;
-            border-bottom: 1px dotted var(--accent-color);
-            transition: all 0.3s ease;
-        }
-
-        .modal a:hover {
-            border-bottom-color: transparent;
-        }
-
-        .iban-box {
-            background: var(--bg-secondary);
-            border-left: 4px solid var(--accent-color);
-            padding: 20px;
-            margin: 30px 0;
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            text-align: center;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .deadline-box {
-            background: var(--bg-warning);
-            border-left: 4px solid var(--warning-color);
-            padding: 20px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        /* Animations */
-        @keyframes fadeInBg {
-            to {
-                opacity: 0.6;
-            }
-        }
-
-        @keyframes fadeInOverlay {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInText {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInHeart {
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeInMenu {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes expandLine {
-            to {
-                width: 500px;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
-                letter-spacing: 10px;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .menu-btn {
-                width: 280px;
-                font-size: 1rem;
-                letter-spacing: 5px;
-                padding: 20px 30px;
-            }
-
-            .menu-btn:hover {
-                letter-spacing: 8px;
-            }
-
-            @keyframes expandLine {
-                to {
-                    width: 300px;
-                }
-            }
-
-            .modal-content {
-                padding: 50px 30px;
-            }
-
-            .modal h2 {
-                font-size: 2rem;
-            }
-
-            .heart-icon {
-                width: 100px;
-                height: 100px;
-            }
-
-            .heart-icon svg {
-                width: 40px;
-                height: 40px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 2rem;
-                letter-spacing: 8px;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-                letter-spacing: 2px;
-            }
-
-            .menu-btn {
-                width: 240px;
-                font-size: 0.9rem;
-                letter-spacing: 4px;
-            }
-
-            @keyframes expandLine {
-                to {
-                    width: 200px;
-                }
-            }
-
-            .iban-box {
-                font-size: 1rem;
-                letter-spacing: 1px;
-            }
-        }
+@media (max-width: 480px) {
+    .main-title { font-size: 2rem; letter-spacing: 8px; }
+    .subtitle { font-size: 1rem; letter-spacing: 2px; }
+    .menu-btn { width: 240px; font-size: 0.9rem; letter-spacing: 4px; }
+    @keyframes expandLine { to { width: 200px; } }
+    .iban-box { font-size: 1rem; letter-spacing: 1px; }
+}
     </style>
 </head>
 <body>
@@ -690,22 +540,17 @@
     <!-- Intro Animation -->
     <div class="intro-overlay">
         <div class="intro-scene">
-            <!-- Uomo -->
-<!-- Uomo -->
-<div class="figure man">
-    <div class="speech">bla</div>
-    <div class="figure-head"></div>
-    <div class="figure-body"></div>
-</div>
-
-<!-- Donna -->
-<div class="figure woman">
-    <div class="speech">bla bla bla bla bla bla</div>
-    <div class="figure-head"></div>
-    <div class="figure-dress"></div>
-</div>
-
-            <!-- Bouquet -->
+            <div class="figure man">
+                <div class="speech-man">bla</div>
+                <div class="figure-head"></div>
+                <div class="figure-body"></div>
+            </div>
+            <div class="figure woman">
+                <div class="speech-woman">bla bla bla bla bla bla</div>
+                <div class="figure-head"></div>
+                <div class="figure-dress"></div>
+                <div class="heart">❤️</div>
+            </div>
             <div class="bouquet">
                 <div class="bouquet-flowers"></div>
                 <div class="bouquet-stem"></div>
@@ -716,14 +561,12 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="line line-top"></div>
-        
         <div class="heart-icon">
             <img src="spiga.png" alt="Spiga di grano">
         </div>
-
         <h1 class="main-title">CI SPOSIAMO!</h1>
-        <p class="subtitle">DAVIDE & ALEXANDRA</p>
-
+        <p class="subtitle
+                   <p class="subtitle">DAVIDE & ALEXANDRA</p>
         <div class="line line-bottom"></div>
 
         <div class="menu-container">
@@ -811,4 +654,4 @@
     </script>
 
 </body>
-</html>
+</html> 
