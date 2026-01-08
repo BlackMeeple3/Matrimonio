@@ -81,32 +81,103 @@
             animation: womanWait 2s ease-in-out 0.5s forwards;
         }
 
-        /* Corpo figure */
-        .figure-body {
-            width: 40px;
-            height: 60px;
-            background: var(--text-primary);
-            border-radius: 20px 20px 5px 5px;
-            position: relative;
-        }
+/* Corpo figure più magre */
+.figure-body {
+    width: 25px;
+    height: 60px;
+    background: var(--text-primary);
+    border-radius: 12px 12px 5px 5px;
+    position: relative;
+}
 
-        .figure-head {
-            width: 30px;
-            height: 30px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            position: absolute;
-            top: -35px;
-            left: 5px;
-        }
+.figure-head {
+    width: 20px;
+    height: 20px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    position: absolute;
+    top: -25px;
+    left: 2.5px;
+}
 
-        .figure-dress {
-            width: 60px;
-            height: 70px;
-            background: var(--text-primary);
-            border-radius: 30px 30px 40px 40px;
-            position: relative;
-        }
+.figure-dress {
+    width: 35px;
+    height: 70px;
+    background: var(--text-primary);
+    border-radius: 18px 18px 40px 40px;
+    position: relative;
+    transform-origin: bottom center;
+}
+
+/* Uomo cammina verso donna con piccoli salti */
+@keyframes manWalk {
+    0% {
+        left: 60px;
+        transform: translateY(0) rotate(0deg) scale(0.95);
+    }
+    20% {
+        left: 85px;
+        transform: translateY(-5px) rotate(-5deg) scale(0.95);
+    }
+    40% {
+        left: 110px;
+        transform: translateY(0) rotate(0deg) scale(0.95);
+    }
+    60% {
+        left: 115px;
+        transform: translateY(-3px) rotate(3deg) scale(0.95);
+    }
+    80% {
+        left: 120px;
+        transform: translateY(0) rotate(0deg) scale(0.95);
+    }
+    100% {
+        left: 120px;
+        transform: translateY(0) rotate(0deg) scale(0.95);
+    }
+}
+
+/* Donna si muove avanti/indietro leggermente */
+@keyframes womanMove {
+    0%, 100% {
+        right: 60px;
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        right: 58px;
+        transform: translateY(-3px) rotate(2deg);
+    }
+    50% {
+        right: 60px;
+        transform: translateY(0) rotate(0deg);
+    }
+    75% {
+        right: 62px;
+        transform: translateY(-3px) rotate(-2deg);
+    }
+}
+
+/* Vestito donna oscilla leggermente */
+@keyframes dressSwing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-3deg); }
+}
+
+/* Applicazione animazioni alle figure */
+.man {
+    animation: manWalk 3s ease-in-out 0.5s forwards;
+}
+
+.woman {
+    animation: womanMove 3s ease-in-out 0.5s infinite;
+}
+
+.figure-dress {
+    animation: dressSwing 2s ease-in-out infinite;
+}
+
 
         /* Bouquet */
         .bouquet {
