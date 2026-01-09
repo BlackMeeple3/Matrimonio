@@ -504,12 +504,11 @@ body {
     animation: modalOpen 0.5s ease-out forwards;
 }
 
-/* Animazione popup con leggero rimbalzo */
 @keyframes modalOpen {
-    0% { transform: translateY(40px) scale(0.9); opacity: 0; }
-    60% { transform: translateY(-10px) scale(1.05); opacity: 1; }
-    100% { transform: translateY(0) scale(1); }
+    0% { transform: translateY(-50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
+
 
 /* Close button solo X */
 .close-btn {
