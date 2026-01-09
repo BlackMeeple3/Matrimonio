@@ -71,32 +71,81 @@ body {
     transition: all 0.8s ease;
 }
 
-.figure-body {
-    width: 20px;
-    height: 60px;
+.figure-head {
+    width: 24px;
+    height: 24px;
     background: var(--text-primary);
-    border-radius: 10px 10px 5px 5px;
+    border-radius: 50%;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.figure-body {
+    width: 35px;
+    height: 45px;
+    background: var(--text-primary);
+    border-radius: 8px 8px 0 0;
     position: relative;
 }
 
-.figure-dress {
-    width: 30px;
-    height: 70px;
+.figure-arms {
+    position: absolute;
+    width: 55px;
+    height: 8px;
     background: var(--text-primary);
-    border-radius: 15px 15px 40px 40px;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.figure-legs {
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 35px;
+    display: flex;
+    gap: 5px;
+}
+
+.leg {
+    width: 12px;
+    height: 100%;
+    background: var(--text-primary);
+    border-radius: 0 0 6px 6px;
+}
+
+.figure-dress {
+    width: 50px;
+    height: 55px;
+    background: var(--text-primary);
+    border-radius: 8px 8px 0 0;
     position: relative;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
     transform-origin: bottom center;
     animation: dressSwing 2s ease-in-out infinite;
 }
 
-.figure-head {
-    width: 18px;
-    height: 18px;
-    background: var(--text-primary);
-    border-radius: 50%;
+.figure-dress-legs {
     position: absolute;
-    top: -20px;
-    left: 1px;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 35px;
+    display: flex;
+    gap: 8px;
+}
+
+.dress-leg {
+    width: 12px;
+    height: 100%;
+    background: var(--text-primary);
+    border-radius: 0 0 6px 6px;
 }
 
 /* Uomo */
@@ -114,7 +163,7 @@ body {
 /* Testo parlante */
 .speech-man {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     color: var(--text-primary);
@@ -125,28 +174,55 @@ body {
     animation: manSpeak 1s ease-out 3.8s forwards;
 }
 
-.speech-woman {
+.speech-bubble {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     color: var(--text-primary);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    white-space: nowrap;
     opacity: 0;
-    animation: womanSpeak 3.5s ease-in-out 1s forwards;
 }
+
+.bubble-1 { animation: bubbleFloat 0.8s ease-out 1s forwards; }
+.bubble-2 { animation: bubbleFloat 0.8s ease-out 1.5s forwards; }
+.bubble-3 { animation: bubbleFloat 0.8s ease-out 2s forwards; }
+.bubble-4 { animation: bubbleFloat 0.8s ease-out 2.5s forwards; }
+.bubble-5 { animation: bubbleFloat 0.8s ease-out 3s forwards; }
 
 /* Cuoricino donna */
 .heart {
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     opacity: 0;
-    animation: heartFloat 2s ease-out 4.5s forwards;
+    animation: heartFloat 1.5s ease-out 4.5s forwards;
+}
+
+/* Skip button */
+.skip-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+    border: 2px solid var(--text-primary);
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.skip-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    letter-spacing: 4px;
 }
 
 /* Bouquet */
@@ -219,19 +295,16 @@ body {
     100% { opacity: 0; transform: translate(-50%, -80px); }
 }
 
-@keyframes womanSpeak {
-    0% { opacity: 0; transform: translate(-50%, 0); }
-    10% { opacity: 1; transform: translate(-50%, -10px); }
-    40% { opacity: 1; transform: translate(-50%, -40px); }
-    70% { opacity: 1; transform: translate(-50%, -70px); }
-    90% { opacity: 0; transform: translate(-50%, -100px); }
-    100% { opacity: 0; transform: translate(-50%, -100px); }
+@keyframes bubbleFloat {
+    0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
+    20% { opacity: 1; transform: translate(-50%, -20px) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -80px) scale(0.8); }
 }
 
 @keyframes heartFloat {
     0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
-    20% { opacity: 1; transform: translate(-50%, -20px) scale(1); }
-    100% { opacity: 1; transform: translate(-50%, -100px) scale(1.2); }
+    30% { opacity: 1; transform: translate(-50%, -30px) scale(1.2); }
+    100% { opacity: 1; transform: translate(-50%, -90px) scale(1.5); }
 }
 
 @keyframes bouquetAppear {
@@ -536,16 +609,31 @@ body {
 
     <!-- Intro Animation -->
     <div class="intro-overlay">
+        <button class="skip-btn" onclick="skipIntro()">SKIP</button>
         <div class="intro-scene">
             <div class="figure man">
                 <div class="speech-man">bla</div>
                 <div class="figure-head"></div>
-                <div class="figure-body"></div>
+                <div class="figure-body">
+                    <div class="figure-legs">
+                        <div class="leg"></div>
+                        <div class="leg"></div>
+                    </div>
+                </div>
             </div>
             <div class="figure woman">
-                <div class="speech-woman">bla bla bla bla bla bla</div>
+                <div class="speech-bubble bubble-1">bla</div>
+                <div class="speech-bubble bubble-2">bla</div>
+                <div class="speech-bubble bubble-3">bla</div>
+                <div class="speech-bubble bubble-4">bla</div>
+                <div class="speech-bubble bubble-5">bla</div>
                 <div class="figure-head"></div>
-                <div class="figure-dress"></div>
+                <div class="figure-dress">
+                    <div class="figure-dress-legs">
+                        <div class="dress-leg"></div>
+                        <div class="dress-leg"></div>
+                    </div>
+                </div>
                 <div class="heart">❤️</div>
             </div>
             <div class="bouquet">
@@ -616,6 +704,14 @@ body {
     </div>
 
     <script>
+        function skipIntro() {
+            const intro = document.querySelector('.intro-overlay');
+            intro.style.animation = 'none';
+            intro.style.opacity = '0';
+            intro.style.visibility = 'hidden';
+            intro.style.zIndex = '-1';
+        }
+
         function openModal(name) {
             const modal = document.getElementById('modal-' + name);
             modal.classList.add('active');
