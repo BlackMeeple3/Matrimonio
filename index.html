@@ -6,25 +6,17 @@
     <title>Davide & Alexandra</title>
     <style>
 :root {
-    /* SFONDI PRINCIPALI */
     --bg-primary: #FAEBD7;
     --bg-overlay: rgba(0, 0, 0, 0.5);
     --bg-modal: #fff;
-    --bg-modal-overlay: rgba(0, 0, 0, 0.9);
     --bg-secondary: #f9f9f9;
     --bg-warning: #fff3cd;
-
-    /* COLORI TESTO */
     --text-primary: #fff;
     --text-secondary: #666;
     --text-dark: #333;
-
-    /* COLORI ACCENTO / BORDI */
     --accent-color: #42b983;
     --warning-color: #ffc107;
     --border-color: #fff;
-
-    /* FONT */
     --font-main: 'Arial', sans-serif;
     --font-mono: 'Courier New', monospace;
 }
@@ -54,36 +46,37 @@ body {
     justify-content: center;
     align-items: center;
     opacity: 1;
-    animation: fadeOutIntro 1s ease-out 6s forwards;
+    animation: fadeOutIntro 1s ease-out 8s forwards;
 }
 
 .intro-scene {
     position: relative;
-    width: 350px;
-    height: 300px;
+    width: 100vw;
+    max-width: 350px;
+    height: 250px;
 }
 
 /* Figure stilizzate */
 .figure {
     position: absolute;
-    width: 40px;
+    width: 35px;
     transition: all 0.8s ease;
 }
 
 .figure-head {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     background: var(--text-primary);
     border-radius: 50%;
     position: absolute;
-    top: -28px;
+    top: -24px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .figure-body {
-    width: 35px;
-    height: 45px;
+    width: 30px;
+    height: 40px;
     background: var(--text-primary);
     border-radius: 8px 8px 0 0;
     position: relative;
@@ -91,10 +84,10 @@ body {
 
 .figure-arms {
     position: absolute;
-    width: 55px;
-    height: 8px;
+    width: 45px;
+    height: 6px;
     background: var(--text-primary);
-    top: 10px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 4px;
@@ -102,41 +95,40 @@ body {
 
 .figure-legs {
     position: absolute;
-    bottom: -35px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 30px;
-    height: 35px;
+    width: 25px;
+    height: 30px;
     display: flex;
     gap: 5px;
 }
 
 .leg {
-    width: 12px;
+    width: 10px;
     height: 100%;
     background: var(--text-primary);
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 5px 5px;
 }
 
 .figure-dress {
-    width: 50px;
-    height: 55px;
+    width: 40px;
+    height: 45px;
     background: var(--text-primary);
     border-radius: 8px 8px 0 0;
     position: relative;
     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    transform-origin: bottom center;
 }
 
 .figure-dress-legs {
     position: absolute;
-    bottom: -35px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 35px;
+    width: 35px;
+    height: 30px;
     display: flex;
-    gap: 8px;
+    gap: 6px;
 }
 
 .dress-leg {
@@ -150,25 +142,14 @@ body {
 .man {
     position: absolute;
     left: 22px;
-    bottom: 30px;
-    z-index: 5;
+    bottom: 28px;
+    z-index: 4;
 }
-
 
 /* Donna seduta */
 .woman {
-    right: 50px;
-    bottom: 40px;
-}
-
-/* Cuoricino donna */
-.heart {
-    position: absolute;
-    bottom: 50px;
-    right: 100px;
-    font-size: 2rem;
-    opacity: 0;
-    animation: heartFloat 2s ease-out 4s forwards;
+    right: 40px;
+    bottom: 35px;
 }
 
 /* Skip button */
@@ -180,7 +161,7 @@ body {
     color: var(--text-primary);
     border: none;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 400;
     letter-spacing: 1px;
     cursor: pointer;
@@ -190,151 +171,140 @@ body {
     text-decoration: underline;
 }
 
-.skip-btn:hover {
-    opacity: 0.7;
+.skip-btn:active {
+    opacity: 0.6;
+    transform: scale(0.95);
 }
 
 /* Trattore */
 .tractor {
     position: absolute;
-    bottom: 80px;
-    left: 30px;
-    width: 80px;
+    bottom: 70px;
+    left: 20px;
+    width: 85px;
     height: 50px;
 }
 
-/* Corpo trattore */
 .tractor-body {
     position: absolute;
-    bottom: 15px;
-    left: 15px;
-    width: 45px;
-    height: 25px;
+    bottom: 12px;
+    left: 12px;
+    width: 42px;
+    height: 22px;
     background: #d32f2f;
     border-radius: 4px 4px 0 0;
 }
 
-/* Cabina */
 .tractor-cabin {
     position: absolute;
-    top: -15px;
-    left: 5px;
-    width: 25px;
-    height: 18px;
+    top: -14px;
+    left: 4px;
+    width: 22px;
+    height: 16px;
     background: #b71c1c;
     border-radius: 4px 4px 0 0;
 }
 
-/* Finestrino */
 .tractor-cabin::after {
     content: '';
     position: absolute;
-    width: 18px;
-    height: 10px;
+    width: 16px;
+    height: 9px;
     background: rgba(255, 255, 255, 0.3);
     top: 2px;
     left: 3px;
     border-radius: 2px;
 }
 
-/* Ruota posteriore grande */
 .tractor-wheel-back {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 28px;
-    height: 28px;
-    background: #333;
-    border-radius: 50%;
-    border: 4px solid #555;
-}
-
-/* Ruota anteriore piccola */
-.tractor-wheel-front {
-    position: absolute;
-    bottom: 0;
-    right: 8px;
-    width: 18px;
-    height: 18px;
+    width: 26px;
+    height: 26px;
     background: #333;
     border-radius: 50%;
     border: 3px solid #555;
 }
 
-/* Libro */
-.book {
+.tractor-wheel-front {
     position: absolute;
-    bottom: 40px;
-    right: 50px;
-    width: 30px;
-    height: 22px;
-    background: #8b4513;
-    border-radius: 2px;
-    transform: rotate(-10deg);
-}
-
-/* Pagine del libro */
-.book::before {
-    content: '';
-    position: absolute;
-    width: 26px;
-    height: 18px;
-    background: #f5f5dc;
-    top: 2px;
-    left: 2px;
-    border-radius: 1px;
-}
-
-/* Linee pagine */
-.book::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 1px;
-    background: #999;
-    top: 8px;
-    left: 5px;
-    box-shadow: 0 4px 0 #999, 0 8px 0 #999;
+    bottom: 0;
+    right: 7px;
+    width: 16px;
+    height: 16px;
+    background: #333;
+    border-radius: 50%;
+    border: 2px solid #555;
 }
 
 /* Anello */
 .ring {
     position: absolute;
-    bottom: 100px;
-    left: 80px;
-    width: 20px;
-    height: 20px;
-    border: 3px solid #ffd700;
+    bottom: 75px;
+    left: 45px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffd700;
     border-radius: 50%;
     opacity: 0;
     animation: ringThrow 2s ease-out 1.5s forwards;
 }
 
-/* Diamante sull'anello */
 .ring::before {
     content: '';
     position: absolute;
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: #fff;
-    top: -8px;
+    top: -7px;
     left: 50%;
     transform: translateX(-50%) rotate(45deg);
     box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
-/* Animazioni */
-@keyframes ringThrow {
-    0% { opacity: 0; left: 80px; bottom: 100px; transform: scale(0.5) rotate(0deg); }
-    30% { opacity: 1; left: 150px; bottom: 120px; transform: scale(1) rotate(180deg); }
-    60% { left: 220px; bottom: 90px; transform: scale(1) rotate(360deg); }
-    100% { opacity: 1; left: 260px; bottom: 60px; transform: scale(1.2) rotate(540deg); }
+/* Linea centrale che sale */
+.center-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 0;
+    background: linear-gradient(to top, #fff, #ff69b4);
+    opacity: 0;
+    animation: lineRise 2s ease-out 3.5s forwards;
 }
 
-@keyframes heartFloat {
-    0% { opacity: 0; transform: scale(0.5); bottom: 50px; }
-    30% { opacity: 1; transform: scale(1.2); bottom: 80px; }
-    100% { opacity: 1; transform: scale(1.5); bottom: 150px; }
+/* Cuore che si forma */
+.heart-formation {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    font-size: 3rem;
+    opacity: 0;
+    animation: heartForm 1.5s ease-out 5s forwards;
+}
+
+/* Animazioni */
+@keyframes ringThrow {
+    0% { opacity: 0; left: 45px; bottom: 75px; transform: scale(0.5) rotate(0deg); }
+    30% { opacity: 1; left: 140px; bottom: 100px; transform: scale(1) rotate(180deg); }
+    60% { left: 220px; bottom: 70px; transform: scale(1) rotate(360deg); }
+    100% { opacity: 1; left: 270px; bottom: 45px; transform: scale(1.2) rotate(540deg); }
+}
+
+@keyframes lineRise {
+    0% { opacity: 0; height: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 1; height: 200px; }
+}
+
+@keyframes heartForm {
+    0% { opacity: 0; transform: translateX(-50%) scale(0) rotate(-20deg); }
+    50% { opacity: 1; transform: translateX(-50%) scale(1.3) rotate(5deg); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1) rotate(0deg); }
 }
 
 @keyframes fadeOutIntro {
@@ -369,7 +339,7 @@ body {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: fadeInBg 2s ease-in-out 9s forwards;
+    animation: fadeInBg 2s ease-in-out 10s forwards;
 }
 
 .hero.skip-active::before {
@@ -385,7 +355,7 @@ body {
     height: 100%;
     background: var(--bg-overlay);
     opacity: 0;
-    animation: fadeInOverlay 1.5s ease-in-out 9.5s forwards;
+    animation: fadeInOverlay 1.5s ease-in-out 10.5s forwards;
 }
 
 .hero.skip-active::after {
@@ -393,26 +363,7 @@ body {
 }
 
 .heart-icon {
-    position: relative;
-    z-index: 10;
-    width: 120px;
-    height: 120px;
-    border: 3px solid var(--border-color);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-    opacity: 0;
-    transform: scale(0.5);
-    animation: fadeInHeart 1s ease-out 10s forwards;
-}
-
-.heart-icon img {
-    height: 65%;
-    width: auto;
-    object-fit: contain;
-    display: block;
+    display: none;
 }
 
 .line {
@@ -420,41 +371,42 @@ body {
     z-index: 10;
     height: 2px;
     background: var(--border-color);
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .line-top {
     width: 0;
-    animation: expandLine 1.5s ease-out 7.5s forwards;
+    animation: expandLine 1.5s ease-out 8.5s forwards;
 }
 
 .line-bottom {
     width: 0;
-    animation: expandLine 1.5s ease-out 7.5s forwards;
+    animation: expandLine 1.5s ease-out 8.5s forwards;
 }
 
 .main-title {
     position: relative;
     z-index: 10;
     color: var(--text-primary);
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: 300;
-    letter-spacing: 20px;
+    letter-spacing: 8px;
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeInText 1.5s ease-out 7s forwards;
+    animation: fadeInText 1.5s ease-out 8s forwards;
     text-align: center;
+    padding: 0 20px;
 }
 
 .subtitle {
     position: relative;
     z-index: 10;
     color: var(--text-primary);
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     opacity: 0;
-    animation: fadeInText 1.5s ease-out 9s forwards;
+    animation: fadeInText 1.5s ease-out 9.5s forwards;
     text-align: center;
     margin-top: 10px;
 }
@@ -465,29 +417,47 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0;
-    margin-top: 60px;
+    margin-top: 50px;
     opacity: 0;
     animation: fadeInMenu 1s ease-out 11s forwards;
 }
 
 .menu-btn {
-    width: 320px;
-    padding: 25px 40px;
+    width: 85vw;
+    max-width: 320px;
+    padding: 20px 30px;
     background: transparent;
     color: var(--text-primary);
     border: 2px solid var(--border-color);
-    font-size: 1.2rem;
-    letter-spacing: 8px;
+    font-size: 1rem;
+    letter-spacing: 6px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 300;
     font-family: var(--font-main);
+    position: relative;
+    overflow: hidden;
 }
 
-.menu-btn:hover {
+.menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
     background: rgba(255, 255, 255, 0.1);
-    letter-spacing: 12px;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-btn:active::before {
+    left: 100%;
+}
+
+.menu-btn:active {
+    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 /* Modali */
@@ -498,11 +468,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(250, 235, 215, 0.97);
+    background: rgba(0, 0, 0, 0.8);
     z-index: 1000;
     opacity: 0;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -515,17 +485,19 @@ body {
 
 .modal-content {
     position: relative;
-    background: var(--bg-modal);
-    max-width: 800px;
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 90%;
     width: 90%;
-    max-height: 90vh;
+    max-height: 85vh;
     overflow-y: auto;
-    padding: 60px 50px;
-    border-radius: 0;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 50px 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     transform: scale(0.9) translateY(40px);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .modal.active .modal-content {
@@ -535,26 +507,31 @@ body {
 
 .close-btn {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: none;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    background: rgba(0, 0, 0, 0.1);
     border: none;
-    font-size: 2rem;
+    border-radius: 50%;
+    font-size: 1.8rem;
     color: var(--text-dark);
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.close-btn:hover {
-    transform: rotate(90deg);
+.close-btn:active {
+    transform: rotate(90deg) scale(0.9);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .modal h2 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     color: var(--text-dark);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     font-weight: 300;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -563,17 +540,17 @@ body {
 
 .modal-image {
     width: 100%;
-    height: 300px;
+    height: 220px;
     background-size: cover;
     background-position: center;
     margin-bottom: 30px;
-    border-radius: 4px;
+    border-radius: 10px;
     background-color: #f0f0f0;
 }
 
 .modal p {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.7;
     color: var(--text-secondary);
     margin-bottom: 20px;
     font-family: var(--font-main);
@@ -591,18 +568,18 @@ body {
     transition: all 0.3s ease;
 }
 
-.modal a:hover {
-    border-bottom-color: transparent;
+.modal a:active {
+    opacity: 0.7;
 }
 
 .iban-box {
     background: var(--bg-secondary);
     border-left: 4px solid var(--accent-color);
-    padding: 20px;
+    padding: 18px;
     margin: 30px 0;
     font-family: var(--font-mono);
-    font-size: 1.3rem;
-    letter-spacing: 2px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
     text-align: center;
     color: var(--text-dark);
     font-weight: 600;
@@ -620,365 +597,8 @@ body {
 @keyframes fadeInBg { to { opacity: 0.6; } }
 @keyframes fadeInOverlay { to { opacity: 1; } }
 @keyframes fadeInText { to { opacity: 1; } }
-@keyframes fadeInHeart { to { opacity: 1; transform: scale(1); } }
 @keyframes fadeInMenu { to { opacity: 1; } }
-@keyframes expandLine { to { width: 500px; } }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .intro-scene { 
-        width: 280px; 
-        height: 250px; 
-    }
-    
-    .figure {
-        width: 35px;
-    }
-    
-    .figure-head {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .figure-body {
-        width: 30px;
-        height: 40px;
-    }
-    
-    .figure-dress {
-        width: 40px;
-        height: 45px;
-    }
-    
-    .tractor {
-        width: 65px;
-        height: 40px;
-        left: 20px;
-        bottom: 70px;
-    }
-    
-    .tractor-body {
-        width: 38px;
-        height: 20px;
-    }
-    
-    .tractor-cabin {
-        width: 20px;
-        height: 15px;
-    }
-    
-    .tractor-wheel-back {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .tractor-wheel-front {
-        width: 15px;
-        height: 15px;
-    }
-    
-    .book {
-        width: 25px;
-        height: 18px;
-        right: 40px;
-    }
-    
-.man {
-    position: absolute;
-    left: 18px;
-    bottom: 25px;
-    z-index: 5;
-}
-
-    
-    .woman {
-        right: 40px;
-        bottom: 35px;
-    }
-    
-    .ring {
-        width: 16px;
-        height: 16px;
-    }
-    
-    @keyframes ringThrow {
-        0% { opacity: 0; left: 60px; bottom: 90px; transform: scale(0.5) rotate(0deg); }
-        30% { opacity: 1; left: 120px; bottom: 105px; transform: scale(1) rotate(180deg); }
-        60% { left: 170px; bottom: 80px; transform: scale(1) rotate(360deg); }
-        100% { opacity: 1; left: 200px; bottom: 55px; transform: scale(1.2) rotate(540deg); }
-    }
-    
-    .heart {
-        right: 80px;
-        font-size: 1.7rem;
-    }
-    
-    .skip-btn {
-        font-size: 0.8rem;
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .main-title { 
-        font-size: 2.5rem; 
-        letter-spacing: 10px; 
-    }
-    
-    .subtitle { 
-        font-size: 1.2rem; 
-    }
-    
-    .menu-btn { 
-        width: 280px; 
-        font-size: 1rem; 
-        letter-spacing: 5px; 
-        padding: 20px 30px; 
-    }
-    
-    .menu-btn:hover { 
-        letter-spacing: 8px; 
-    }
-    
-    @keyframes expandLine { 
-        to { width: 300px; } 
-    }
-    
-    .modal-content { 
-        padding: 50px 30px;
-        width: 95%;
-    }
-    
-    .modal h2 { 
-        font-size: 2rem; 
-    }
-    
-    .modal-image {
-        height: 200px;
-    }
-    
-    .modal p {
-        font-size: 1rem;
-    }
-    
-    .heart-icon { 
-        width: 100px; 
-        height: 100px; 
-    }
-}
-
-@media (max-width: 480px) {
-    .intro-scene { 
-        width: 220px; 
-        height: 200px; 
-    }
-    
-    .figure {
-        width: 30px;
-    }
-    
-    .figure-head {
-        width: 18px;
-        height: 18px;
-        top: -22px;
-    }
-    
-    .figure-body {
-        width: 25px;
-        height: 35px;
-    }
-    
-    .figure-legs {
-        height: 30px;
-        bottom: -30px;
-        width: 25px;
-    }
-    
-    .figure-dress-legs {
-        height: 30px;
-        bottom: -30px;
-    }
-    
-    .leg,
-    .dress-leg {
-        width: 10px;
-    }
-    
-    .figure-dress {
-        width: 35px;
-        height: 40px;
-    }
-    
-.tractor {
-    width: 165px;   /* 55px * 3 */
-    height: 105px;  /* 35px * 3 */
-    left: -50px;
-    bottom: 15px;
-    z-index: 10;
-}
-
-.tractor-body {
-    width: 96px;  /* 32px * 3 */
-    height: 54px; /* 18px * 3 */
-    left: 36px;   /* 12px * 3 */
-    z-index: 3;
-}
-
-.tractor-cabin {
-    width: 54px;   /* 18px * 3 */
-    height: 39px;  /* 13px * 3 */
-}
-
-.tractor-wheel-back {
-    width: 60px;   /* 20px * 3 */
-    height: 60px;
-    border-width: 9px; /* 3px * 3 */
-     z-index: 4;
-}
-
-.tractor-wheel-front {
-    width: 39px;   /* 13px * 3 */
-    height: 39px;
-    border-width: 6px; /* 2px * 3 */
-     z-index: 4;
-}
-
-.man {
-    left: 45px;       /* più centrale rispetto al trattore */
-    bottom: 10px;     /* più basso, corpo pronto per l'anello */
-    z-index: 2;       /* sotto la cabina ma sopra il corpo del trattore */
-}
-
-
-.tractor {
-    z-index: 7;       /* dietro l'uomo ma davanti al resto della scena */
-}
-.tractor-cabin {
-    z-index: 5;      /* cabina davanti alle ruote */
-}
-
-
-
-.book {
-    z-index: 12;      /* davanti alla donna */
-    bottom: 30px;     /* allineato alle mani della donna */
-    right: 30px;      /* vicino alla donna */
-    width: 20px;
-    height: 15px;
-}
-.woman {
-    right: 30px;
-    bottom: 30px;     /* leggermente abbassata se necessario */
-}
-
-    
-    .ring {
-        width: 14px;
-        height: 14px;
-        border: 2px solid #ffd700;
-    }
-    
-    .ring::before {
-        width: 6px;
-        height: 6px;
-        top: -6px;
-    }
-    
-@keyframes ringThrow {
-    0% { opacity: 0; left: 55px; bottom: 20px; transform: scale(0.5) rotate(0deg); }   /* parte dal corpo dell'uomo */
-    30% { opacity: 1; left: 100px; bottom: 45px; transform: scale(1) rotate(180deg); }
-    60% { left: 140px; bottom: 35px; transform: scale(1) rotate(360deg); }
-    100% { opacity: 1; left: 170px; bottom: 30px; transform: scale(1.2) rotate(540deg); } /* arriva vicino al libro */
-}
-
-    
-    .heart {
-        right: 60px;
-        font-size: 1.5rem;
-        bottom: 40px;
-    }
-    
-    @keyframes heartFloat {
-        0% { opacity: 0; transform: scale(0.5); bottom: 40px; }
-        30% { opacity: 1; transform: scale(1.2); bottom: 65px; }
-        100% { opacity: 1; transform: scale(1.5); bottom: 120px; }
-    }
-    
-    .main-title { 
-        font-size: 1.8rem; 
-        letter-spacing: 8px; 
-    }
-    
-    .subtitle { 
-        font-size: 1rem; 
-        letter-spacing: 2px; 
-    }
-    
-    .menu-btn { 
-        width: 240px; 
-        font-size: 0.9rem; 
-        letter-spacing: 4px;
-        padding: 18px 25px;
-    }
-    
-    .menu-btn:hover {
-        letter-spacing: 6px;
-    }
-    
-    @keyframes expandLine { 
-        to { width: 200px; } 
-    }
-    
-    .modal-content {
-        padding: 40px 20px;
-        width: 95%;
-    }
-    
-    .modal h2 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-    }
-    
-    .modal-image {
-        height: 200px;
-        margin-bottom: 20px;
-    }
-    
-    .modal p {
-        font-size: 0.95rem;
-        margin-bottom: 15px;
-    }
-    
-    .iban-box { 
-        font-size: 0.85rem; 
-        letter-spacing: 1px;
-        padding: 15px;
-    }
-    
-    .deadline-box {
-        padding: 15px;
-        margin: 20px 0;
-    }
-    
-    .close-btn {
-        top: 15px;
-        right: 15px;
-        font-size: 1.8rem;
-    }
-    
-    .heart-icon { 
-        width: 80px; 
-        height: 80px;
-        margin-bottom: 30px;
-    }
-    
-    .line {
-        margin: 20px 0;
-    }
-    
-    .menu-container {
-        margin-top: 40px;
-    }
-}
+@keyframes expandLine { to { width: 80vw; max-width: 400px; } }
     </style>
 </head>
 <body>
@@ -988,35 +608,31 @@ body {
         <button class="skip-btn" onclick="skipIntro()">SKIP</button>
         <div class="intro-scene">
             <!-- Trattore con uomo -->
-<!-- Trattore con uomo -->
-<div class="tractor">
-    <!-- Uomo seduto sul trattore, dietro alle ruote e cabina -->
-    <div class="figure man">
-        <div class="figure-head"></div>
-        <div class="figure-body">
-            <div class="figure-legs">
-                <div class="leg"></div>
-                <div class="leg"></div>
+            <div class="tractor">
+                <!-- Uomo seduto sul trattore -->
+                <div class="figure man">
+                    <div class="figure-head"></div>
+                    <div class="figure-body">
+                        <div class="figure-arms"></div>
+                        <div class="figure-legs">
+                            <div class="leg"></div>
+                            <div class="leg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corpo trattore -->
+                <div class="tractor-body"></div>
+
+                <!-- Ruote -->
+                <div class="tractor-wheel-back"></div>
+                <div class="tractor-wheel-front"></div>
+
+                <!-- Cabina -->
+                <div class="tractor-cabin"></div>
             </div>
-        </div>
-    </div>
-
-    <!-- Corpo trattore -->
-    <div class="tractor-body"></div>
-
-    <!-- Ruote -->
-    <div class="tractor-wheel-back"></div>
-    <div class="tractor-wheel-front"></div>
-
-    <!-- Cabina -->
-    <div class="tractor-cabin"></div>
-</div>
-
             
-            <!-- Libro -->
-            <div class="book"></div>
-            
-            <!-- Donna seduta che legge -->
+            <!-- Donna seduta -->
             <div class="figure woman">
                 <div class="figure-head"></div>
                 <div class="figure-dress">
@@ -1030,17 +646,17 @@ body {
             <!-- Anello lanciato -->
             <div class="ring"></div>
             
-            <!-- Cuore che sale -->
-            <div class="heart">❤️</div>
+            <!-- Linea centrale -->
+            <div class="center-line"></div>
+            
+            <!-- Cuore che si forma -->
+            <div class="heart-formation">❤️</div>
         </div>
     </div>
 
     <!-- Hero Section -->
     <div class="hero">
         <div class="line line-top"></div>
-        <div class="heart-icon">
-            <img src="spiga.png" alt="Spiga di grano">
-        </div>
         <h1 class="main-title">CI SPOSIAMO!</h1>
         <p class="subtitle">DAVIDE & ALEXANDRA</p>
         <div class="line line-bottom"></div>
@@ -1096,6 +712,7 @@ body {
     </div>
 
     <script>
+        // Preload images
         function preloadImages() {
             const imagesToPreload = [
                 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200',
@@ -1108,12 +725,6 @@ body {
                 const img = new Image();
                 img.src = src;
             });
-            
-            if (window.innerWidth <= 768) {
-                imagesToPreload.forEach(src => {
-                    fetch(src, { mode: 'no-cors' });
-                });
-            }
         }
         
         preloadImages();
@@ -1132,14 +743,12 @@ body {
                 const lineBottom = document.querySelector('.line-bottom');
                 const mainTitle = document.querySelector('.main-title');
                 const subtitle = document.querySelector('.subtitle');
-                const heartIcon = document.querySelector('.heart-icon');
                 const menuContainer = document.querySelector('.menu-container');
                 
                 lineTop.style.animation = 'expandLine 1s ease-out forwards';
                 lineBottom.style.animation = 'expandLine 1s ease-out forwards';
                 mainTitle.style.animation = 'fadeInText 1s ease-out forwards';
                 subtitle.style.animation = 'fadeInText 1s ease-out 0.3s forwards';
-                heartIcon.style.animation = 'fadeInHeart 1s ease-out 0.5s forwards';
                 menuContainer.style.animation = 'fadeInMenu 1s ease-out 0.8s forwards';
                 
                 hero.classList.add('skip-active');
