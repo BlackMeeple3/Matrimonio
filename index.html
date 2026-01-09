@@ -468,8 +468,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-       background: rgba(0, 0, 0, 0.4); /* overlay più trasparente */
-    backdrop-filter: blur(15px);
+    background: rgba(255, 245, 230, 0.3); /* overlay leggero beige trasparente */
+    backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(15px);
     z-index: 1000;
     opacity: 0;
@@ -487,14 +487,14 @@ body {
 
 .modal-content {
     position: relative;
-    background: rgba(255, 255, 255, 0.6); /* leggermente trasparente */
+    background: rgba(255, 245, 230, 0.85); /* contenuto beige chiaro semitrasparente */
     max-width: 90%;
     width: 90%;
     max-height: 85vh;
     overflow-y: auto;
     padding: 50px 25px;
     border-radius: 20px;
-   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); /* ombra più soft */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); /* ombra leggera */
     transform: scale(0.9) translateY(40px);
     opacity: 0;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
