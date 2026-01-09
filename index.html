@@ -505,9 +505,10 @@ body {
 }
 
 @keyframes modalOpen {
-    0% { opacity: 0; filter: blur(5px); }
-    100% { opacity: 1; filter: blur(0); }
+    0% { transform: perspective(600px) rotateY(30deg); opacity: 0; }
+    100% { transform: perspective(600px) rotateY(0deg); opacity: 1; }
 }
+
 
 
 
