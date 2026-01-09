@@ -59,14 +59,13 @@ body {
 
 .intro-scene {
     position: relative;
-    width: 300px;
+    width: 350px;
     height: 300px;
 }
 
 /* Figure stilizzate */
 .figure {
     position: absolute;
-    bottom: 50px;
     width: 40px;
     transition: all 0.8s ease;
 }
@@ -127,7 +126,6 @@ body {
     position: relative;
     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
     transform-origin: bottom center;
-    animation: dressSwing 2s ease-in-out infinite;
 }
 
 .figure-dress-legs {
@@ -148,58 +146,26 @@ body {
     border-radius: 0 0 6px 6px;
 }
 
-/* Uomo */
+/* Uomo sul trattore */
 .man {
-    left: 60px;
-    animation: manWalk 3s ease-in-out 0.5s forwards;
+    left: 30px;
+    bottom: 80px;
 }
 
-/* Donna */
+/* Donna seduta */
 .woman {
-    right: 60px;
-    animation: womanMove 3s ease-in-out 0.5s infinite;
+    right: 50px;
+    bottom: 40px;
 }
-
-/* Testo parlante */
-.speech-man {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--text-primary);
-    font-size: 1rem;
-    font-weight: bold;
-    white-space: nowrap;
-    opacity: 0;
-    animation: manSpeak 1s ease-out 3.8s forwards;
-}
-
-.speech-bubble {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    font-weight: bold;
-    opacity: 0;
-}
-
-.bubble-1 { animation: bubbleFloat 0.8s ease-out 1s forwards; }
-.bubble-2 { animation: bubbleFloat 0.8s ease-out 1.5s forwards; }
-.bubble-3 { animation: bubbleFloat 0.8s ease-out 2s forwards; }
-.bubble-4 { animation: bubbleFloat 0.8s ease-out 2.5s forwards; }
-.bubble-5 { animation: bubbleFloat 0.8s ease-out 3s forwards; }
 
 /* Cuoricino donna */
 .heart {
     position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.8rem;
+    bottom: 50px;
+    right: 100px;
+    font-size: 2rem;
     opacity: 0;
-    animation: heartFloat 1.5s ease-out 4.5s forwards;
+    animation: heartFloat 2s ease-out 4s forwards;
 }
 
 /* Skip button */
@@ -225,135 +191,147 @@ body {
     opacity: 0.7;
 }
 
-/* Mazzo di rose rosse */
-.bouquet {
+/* Trattore */
+.tractor {
     position: absolute;
-    bottom: 50px;
-    left: 100px;
-    width: 50px;
-    height: 80px;
-    opacity: 0;
-    transform: scale(0);
-    animation: bouquetAppear 0.8s ease-out 3.5s forwards;
+    bottom: 80px;
+    left: 30px;
+    width: 80px;
+    height: 50px;
 }
 
-/* fiori */
-.rose {
+/* Corpo trattore */
+.tractor-body {
     position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 45px;
+    height: 25px;
+    background: #d32f2f;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Cabina */
+.tractor-cabin {
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    width: 25px;
+    height: 18px;
+    background: #b71c1c;
+    border-radius: 4px 4px 0 0;
+}
+
+/* Finestrino */
+.tractor-cabin::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    top: 2px;
+    left: 3px;
+    border-radius: 2px;
+}
+
+/* Ruota posteriore grande */
+.tractor-wheel-back {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    background: #333;
+    border-radius: 50%;
+    border: 4px solid #555;
+}
+
+/* Ruota anteriore piccola */
+.tractor-wheel-front {
+    position: absolute;
+    bottom: 0;
+    right: 8px;
     width: 18px;
     height: 18px;
-    background: #c62828;
+    background: #333;
     border-radius: 50%;
-    box-shadow:
-        inset -3px -3px 0 rgba(0,0,0,0.15),
-        inset 3px 3px 0 rgba(255,255,255,0.2);
+    border: 3px solid #555;
 }
 
-/* disposizione rose */
-.rose.r1 { top: 0; left: 16px; }
-.rose.r2 { top: 10px; left: 2px; }
-.rose.r3 { top: 10px; right: 2px; }
-.rose.r4 { top: 22px; left: 10px; }
-.rose.r5 { top: 22px; right: 10px; }
+/* Libro */
+.book {
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+    width: 30px;
+    height: 22px;
+    background: #8b4513;
+    border-radius: 2px;
+    transform: rotate(-10deg);
+}
 
-/* centro petalo */
-.rose::after {
+/* Pagine del libro */
+.book::before {
     content: '';
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background: #8e0000;
-    border-radius: 50%;
-    top: 6px;
-    left: 6px;
+    width: 26px;
+    height: 18px;
+    background: #f5f5dc;
+    top: 2px;
+    left: 2px;
+    border-radius: 1px;
 }
 
-/* gambi */
-.stems {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 40px;
-    background: #2e7d32;
-    border-radius: 3px;
-}
-
-/* foglia */
-.stems::before {
+/* Linee pagine */
+.book::after {
     content: '';
     position: absolute;
-    width: 14px;
+    width: 20px;
+    height: 1px;
+    background: #999;
+    top: 8px;
+    left: 5px;
+    box-shadow: 0 4px 0 #999, 0 8px 0 #999;
+}
+
+/* Anello */
+.ring {
+    position: absolute;
+    bottom: 100px;
+    left: 80px;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ffd700;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ringThrow 2s ease-out 1.5s forwards;
+}
+
+/* Diamante sull'anello */
+.ring::before {
+    content: '';
+    position: absolute;
+    width: 8px;
     height: 8px;
-    background: #388e3c;
-    border-radius: 8px 0 8px 0;
-    left: -12px;
-    top: 12px;
-    transform: rotate(-25deg);
+    background: #fff;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
-
-/* nastro */
-.stems::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 6px;
-    background: #ad1457;
-    border-radius: 3px;
-    bottom: 6px;
-    left: -6px;
-}
-
-
-
-
 
 /* Animazioni */
-@keyframes manWalk {
-    0% { left: 60px; transform: translateY(0); }
-    25% { left: 85px; transform: translateY(-5px); }
-    50% { left: 110px; transform: translateY(0); }
-    75% { left: 115px; transform: translateY(-3px); }
-    100% { left: 120px; transform: translateY(0); }
-}
-
-@keyframes womanMove {
-    0%,100% { right: 60px; transform: translateY(0); }
-    25% { right: 58px; transform: translateY(-3px); }
-    50% { right: 60px; transform: translateY(0); }
-    75% { right: 62px; transform: translateY(-3px); }
-}
-
-@keyframes dressSwing {
-    0%,100% { transform: rotate(0deg); }
-    25% { transform: rotate(3deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(-3deg); }
-}
-
-@keyframes manSpeak {
-    0% { opacity: 0; transform: translate(-50%, 0); }
-    20% { opacity: 1; transform: translate(-50%, -10px); }
-    100% { opacity: 0; transform: translate(-50%, -80px); }
-}
-
-@keyframes bubbleFloat {
-    0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
-    20% { opacity: 1; transform: translate(-50%, -20px) scale(1); }
-    100% { opacity: 0; transform: translate(-50%, -80px) scale(0.8); }
+@keyframes ringThrow {
+    0% { opacity: 0; left: 80px; bottom: 100px; transform: scale(0.5) rotate(0deg); }
+    30% { opacity: 1; left: 150px; bottom: 120px; transform: scale(1) rotate(180deg); }
+    60% { left: 220px; bottom: 90px; transform: scale(1) rotate(360deg); }
+    100% { opacity: 1; left: 260px; bottom: 60px; transform: scale(1.2) rotate(540deg); }
 }
 
 @keyframes heartFloat {
-    0% { opacity: 0; transform: translate(-50%, 0) scale(0.5); }
-    30% { opacity: 1; transform: translate(-50%, -30px) scale(1.2); }
-    100% { opacity: 1; transform: translate(-50%, -90px) scale(1.5); }
-}
-
-@keyframes bouquetAppear {
-    0% { opacity: 0; transform: scale(0) translateY(0); }
-    50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); left: 150px; }
+    0% { opacity: 0; transform: scale(0.5); bottom: 50px; }
+    30% { opacity: 1; transform: scale(1.2); bottom: 80px; }
+    100% { opacity: 1; transform: scale(1.5); bottom: 150px; }
 }
 
 @keyframes fadeOutIntro {
@@ -646,7 +624,7 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .intro-scene { 
-        width: 250px; 
+        width: 280px; 
         height: 250px; 
     }
     
@@ -669,14 +647,64 @@ body {
         height: 45px;
     }
     
-    .bouquet {
-        width: 25px;
-        height: 35px;
+    .tractor {
+        width: 65px;
+        height: 40px;
+        left: 20px;
+        bottom: 70px;
     }
     
-    .speech-man,
-    .speech-bubble {
-        font-size: 0.9rem;
+    .tractor-body {
+        width: 38px;
+        height: 20px;
+    }
+    
+    .tractor-cabin {
+        width: 20px;
+        height: 15px;
+    }
+    
+    .tractor-wheel-back {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .tractor-wheel-front {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .book {
+        width: 25px;
+        height: 18px;
+        right: 40px;
+    }
+    
+    .man {
+        left: 20px;
+        bottom: 70px;
+    }
+    
+    .woman {
+        right: 40px;
+        bottom: 35px;
+    }
+    
+    .ring {
+        width: 16px;
+        height: 16px;
+    }
+    
+    @keyframes ringThrow {
+        0% { opacity: 0; left: 60px; bottom: 90px; transform: scale(0.5) rotate(0deg); }
+        30% { opacity: 1; left: 120px; bottom: 105px; transform: scale(1) rotate(180deg); }
+        60% { left: 170px; bottom: 80px; transform: scale(1) rotate(360deg); }
+        100% { opacity: 1; left: 200px; bottom: 55px; transform: scale(1.2) rotate(540deg); }
+    }
+    
+    .heart {
+        right: 80px;
+        font-size: 1.7rem;
     }
     
     .skip-btn {
@@ -734,13 +762,12 @@ body {
 
 @media (max-width: 480px) {
     .intro-scene { 
-        width: 200px; 
+        width: 220px; 
         height: 200px; 
     }
     
     .figure {
         width: 30px;
-        bottom: 35px;
     }
     
     .figure-head {
@@ -758,8 +785,6 @@ body {
         height: 30px;
         bottom: -30px;
         width: 25px;
-        left: 50%;
-        transform: translateX(-50%);
     }
     
     .figure-dress-legs {
@@ -777,42 +802,82 @@ body {
         height: 40px;
     }
     
-    .bouquet {
-        width: 20px;
-        height: 30px;
-        bottom: 35px;
+    .tractor {
+        width: 55px;
+        height: 35px;
+        left: 15px;
+        bottom: 60px;
     }
     
-    .speech-man,
-    .speech-bubble {
-        font-size: 0.8rem;
-        bottom: 75px;
+    .tractor-body {
+        width: 32px;
+        height: 18px;
+        left: 12px;
+    }
+    
+    .tractor-cabin {
+        width: 18px;
+        height: 13px;
+    }
+    
+    .tractor-wheel-back {
+        width: 20px;
+        height: 20px;
+        border: 3px solid #555;
+    }
+    
+    .tractor-wheel-front {
+        width: 13px;
+        height: 13px;
+        border: 2px solid #555;
+    }
+    
+    .book {
+        width: 20px;
+        height: 15px;
+        right: 30px;
+        bottom: 30px;
+    }
+    
+    .man {
+        left: 15px;
+        bottom: 60px;
+    }
+    
+    .woman {
+        right: 30px;
+        bottom: 30px;
+    }
+    
+    .ring {
+        width: 14px;
+        height: 14px;
+        border: 2px solid #ffd700;
+    }
+    
+    .ring::before {
+        width: 6px;
+        height: 6px;
+        top: -6px;
+    }
+    
+    @keyframes ringThrow {
+        0% { opacity: 0; left: 45px; bottom: 75px; transform: scale(0.5) rotate(0deg); }
+        30% { opacity: 1; left: 90px; bottom: 85px; transform: scale(1) rotate(180deg); }
+        60% { left: 130px; bottom: 65px; transform: scale(1) rotate(360deg); }
+        100% { opacity: 1; left: 155px; bottom: 45px; transform: scale(1.2) rotate(540deg); }
     }
     
     .heart {
+        right: 60px;
         font-size: 1.5rem;
-        bottom: 75px;
+        bottom: 40px;
     }
     
-    @keyframes manWalk {
-        0% { left: 35px; transform: translateY(0); }
-        25% { left: 50px; transform: translateY(-5px); }
-        50% { left: 65px; transform: translateY(0); }
-        75% { left: 70px; transform: translateY(-3px); }
-        100% { left: 75px; transform: translateY(0); }
-    }
-    
-    @keyframes womanMove {
-        0%,100% { right: 35px; transform: translateY(0); }
-        25% { right: 33px; transform: translateY(-3px); }
-        50% { right: 35px; transform: translateY(0); }
-        75% { right: 37px; transform: translateY(-3px); }
-    }
-    
-    @keyframes bouquetAppear {
-        0% { opacity: 0; transform: scale(0) translateY(0); }
-        50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
-        100% { opacity: 1; transform: scale(1) translateY(0); left: 95px; }
+    @keyframes heartFloat {
+        0% { opacity: 0; transform: scale(0.5); bottom: 40px; }
+        30% { opacity: 1; transform: scale(1.2); bottom: 65px; }
+        100% { opacity: 1; transform: scale(1.5); bottom: 120px; }
     }
     
     .main-title { 
@@ -899,8 +964,15 @@ body {
     <div class="intro-overlay">
         <button class="skip-btn" onclick="skipIntro()">SKIP</button>
         <div class="intro-scene">
+            <!-- Trattore con uomo -->
+            <div class="tractor">
+                <div class="tractor-body"></div>
+                <div class="tractor-cabin"></div>
+                <div class="tractor-wheel-back"></div>
+                <div class="tractor-wheel-front"></div>
+            </div>
+            
             <div class="figure man">
-                <div class="speech-man">bla</div>
                 <div class="figure-head"></div>
                 <div class="figure-body">
                     <div class="figure-legs">
@@ -909,12 +981,12 @@ body {
                     </div>
                 </div>
             </div>
+            
+            <!-- Libro -->
+            <div class="book"></div>
+            
+            <!-- Donna seduta che legge -->
             <div class="figure woman">
-                <div class="speech-bubble bubble-1">bla</div>
-                <div class="speech-bubble bubble-2">bla</div>
-                <div class="speech-bubble bubble-3">bla</div>
-                <div class="speech-bubble bubble-4">bla</div>
-                <div class="speech-bubble bubble-5">bla</div>
                 <div class="figure-head"></div>
                 <div class="figure-dress">
                     <div class="figure-dress-legs">
@@ -922,18 +994,13 @@ body {
                         <div class="dress-leg"></div>
                     </div>
                 </div>
-                <div class="heart">❤️</div>
             </div>
-  <div class="bouquet">
-    <div class="rose r1"></div>
-    <div class="rose r2"></div>
-    <div class="rose r3"></div>
-    <div class="rose r4"></div>
-    <div class="rose r5"></div>
-    <div class="stems"></div>
-</div>
-
-
+            
+            <!-- Anello lanciato -->
+            <div class="ring"></div>
+            
+            <!-- Cuore che sale -->
+            <div class="heart">❤️</div>
         </div>
     </div>
 
@@ -998,7 +1065,6 @@ body {
     </div>
 
     <script>
-        // Precarica le immagini dei modal in modo più aggressivo
         function preloadImages() {
             const imagesToPreload = [
                 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200',
@@ -1012,7 +1078,6 @@ body {
                 img.src = src;
             });
             
-            // Forza il caricamento immediato per dispositivi mobili
             if (window.innerWidth <= 768) {
                 imagesToPreload.forEach(src => {
                     fetch(src, { mode: 'no-cors' });
@@ -1020,7 +1085,6 @@ body {
             }
         }
         
-        // Carica immediatamente
         preloadImages();
 
         function skipIntro() {
@@ -1040,7 +1104,6 @@ body {
                 const heartIcon = document.querySelector('.heart-icon');
                 const menuContainer = document.querySelector('.menu-container');
                 
-                // Applica immediatamente le animazioni
                 lineTop.style.animation = 'expandLine 1s ease-out forwards';
                 lineBottom.style.animation = 'expandLine 1s ease-out forwards';
                 mainTitle.style.animation = 'fadeInText 1s ease-out forwards';
@@ -1070,7 +1133,6 @@ body {
             document.body.style.overflow = 'auto';
         }
 
-        // Chiudi modal cliccando fuori
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
@@ -1080,7 +1142,6 @@ body {
             });
         });
 
-        // Chiudi modal con ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const hero = document.querySelector('.hero');
