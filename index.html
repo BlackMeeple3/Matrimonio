@@ -225,59 +225,81 @@ body {
     opacity: 0.7;
 }
 
-/* Bouquet */
+/* Bouquet pittogramma */
 .bouquet {
     position: absolute;
     bottom: 50px;
     left: 100px;
-    width: 30px;
-    height: 40px;
+    width: 40px;
+    height: 60px;
     opacity: 0;
     transform: scale(0);
     animation: bouquetAppear 0.8s ease-out 3.5s forwards;
 }
-/* Bouquet – solo fiori, niente fungo */
+
 .bouquet-flowers {
     position: relative;
-    width: 38px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
 }
 
-/* fiore centrale */
-.bouquet-flowers::before {
-    content: '';
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    top: 5px;
-    left: 8px;
-}
-
-/* fiore sinistro */
-.bouquet-flowers::after {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    top: 10px;
-    left: -2px;
-}
-
-/* fiore destro */
+/* fiori */
+.bouquet-flowers::before,
+.bouquet-flowers::after,
 .bouquet-flowers span {
+    content: '';
     position: absolute;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     background: var(--text-primary);
     border-radius: 50%;
-    top: 10px;
-    right: -2px;
 }
 
+/* centro */
+.bouquet-flowers::before {
+    top: 2px;
+    left: 12px;
+}
+
+/* sinistra */
+.bouquet-flowers::after {
+    top: 10px;
+    left: 2px;
+}
+
+/* destra */
+.bouquet-flowers span {
+    top: 10px;
+    right: 2px;
+}
+
+/* gambi */
+.bouquet-flowers::marker {
+    content: '';
+}
+
+/* gambi veri */
+.bouquet::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    width: 4px;
+    height: 28px;
+    background: var(--text-primary);
+}
+
+/* legatura */
+.bouquet::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 12px;
+    width: 16px;
+    height: 6px;
+    background: var(--text-primary);
+    border-radius: 2px;
+}
 
 
 
