@@ -225,81 +225,86 @@ body {
     opacity: 0.7;
 }
 
-/* Bouquet pittogramma */
+/* Mazzo di rose rosse */
 .bouquet {
     position: absolute;
     bottom: 50px;
     left: 100px;
-    width: 40px;
-    height: 60px;
+    width: 50px;
+    height: 80px;
     opacity: 0;
     transform: scale(0);
     animation: bouquetAppear 0.8s ease-out 3.5s forwards;
 }
 
-.bouquet-flowers {
-    position: relative;
-    width: 40px;
-    height: 40px;
+/* fiori */
+.rose {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #c62828;
+    border-radius: 50%;
+    box-shadow:
+        inset -3px -3px 0 rgba(0,0,0,0.15),
+        inset 3px 3px 0 rgba(255,255,255,0.2);
 }
 
-/* fiori */
-.bouquet-flowers::before,
-.bouquet-flowers::after,
-.bouquet-flowers span {
+/* disposizione rose */
+.rose.r1 { top: 0; left: 16px; }
+.rose.r2 { top: 10px; left: 2px; }
+.rose.r3 { top: 10px; right: 2px; }
+.rose.r4 { top: 22px; left: 10px; }
+.rose.r5 { top: 22px; right: 10px; }
+
+/* centro petalo */
+.rose::after {
     content: '';
     position: absolute;
-    width: 16px;
-    height: 16px;
-    background: var(--text-primary);
+    width: 6px;
+    height: 6px;
+    background: #8e0000;
     border-radius: 50%;
-}
-
-/* centro */
-.bouquet-flowers::before {
-    top: 2px;
-    left: 12px;
-}
-
-/* sinistra */
-.bouquet-flowers::after {
-    top: 10px;
-    left: 2px;
-}
-
-/* destra */
-.bouquet-flowers span {
-    top: 10px;
-    right: 2px;
+    top: 6px;
+    left: 6px;
 }
 
 /* gambi */
-.bouquet-flowers::marker {
-    content: '';
+.stems {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 40px;
+    background: #2e7d32;
+    border-radius: 3px;
 }
 
-/* gambi veri */
-.bouquet::before {
+/* foglia */
+.stems::before {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 18px;
-    width: 4px;
-    height: 28px;
-    background: var(--text-primary);
+    width: 14px;
+    height: 8px;
+    background: #388e3c;
+    border-radius: 8px 0 8px 0;
+    left: -12px;
+    top: 12px;
+    transform: rotate(-25deg);
 }
 
-/* legatura */
-.bouquet::after {
+/* nastro */
+.stems::after {
     content: '';
     position: absolute;
-    bottom: 20px;
-    left: 12px;
-    width: 16px;
+    width: 18px;
     height: 6px;
-    background: var(--text-primary);
-    border-radius: 2px;
+    background: #ad1457;
+    border-radius: 3px;
+    bottom: 6px;
+    left: -6px;
 }
+
 
 
 
@@ -919,11 +924,15 @@ body {
                 </div>
                 <div class="heart">❤️</div>
             </div>
-           <div class="bouquet">
-    <div class="bouquet-flowers">
-        <span></span>
-    </div>
+  <div class="bouquet">
+    <div class="rose r1"></div>
+    <div class="rose r2"></div>
+    <div class="rose r3"></div>
+    <div class="rose r4"></div>
+    <div class="rose r5"></div>
+    <div class="stems"></div>
 </div>
+
 
         </div>
     </div>
