@@ -327,6 +327,11 @@ body {
     align-items: center;
     overflow: hidden;
     background: var(--bg-primary);
+    transition: filter 0.6s ease;
+}
+
+.hero.blur {
+    filter: blur(8px);
 }
 
 .hero::before {
@@ -343,6 +348,10 @@ body {
     animation: fadeInBg 2s ease-in-out 9s forwards;
 }
 
+.hero.skip-active::before {
+    animation: fadeInBg 0.8s ease-in-out forwards;
+}
+
 .hero::after {
     content: '';
     position: absolute;
@@ -353,6 +362,10 @@ body {
     background: var(--bg-overlay);
     opacity: 0;
     animation: fadeInOverlay 1.5s ease-in-out 9.5s forwards;
+}
+
+.hero.skip-active::after {
+    animation: fadeInOverlay 0.8s ease-in-out 0.3s forwards;
 }
 
 .heart-icon {
@@ -461,10 +474,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(250, 235, 215, 0.95);
+    background: rgba(250, 235, 215, 0.97);
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.6s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal.active {
@@ -483,14 +498,14 @@ body {
     overflow-y: auto;
     padding: 60px 50px;
     border-radius: 0;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    transform: translateY(30px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9) translateY(40px);
     opacity: 0;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal.active .modal-content {
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
     opacity: 1;
 }
 
@@ -529,6 +544,7 @@ body {
     background-position: center;
     margin-bottom: 30px;
     border-radius: 4px;
+    background-color: #f0f0f0;
 }
 
 .modal p {
@@ -681,13 +697,13 @@ body {
     
     .figure {
         width: 30px;
-        bottom: 40px;
+        bottom: 35px;
     }
     
     .figure-head {
         width: 18px;
         height: 18px;
-        top: -24px;
+        top: -22px;
     }
     
     .figure-body {
@@ -695,7 +711,14 @@ body {
         height: 35px;
     }
     
-    .figure-legs,
+    .figure-legs {
+        height: 30px;
+        bottom: -30px;
+        width: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
     .figure-dress-legs {
         height: 30px;
         bottom: -30px;
@@ -714,39 +737,39 @@ body {
     .bouquet {
         width: 20px;
         height: 30px;
-        bottom: 40px;
+        bottom: 35px;
     }
     
     .speech-man,
     .speech-bubble {
         font-size: 0.8rem;
-        bottom: 80px;
+        bottom: 75px;
     }
     
     .heart {
         font-size: 1.5rem;
-        bottom: 80px;
+        bottom: 75px;
     }
     
     @keyframes manWalk {
-        0% { left: 40px; transform: translateY(0); }
-        25% { left: 55px; transform: translateY(-5px); }
-        50% { left: 70px; transform: translateY(0); }
-        75% { left: 75px; transform: translateY(-3px); }
-        100% { left: 80px; transform: translateY(0); }
+        0% { left: 35px; transform: translateY(0); }
+        25% { left: 50px; transform: translateY(-5px); }
+        50% { left: 65px; transform: translateY(0); }
+        75% { left: 70px; transform: translateY(-3px); }
+        100% { left: 75px; transform: translateY(0); }
     }
     
     @keyframes womanMove {
-        0%,100% { right: 40px; transform: translateY(0); }
-        25% { right: 38px; transform: translateY(-3px); }
-        50% { right: 40px; transform: translateY(0); }
-        75% { right: 42px; transform: translateY(-3px); }
+        0%,100% { right: 35px; transform: translateY(0); }
+        25% { right: 33px; transform: translateY(-3px); }
+        50% { right: 35px; transform: translateY(0); }
+        75% { right: 37px; transform: translateY(-3px); }
     }
     
     @keyframes bouquetAppear {
         0% { opacity: 0; transform: scale(0) translateY(0); }
         50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
-        100% { opacity: 1; transform: scale(1) translateY(0); left: 100px; }
+        100% { opacity: 1; transform: scale(1) translateY(0); left: 95px; }
     }
     
     .main-title { 
@@ -785,7 +808,7 @@ body {
     }
     
     .modal-image {
-        height: 180px;
+        height: 200px;
         margin-bottom: 20px;
     }
     
@@ -926,23 +949,75 @@ body {
     </div>
 
     <script>
+        // Precarica le immagini dei modal in modo più aggressivo
+        function preloadImages() {
+            const imagesToPreload = [
+                'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200',
+                'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=1200',
+                'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200',
+                'https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop'
+            ];
+            
+            imagesToPreload.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+            
+            // Forza il caricamento immediato per dispositivi mobili
+            if (window.innerWidth <= 768) {
+                imagesToPreload.forEach(src => {
+                    fetch(src, { mode: 'no-cors' });
+                });
+            }
+        }
+        
+        // Carica immediatamente
+        preloadImages();
+
         function skipIntro() {
             const intro = document.querySelector('.intro-overlay');
-            intro.style.animation = 'none';
+            const hero = document.querySelector('.hero');
+            
+            intro.style.transition = 'opacity 0.3s ease';
             intro.style.opacity = '0';
-            intro.style.visibility = 'hidden';
-            intro.style.zIndex = '-1';
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                
+                const lineTop = document.querySelector('.line-top');
+                const lineBottom = document.querySelector('.line-bottom');
+                const mainTitle = document.querySelector('.main-title');
+                const subtitle = document.querySelector('.subtitle');
+                const heartIcon = document.querySelector('.heart-icon');
+                const menuContainer = document.querySelector('.menu-container');
+                
+                // Applica immediatamente le animazioni
+                lineTop.style.animation = 'expandLine 1s ease-out forwards';
+                lineBottom.style.animation = 'expandLine 1s ease-out forwards';
+                mainTitle.style.animation = 'fadeInText 1s ease-out forwards';
+                subtitle.style.animation = 'fadeInText 1s ease-out 0.3s forwards';
+                heartIcon.style.animation = 'fadeInHeart 1s ease-out 0.5s forwards';
+                menuContainer.style.animation = 'fadeInMenu 1s ease-out 0.8s forwards';
+                
+                hero.classList.add('skip-active');
+            }, 300);
         }
 
         function openModal(name) {
             const modal = document.getElementById('modal-' + name);
+            const hero = document.querySelector('.hero');
+            
             modal.classList.add('active');
+            hero.classList.add('blur');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal(name) {
             const modal = document.getElementById('modal-' + name);
+            const hero = document.querySelector('.hero');
+            
             modal.classList.remove('active');
+            hero.classList.remove('blur');
             document.body.style.overflow = 'auto';
         }
 
@@ -950,8 +1025,8 @@ body {
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
-                    this.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+                    const modalId = this.id.replace('modal-', '');
+                    closeModal(modalId);
                 }
             });
         });
@@ -959,9 +1034,11 @@ body {
         // Chiudi modal con ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
+                const hero = document.querySelector('.hero');
                 document.querySelectorAll('.modal').forEach(modal => {
                     modal.classList.remove('active');
                 });
+                hero.classList.remove('blur');
                 document.body.style.overflow = 'auto';
             }
         });
