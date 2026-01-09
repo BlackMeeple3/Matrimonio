@@ -839,35 +839,34 @@ body {
     border-width: 6px; /* 2px * 3 */
 }
 
-/* Uomo centrato sul trattore, dietro le ruote, sollevato */
 .man {
-    left: 45px;       /* spostato al centro tra le ruote */
-    bottom: 50px;     /* alzato leggermente per coprire le gambe */
-    z-index: 8;       /* sotto la cabina e le ruote ma sopra il corpo trattore se necessario */
+    left: 55px;       /* più centrale rispetto al trattore */
+    bottom: 20px;     /* più basso, corpo pronto per l'anello */
+    z-index: 8;       /* sotto la cabina ma sopra il corpo del trattore */
 }
 
-/* Assicuriamoci che il trattore rimanga davanti alla donna */
+
 .tractor {
-    z-index: 10;      /* davanti all'uomo e dietro eventuali elementi principali della scena */
+    z-index: 7;       /* dietro l'uomo ma davanti al resto della scena */
 }
-
-/* Opzionale: abbassare la cabina rispetto alle ruote se necessario */
 .tractor-cabin {
-    z-index: 12;
+    z-index: 10;      /* cabina davanti alle ruote */
 }
 
 
-    .book {
-        width: 20px;
-        height: 15px;
-        right: 30px;
-        bottom: 30px;
-    }
-    
-    .woman {
-        right: 30px;
-        bottom: 30px;
-    }
+
+.book {
+    z-index: 12;      /* davanti alla donna */
+    bottom: 30px;     /* allineato alle mani della donna */
+    right: 30px;      /* vicino alla donna */
+    width: 20px;
+    height: 15px;
+}
+.woman {
+    right: 30px;
+    bottom: 30px;     /* leggermente abbassata se necessario */
+}
+
     
     .ring {
         width: 14px;
@@ -881,12 +880,13 @@ body {
         top: -6px;
     }
     
-    @keyframes ringThrow {
-        0% { opacity: 0; left: 45px; bottom: 75px; transform: scale(0.5) rotate(0deg); }
-        30% { opacity: 1; left: 90px; bottom: 85px; transform: scale(1) rotate(180deg); }
-        60% { left: 130px; bottom: 65px; transform: scale(1) rotate(360deg); }
-        100% { opacity: 1; left: 155px; bottom: 45px; transform: scale(1.2) rotate(540deg); }
-    }
+@keyframes ringThrow {
+    0% { opacity: 0; left: 55px; bottom: 20px; transform: scale(0.5) rotate(0deg); }   /* parte dal corpo dell'uomo */
+    30% { opacity: 1; left: 100px; bottom: 45px; transform: scale(1) rotate(180deg); }
+    60% { left: 140px; bottom: 35px; transform: scale(1) rotate(360deg); }
+    100% { opacity: 1; left: 170px; bottom: 30px; transform: scale(1.2) rotate(540deg); } /* arriva vicino al libro */
+}
+
     
     .heart {
         right: 60px;
