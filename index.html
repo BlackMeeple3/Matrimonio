@@ -33,61 +33,6 @@ body {
     background: var(--bg-primary);
 }
 
-/* Intro Animation */
-.intro-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bg-primary);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    animation: fadeOutIntro 1s ease-out 8s forwards;
-}
-
-.intro-scene {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.intro-scene img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Skip button */
-.skip-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: transparent;
-    color: var(--text-primary);
-    border: none;
-    padding: 0;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 1px;
-    cursor: pointer;
-    z-index: 10000;
-    transition: all 0.3s ease;
-    text-transform: lowercase;
-    text-decoration: underline;
-}
-
-.skip-btn:active {
-    opacity: 0.6;
-    transform: scale(0.95);
-}
-
 /* Hero Section */
 .hero {
     position: relative;
@@ -116,11 +61,7 @@ body {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    animation: fadeInBg 2s ease-in-out 10s forwards;
-}
-
-.hero.skip-active::before {
-    animation: fadeInBg 0.8s ease-in-out forwards;
+    animation: fadeInBg 2s ease-in-out 0s forwards;
 }
 
 .hero::after {
@@ -132,15 +73,26 @@ body {
     height: 100%;
     background: var(--bg-overlay);
     opacity: 0;
-    animation: fadeInOverlay 1.5s ease-in-out 10.5s forwards;
+    animation: fadeInOverlay 1.5s ease-in-out 0.5s forwards;
 }
 
-.hero.skip-active::after {
-    animation: fadeInOverlay 0.8s ease-in-out 0.3s forwards;
+/* Logo */
+.logo {
+    position: relative;
+    z-index: 10;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInLogo 1.2s ease-out 3s forwards;
 }
 
-.heart-icon {
-    display: none;
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
 }
 
 .line {
@@ -153,12 +105,12 @@ body {
 
 .line-top {
     width: 0;
-    animation: expandLine 1.5s ease-out 8.5s forwards;
+    animation: expandLine 1.5s ease-out 0.5s forwards;
 }
 
 .line-bottom {
     width: 0;
-    animation: expandLine 1.5s ease-out 8.5s forwards;
+    animation: expandLine 1.5s ease-out 0.5s forwards;
 }
 
 .main-title {
@@ -170,7 +122,7 @@ body {
     letter-spacing: 8px;
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeInText 1.5s ease-out 8s forwards;
+    animation: fadeInText 1.5s ease-out 1s forwards;
     text-align: center;
     padding: 0 20px;
 }
@@ -183,7 +135,7 @@ body {
     font-weight: 300;
     letter-spacing: 2px;
     opacity: 0;
-    animation: fadeInText 1.5s ease-out 9.5s forwards;
+    animation: fadeInText 1.5s ease-out 1.5s forwards;
     text-align: center;
     margin-top: 10px;
 }
@@ -196,7 +148,7 @@ body {
     gap: 0;
     margin-top: 50px;
     opacity: 0;
-    animation: fadeInMenu 1s ease-out 11s forwards;
+    animation: fadeInMenu 1s ease-out 2s forwards;
 }
 
 .menu-btn {
@@ -369,29 +321,29 @@ body {
 }
 
 /* Animazioni generali */
-@keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; z-index: -1; } }
 @keyframes fadeInBg { to { opacity: 0.6; } }
 @keyframes fadeInOverlay { to { opacity: 1; } }
 @keyframes fadeInText { to { opacity: 1; } }
 @keyframes fadeInMenu { to { opacity: 1; } }
 @keyframes expandLine { to { width: 80vw; max-width: 400px; } }
+@keyframes fadeInLogo { 
+    to { 
+        opacity: 1; 
+        transform: scale(1);
+    } 
+}
     </style>
 </head>
 <body>
 
-    <!-- Intro Animation -->
-    <div class="intro-overlay">
-        <button class="skip-btn" onclick="skipIntro()">SKIP</button>
-        <div class="intro-scene">
-            <img src="gif.gif" alt="Wedding Animation">
-        </div>
-    </div>
-
     <!-- Hero Section -->
     <div class="hero">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
         <div class="line line-top"></div>
         <h1 class="main-title">CI SPOSIAMO!</h1>
-        <p class="subtitle">DAVIDE & ALEXANDRA</p>
+        <p class="subtitle">20 Giugno 2026</p>
         <div class="line line-bottom"></div>
 
         <div class="menu-container">
@@ -461,32 +413,6 @@ body {
         }
         
         preloadImages();
-
-        function skipIntro() {
-            const intro = document.querySelector('.intro-overlay');
-            const hero = document.querySelector('.hero');
-            
-            intro.style.transition = 'opacity 0.3s ease';
-            intro.style.opacity = '0';
-            
-            setTimeout(() => {
-                intro.style.display = 'none';
-                
-                const lineTop = document.querySelector('.line-top');
-                const lineBottom = document.querySelector('.line-bottom');
-                const mainTitle = document.querySelector('.main-title');
-                const subtitle = document.querySelector('.subtitle');
-                const menuContainer = document.querySelector('.menu-container');
-                
-                lineTop.style.animation = 'expandLine 1s ease-out forwards';
-                lineBottom.style.animation = 'expandLine 1s ease-out forwards';
-                mainTitle.style.animation = 'fadeInText 1s ease-out forwards';
-                subtitle.style.animation = 'fadeInText 1s ease-out 0.3s forwards';
-                menuContainer.style.animation = 'fadeInMenu 1s ease-out 0.8s forwards';
-                
-                hero.classList.add('skip-active');
-            }, 300);
-        }
 
         function openModal(name) {
             const modal = document.getElementById('modal-' + name);
