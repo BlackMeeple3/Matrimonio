@@ -52,104 +52,11 @@ body {
 .intro-scene {
     position: relative;
     width: 100vw;
-    max-width: 350px;
-    height: 250px;
-}
-
-/* Figure stilizzate */
-.figure {
-    position: absolute;
-    width: 35px;
-    transition: all 0.8s ease;
-}
-
-.figure-head {
-    width: 20px;
-    height: 20px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    position: absolute;
-    top: -24px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.figure-body {
-    width: 30px;
-    height: 40px;
-    background: var(--text-primary);
-    border-radius: 8px 8px 0 0;
-    position: relative;
-}
-
-.figure-arms {
-    position: absolute;
-    width: 45px;
-    height: 6px;
-    background: var(--text-primary);
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 4px;
-}
-
-.figure-legs {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25px;
-    height: 30px;
+    max-width: 90%;
+    height: auto;
     display: flex;
-    gap: 5px;
-}
-
-.leg {
-    width: 10px;
-    height: 100%;
-    background: var(--text-primary);
-    border-radius: 0 0 5px 5px;
-}
-
-.figure-dress {
-    width: 40px;
-    height: 45px;
-    background: var(--text-primary);
-    border-radius: 8px 8px 0 0;
-    position: relative;
-    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-}
-
-.figure-dress-legs {
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 35px;
-    height: 30px;
-    display: flex;
-    gap: 6px;
-}
-
-.dress-leg {
-    width: 12px;
-    height: 100%;
-    background: var(--text-primary);
-    border-radius: 0 0 6px 6px;
-}
-
-/* Uomo sul trattore */
-.man {
-    position: absolute;
-    left: 22px;
-    bottom: 28px;
-    z-index: 4;
-}
-
-/* Donna seduta */
-.woman {
-    right: 40px;
-    bottom: 35px;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Skip button */
@@ -174,141 +81,6 @@ body {
 .skip-btn:active {
     opacity: 0.6;
     transform: scale(0.95);
-}
-
-/* Trattore */
-.tractor {
-    position: absolute;
-    bottom: 70px;
-    left: 20px;
-    width: 85px;
-    height: 50px;
-}
-
-.tractor-body {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    width: 42px;
-    height: 22px;
-    background: #d32f2f;
-    border-radius: 4px 4px 0 0;
-}
-
-.tractor-cabin {
-    position: absolute;
-    top: -14px;
-    left: 4px;
-    width: 22px;
-    height: 16px;
-    background: #b71c1c;
-    border-radius: 4px 4px 0 0;
-}
-
-.tractor-cabin::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 9px;
-    background: rgba(255, 255, 255, 0.3);
-    top: 2px;
-    left: 3px;
-    border-radius: 2px;
-}
-
-.tractor-wheel-back {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 26px;
-    height: 26px;
-    background: #333;
-    border-radius: 50%;
-    border: 3px solid #555;
-}
-
-.tractor-wheel-front {
-    position: absolute;
-    bottom: 0;
-    right: 7px;
-    width: 16px;
-    height: 16px;
-    background: #333;
-    border-radius: 50%;
-    border: 2px solid #555;
-}
-
-/* Anello */
-.ring {
-    position: absolute;
-    bottom: 75px;
-    left: 45px;
-    width: 16px;
-    height: 16px;
-    border: 2px solid #ffd700;
-    border-radius: 50%;
-    opacity: 0;
-    animation: ringThrow 2s ease-out 1.5s forwards;
-}
-
-.ring::before {
-    content: '';
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    background: #fff;
-    top: -7px;
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-}
-
-/* Linea centrale che sale */
-.center-line {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3px;
-    height: 0;
-    background: linear-gradient(to top, #fff, #ff69b4);
-    opacity: 0;
-    animation: lineRise 2s ease-out 3.5s forwards;
-}
-
-/* Cuore che si forma */
-.heart-formation {
-    position: absolute;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    font-size: 3rem;
-    opacity: 0;
-    animation: heartForm 1.5s ease-out 5s forwards;
-}
-
-/* Animazioni */
-@keyframes ringThrow {
-    0% { opacity: 0; left: 45px; bottom: 75px; transform: scale(0.5) rotate(0deg); }
-    30% { opacity: 1; left: 140px; bottom: 100px; transform: scale(1) rotate(180deg); }
-    60% { left: 220px; bottom: 70px; transform: scale(1) rotate(360deg); }
-    100% { opacity: 1; left: 270px; bottom: 45px; transform: scale(1.2) rotate(540deg); }
-}
-
-@keyframes lineRise {
-    0% { opacity: 0; height: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 1; height: 200px; }
-}
-
-@keyframes heartForm {
-    0% { opacity: 0; transform: translateX(-50%) scale(0) rotate(-20deg); }
-    50% { opacity: 1; transform: translateX(-50%) scale(1.3) rotate(5deg); }
-    100% { opacity: 1; transform: translateX(-50%) scale(1) rotate(0deg); }
-}
-
-@keyframes fadeOutIntro {
-    to { opacity: 0; visibility: hidden; z-index: -1; }
 }
 
 /* Hero Section */
@@ -470,7 +242,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 245, 230, 0.3); /* overlay trasparente beige */
+    background: rgba(255, 245, 230, 0.3);
     backdrop-filter: blur(10px);
     opacity: 0;
     pointer-events: none;
@@ -484,18 +256,16 @@ body {
 }
 
 .modal-content {
-    background: rgba(255, 245, 230, 0.85); /* popup beige trasparente */
+    background: rgba(255, 245, 230, 0.85);
     border-radius: 20px;
     padding: 50px 25px;
     max-width: 90%;
     max-height: 85vh;
     overflow-y: auto;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-
     transform: translateY(40px) scale(0.9);
     opacity: 0;
-   
-    color: #fff; /* testo bianco */
+    color: #fff;
 }
 
 .modal.active .modal-content {
@@ -509,21 +279,13 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
-
-
-
-
-
-
-
-/* Close button solo X */
 .close-btn {
     position: absolute;
     top: 15px;
     right: 15px;
     width: 45px;
     height: 45px;
-    background: none; /* niente sfondo */
+    background: none;
     border: none;
     font-size: 1.8rem;
     color: #fff;
@@ -538,10 +300,9 @@ body {
     transform: rotate(90deg) scale(0.9);
 }
 
-/* Titoli sottolineati */
 .modal h2 {
     font-size: 1.8rem;
-    color: #fff; /* bianco */
+    color: #fff;
     margin-bottom: 25px;
     font-weight: 300;
     letter-spacing: 3px;
@@ -550,7 +311,6 @@ body {
     text-decoration: underline;
 }
 
-/* Immagini dei popup */
 .modal-image {
     width: 100%;
     height: 220px;
@@ -561,21 +321,18 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Testo popup */
 .modal p, .iban-box, .deadline-box {
-    color: #fff; /* testo bianco */
+    color: #fff;
     font-family: var(--font-main);
 }
 
-/* Testo in grassetto */
 .modal strong {
     color: #fff;
     font-weight: 600;
 }
 
-/* Link popup */
 .modal a {
-    color: #42b983; /* colore accent */
+    color: #42b983;
     text-decoration: underline;
     transition: all 0.3s ease;
 }
@@ -584,7 +341,6 @@ body {
     opacity: 0.7;
 }
 
-/* Box IBAN e deadline */
 .iban-box {
     background: rgba(255, 255, 255, 0.1);
     border-left: 4px solid var(--accent-color);
@@ -607,8 +363,8 @@ body {
     color: #fff;
 }
 
-
 /* Animazioni generali */
+@keyframes fadeOutIntro { to { opacity: 0; visibility: hidden; z-index: -1; } }
 @keyframes fadeInBg { to { opacity: 0.6; } }
 @keyframes fadeInOverlay { to { opacity: 1; } }
 @keyframes fadeInText { to { opacity: 1; } }
@@ -622,50 +378,7 @@ body {
     <div class="intro-overlay">
         <button class="skip-btn" onclick="skipIntro()">SKIP</button>
         <div class="intro-scene">
-            <!-- Trattore con uomo -->
-            <div class="tractor">
-                <!-- Uomo seduto sul trattore -->
-                <div class="figure man">
-                    <div class="figure-head"></div>
-                    <div class="figure-body">
-                        <div class="figure-arms"></div>
-                        <div class="figure-legs">
-                            <div class="leg"></div>
-                            <div class="leg"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Corpo trattore -->
-                <div class="tractor-body"></div>
-
-                <!-- Ruote -->
-                <div class="tractor-wheel-back"></div>
-                <div class="tractor-wheel-front"></div>
-
-                <!-- Cabina -->
-                <div class="tractor-cabin"></div>
-            </div>
-            
-            <!-- Donna seduta -->
-            <div class="figure woman">
-                <div class="figure-head"></div>
-                <div class="figure-dress">
-                    <div class="figure-dress-legs">
-                        <div class="dress-leg"></div>
-                        <div class="dress-leg"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Anello lanciato -->
-            <div class="ring"></div>
-            
-            <!-- Linea centrale -->
-            <div class="center-line"></div>
-            
-            <!-- Cuore che si forma -->
-            <div class="heart-formation">❤️</div>
+            <img src="gif" alt="Wedding Animation" style="max-width: 100%; max-height: 80vh; object-fit: contain;">
         </div>
     </div>
 
