@@ -6,7 +6,7 @@
     <title>Davide & Alexandra</title>
 <style>
 :root {
-    --bg-primary: #FAEBD7;
+    --bg-primary: #ffffff;
     --bg-overlay: rgba(0, 0, 0, 0.5);
     --bg-modal: #fff;
     --bg-secondary: #f9f9f9;
@@ -35,20 +35,32 @@ html, body {
 body {
     font-family: var(--font-main);
     overflow-x: hidden;
+    background: var(--bg-primary);
+}
 
+/* SFONDO GLOBALE */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
     background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    filter: blur(20px);
+    opacity: 0;
+    animation: bgReveal 2.5s ease forwards;
+    z-index: -2;
 }
 
-/* Overlay globale */
+/* OVERLAY */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
     background: var(--bg-overlay);
+    opacity: 0;
+    animation: overlayReveal 1.5s ease 1.5s forwards;
     z-index: -1;
 }
 
@@ -60,8 +72,8 @@ body::before {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     background: transparent;
+    overflow: hidden;
     transition: filter 0.6s ease;
 }
 
@@ -96,14 +108,10 @@ body::before {
     margin: 20px 0;
 }
 
-.line-top {
-    width: 0;
-    animation: expandLine 1.5s ease-out 0.5s forwards;
-}
-
+.line-top,
 .line-bottom {
     width: 0;
-    animation: expandLine 1.5s ease-out 0.5s forwards;
+    animation: expandLine 1.5s ease-out 2.5s forwards;
 }
 
 .main-title {
@@ -115,7 +123,7 @@ body::before {
     letter-spacing: 8px;
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeInText 1.5s ease-out 1s forwards;
+    animation: fadeInText 1.5s ease-out 2.8s forwards;
     text-align: center;
     padding: 0 20px;
 }
@@ -128,7 +136,7 @@ body::before {
     font-weight: 300;
     letter-spacing: 2px;
     opacity: 0;
-    animation: fadeInText 1.5s ease-out 1.5s forwards;
+    animation: fadeInText 1.5s ease-out 3.2s forwards;
     text-align: center;
     margin-top: 10px;
 }
@@ -138,10 +146,9 @@ body::before {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 0;
     margin-top: 50px;
     opacity: 0;
-    animation: fadeInMenu 1s ease-out 2s forwards;
+    animation: fadeInMenu 1s ease-out 3.8s forwards;
 }
 
 .menu-btn {
@@ -155,32 +162,48 @@ body::before {
     letter-spacing: 6px;
     text-transform: uppercase;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 300;
-    font-family: var(--font-main);
     position: relative;
     overflow: hidden;
 }
 
-.menu-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* ANIMAZIONI */
+@keyframes bgReveal {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
 }
 
-.menu-btn:active::before {
-    left: 100%;
+@keyframes overlayReveal {
+    to { opacity: 1; }
 }
 
-.menu-btn:active {
-    transform: scale(0.95);
-    background: rgba(255, 255, 255, 0.05);
+@keyframes fadeInText {
+    to { opacity: 1; }
 }
+
+@keyframes fadeInMenu {
+    to { opacity: 1; }
+}
+
+@keyframes expandLine {
+    to { width: 80vw; max-width: 400px; }
+}
+
+@keyframes fadeInLogo {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 
 /* Modali */
 .modal {
