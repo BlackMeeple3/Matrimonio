@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Davide & Alexandra</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Great+Vibes&display=swap');
+
 :root {
-    --bg-primary: #ffffff;
-    --bg-overlay: rgba(0, 0, 0, 0.5);
-    --bg-modal: #F5F0E6;
-    --bg-secondary: #f9f9f9;
-    --bg-warning: #fff3cd;
-    --text-primary: #fff;
-    --text-secondary: #666;
-    --text-dark: #333;
-    --accent-color: #42b983;
-    --warning-color: #ffc107;
-    --border-color: #fff;
-    --font-main: 'Arial', sans-serif;
-    --font-mono: 'Courier New', monospace;
+    --bg-primary: #F8F6F3;
+    --bg-overlay: rgba(230, 220, 210, 0.4);
+    --bg-modal: #F8F6F3;
+    --bg-secondary: #F2EDE6;
+    --bg-warning: #E8DFD4;
+    --text-primary: #4A4240;
+    --text-secondary: #8B7E74;
+    --text-dark: #3D3532;
+    --accent-color: #B4A5D4;
+    --lavender-light: #D4C5E8;
+    --lavender-medium: #B4A5D4;
+    --lavender-dark: #9785B8;
+    --cream: #F8F6F3;
+    --beige: #E8DFD4;
+    --warning-color: #B4A5D4;
+    --border-color: #B4A5D4;
+    --font-main: 'Cormorant Garamond', serif;
+    --font-script: 'Great Vibes', cursive;
 }
 
 * {
@@ -47,7 +54,7 @@ body::after {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(20px);
+    filter: blur(20px) brightness(1.1) saturate(0.8);
     opacity: 0;
     animation: bgReveal 2.5s ease forwards;
     z-index: -2;
@@ -58,7 +65,7 @@ body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: var(--bg-overlay);
+    background: linear-gradient(135deg, rgba(248, 246, 243, 0.85) 0%, rgba(232, 223, 212, 0.85) 100%);
     opacity: 0;
     animation: overlayReveal 1.5s ease 1.5s forwards;
     z-index: -1;
@@ -97,14 +104,14 @@ body::before {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: brightness(0) invert(1);
+    filter: none;
 }
 
 .line {
     position: relative;
     z-index: 10;
-    height: 2px;
-    background: var(--border-color);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lavender-medium), transparent);
     margin: 20px 0;
 }
 
@@ -117,28 +124,31 @@ body::before {
 .main-title {
     position: relative;
     z-index: 10;
-    color: var(--text-primary);
+    color: var(--text-dark);
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 8px;
     text-transform: uppercase;
     opacity: 0;
     animation: fadeInText 1.5s ease-out 2.8s forwards;
     text-align: center;
     padding: 0 20px;
+    font-family: var(--font-main);
 }
 
 .subtitle {
     position: relative;
     z-index: 10;
-    color: var(--text-primary);
-    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
     font-weight: 300;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     opacity: 0;
     animation: fadeInText 1.5s ease-out 3.2s forwards;
     text-align: center;
     margin-top: 10px;
+    font-family: var(--font-main);
+    font-style: italic;
 }
 
 .menu-container {
@@ -156,27 +166,36 @@ body::before {
     max-width: 320px;
     padding: 20px 30px;
     background: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--border-color);
+    color: var(--text-dark);
+    border: 1.5px solid var(--lavender-medium);
     font-size: 1rem;
-    letter-spacing: 6px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     cursor: pointer;
-    font-weight: 300;
+    font-weight: 400;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
+    font-family: var(--font-main);
+    margin: 8px 0;
+}
+
+.menu-btn:hover {
+    background: var(--lavender-light);
+    border-color: var(--lavender-dark);
+    color: var(--text-dark);
 }
 
 /* ANIMAZIONI */
 @keyframes bgReveal {
     0% {
         opacity: 0;
-        filter: blur(20px);
+        filter: blur(20px) brightness(1.1) saturate(0.8);
         transform: scale(1.05);
     }
     100% {
-        opacity: 1;
-        filter: blur(0);
+        opacity: 0.3;
+        filter: blur(0) brightness(1.1) saturate(0.8);
         transform: scale(1);
     }
 }
@@ -215,7 +234,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 245, 230, 0.3);
+    background: rgba(248, 246, 243, 0.4);
     backdrop-filter: blur(10px);
     opacity: 0;
     pointer-events: none;
@@ -229,16 +248,18 @@ body::before {
 }
 
 .modal-content {
-    background: rgba(255, 245, 230, 0.85);
+    background: rgba(248, 246, 243, 0.98);
     border-radius: 20px;
     padding: 50px 25px;
     max-width: 90%;
     max-height: 85vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 60px rgba(180, 165, 212, 0.3);
     transform: translateY(40px) scale(0.9);
     opacity: 0;
-    color: #fff;
+    color: var(--text-dark);
+    border: 1px solid var(--lavender-light);
+    position: relative;
 }
 
 .modal.active .modal-content {
@@ -261,7 +282,7 @@ body::before {
     background: none;
     border: none;
     font-size: 1.8rem;
-    color: #fff;
+    color: var(--text-dark);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -269,19 +290,26 @@ body::before {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.close-btn:hover {
+    color: var(--lavender-dark);
+    transform: rotate(90deg);
+}
+
 .close-btn:active {
     transform: rotate(90deg) scale(0.9);
 }
 
 .modal h2 {
-    font-size: 1.8rem;
-    color: #fff;
+    font-size: 2rem;
+    color: var(--text-dark);
     margin-bottom: 25px;
-    font-weight: 300;
-    letter-spacing: 3px;
+    font-weight: 400;
+    letter-spacing: 4px;
     text-transform: uppercase;
     font-family: var(--font-main);
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 2px solid var(--lavender-medium);
+    padding-bottom: 15px;
 }
 
 .modal-image {
@@ -291,23 +319,30 @@ body::before {
     background-position: center;
     margin-bottom: 30px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(180, 165, 212, 0.1);
+    border: 1px solid var(--lavender-light);
 }
 
 .modal p, .iban-box, .deadline-box {
-    color: #fff;
+    color: var(--text-dark);
     font-family: var(--font-main);
+    line-height: 1.8;
+    font-size: 1.05rem;
 }
 
 .modal strong {
-    color: #fff;
+    color: var(--lavender-dark);
     font-weight: 600;
 }
 
 .modal a {
-    color: #42b983;
+    color: var(--lavender-dark);
     text-decoration: underline;
     transition: all 0.3s ease;
+}
+
+.modal a:hover {
+    color: var(--lavender-medium);
 }
 
 .modal a:active {
@@ -315,25 +350,40 @@ body::before {
 }
 
 .iban-box {
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 4px solid var(--accent-color);
+    background: linear-gradient(135deg, var(--lavender-light) 0%, rgba(212, 197, 232, 0.5) 100%);
+    border-left: 4px solid var(--lavender-dark);
     padding: 18px;
     margin: 30px 0;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
     text-align: center;
-    color: #fff;
+    color: var(--text-dark);
     font-weight: 600;
+    border-radius: 8px;
 }
 
 .deadline-box {
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 4px solid var(--warning-color);
+    background: linear-gradient(135deg, var(--beige) 0%, rgba(232, 223, 212, 0.5) 100%);
+    border-left: 4px solid var(--lavender-medium);
     padding: 20px;
     margin: 30px 0;
     text-align: center;
-    color: #fff;
+    color: var(--text-dark);
+    border-radius: 8px;
+}
+
+.info-box {
+    background: rgba(180, 165, 212, 0.1);
+    border: 1px solid var(--lavender-light);
+    padding: 25px;
+    margin: 30px 0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.info-box p {
+    margin: 8px 0;
 }
 
 /* Animazioni generali */
@@ -348,7 +398,25 @@ body::before {
         transform: scale(1);
     } 
 }
-    </style>
+
+/* Scrollbar personalizzata */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--lavender-medium);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--lavender-dark);
+}
+</style>
 </head>
 <body>
 
@@ -376,7 +444,7 @@ body::before {
             <h2>Cerimonia</h2>
             <div class="modal-image" style="background-image: url('Risto.JPG');"></div>
             <p>La cerimonia di rito civile avverrà il <strong>20 giugno 2026</strong> alle ore <strong>11:00</strong> presso la <strong>sala del Castello di Montesegale (PV)</strong>.</p>
-            <p>Potete raggiungere il luogo seguendo la <a href="https://maps.app.goo.gl/6PLAvWkK34nNdfP76?g_st=aw" target="_blank">mappa</a> e parcheggiare nella piazza principale (di fronte al comune)</a>.</p>
+            <p>Potete raggiungere il luogo seguendo la <a href="https://maps.app.goo.gl/6PLAvWkK34nNdfP76?g_st=aw" target="_blank">mappa</a> e parcheggiare nella piazza principale (di fronte al comune).</p>
         </div>
     </div>
     
@@ -386,7 +454,7 @@ body::before {
             <button class="close-btn" onclick="closeModal('festa')">&times;</button>
             <h2>Festa</h2>
             <div class="modal-image" style="background-image: url('festa.jpg');"></div>
-            <p> Saremo lieti di festeggiare con voi presso <strong><a href="https://www.agriturismo-mondoantico.it/" target="_blank"> l'Agriturismo Mondo Antico</a></strong> (Località Casazza, 3, Rocca Susella), situato a 15 minuti da Montesegale.</p>
+            <p>Saremo lieti di festeggiare con voi presso <strong><a href="https://www.agriturismo-mondoantico.it/" target="_blank">l'Agriturismo Mondo Antico</a></strong> (Località Casazza, 3, Rocca Susella), situato a 15 minuti da Montesegale.</p>
             <p>Clicca <a href="https://maps.app.goo.gl/PF2f5xKQ6qoAgY1p7?g_st=aw" target="_blank">qui</a> per farti portare da Google Maps all'Agriturismo.</p>
         </div>
     </div>
@@ -407,15 +475,15 @@ body::before {
             Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN:</p>
             
             <div class="iban-box">IT76U0306985516100000002269</div>
-            <strong>Intestatario:</strong> Alexandra Stefana Jorea</p>
+            <p><strong>Intestatario:</strong> Alexandra Stefana Jorea</p>
 
-<div class="info-box">
-    <p><strong>Per informazioni, contattare:</strong></p>
-    <p><strong>Davide:</strong> +39 3315627253</p>
-    <p><strong>Alexandra:</strong> +39 3802495660</p>
-</div>
+            <div class="info-box">
+                <p><strong>Per informazioni, contattare:</strong></p>
+                <p><strong>Davide:</strong> +39 3315627253</p>
+                <p><strong>Alexandra:</strong> +39 3802495660</p>
+            </div>
 
-<p style="text-align: center; font-style: italic; margin-top: 30px;">Grazie! ❤️</p>
+            <p style="text-align: center; font-style: italic; margin-top: 30px;">Grazie! ❤️</p>
         </div>
     </div>
 
