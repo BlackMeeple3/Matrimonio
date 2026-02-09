@@ -420,6 +420,196 @@ body::before {
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: var(--lavender-dark);
 }
+
+/* Particelle fluttuanti */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    animation: fadeInParticles 2s ease 4s forwards;
+}
+
+@keyframes fadeInParticles {
+    to { opacity: 1; }
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--lavender-light);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: float 15s infinite ease-in-out;
+}
+
+.particle.heart {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    opacity: 0.3;
+}
+
+.particle.heart::before {
+    content: '❤';
+    font-size: 12px;
+    color: var(--lavender-medium);
+    position: absolute;
+    top: -6px;
+    left: -3px;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-30px) translateX(15px) rotate(90deg);
+    }
+    50% {
+        transform: translateY(-60px) translateX(-10px) rotate(180deg);
+    }
+    75% {
+        transform: translateY(-30px) translateX(-15px) rotate(270deg);
+    }
+}
+
+/* Effetto shimmer sui titoli */
+.main-title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 3s infinite 5s;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Animazione hover pulsanti migliorata */
+.menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(139, 106, 140, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.menu-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.menu-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Animazione linee decorative pulsante */
+.line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: lineGlow 4s infinite 3s;
+}
+
+@keyframes lineGlow {
+    0%, 100% { opacity: 0; transform: translateX(-100%); }
+    50% { opacity: 1; transform: translateX(100%); }
+}
+
+/* Animazione apertura modale migliorata */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(139, 106, 140, 0.1), transparent);
+    opacity: 0;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.modal.active .modal-content::before {
+    animation: modalShine 1.5s ease-out 0.3s;
+}
+
+@keyframes modalShine {
+    0% { opacity: 0; transform: translateX(-100%) rotate(45deg); }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: translateX(100%) rotate(45deg); }
+}
+
+/* Effetto hover immagini modali */
+.modal-image {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.modal-image:hover {
+    transform: scale(1.02);
+}
+
+.modal-image::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s;
+}
+
+.modal-image:hover::after {
+    left: 100%;
+}
+
+/* Animazione pulsante chiusura */
+.close-btn {
+    position: relative;
+}
+
+.close-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(91, 58, 92, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.close-btn:hover::before {
+    width: 50px;
+    height: 50px;
+}
 </style>
 </head>
 <body>
@@ -435,11 +625,14 @@ body::before {
         <div class="line line-bottom"></div>
 
         <div class="menu-container">
-            <button class="menu-btn" onclick="openModal('cerimonia')">CERIMONIA</button>
-            <button class="menu-btn" onclick="openModal('festa')">FESTA</button>
-            <button class="menu-btn" onclick="openModal('partecipa')">PARTECIPA</button>
+            <button class="menu-btn" onclick="openModal('cerimonia')"><span>CERIMONIA</span></button>
+            <button class="menu-btn" onclick="openModal('festa')"><span>FESTA</span></button>
+            <button class="menu-btn" onclick="openModal('partecipa')"><span>PARTECIPA</span></button>
         </div>
     </div>
+
+    <!-- Particelle fluttuanti -->
+    <div class="particles" id="particles"></div>
 
     <!-- Modal Cerimonia -->
     <div id="modal-cerimonia" class="modal">
@@ -459,7 +652,7 @@ body::before {
             <h2>Festa</h2>
             <div class="modal-image" style="background-image: url('festa.jpg');"></div>
             <p>Saremo lieti di festeggiare con voi presso <strong><a href="https://www.agriturismo-mondoantico.it/" target="_blank">l'Agriturismo Mondo Antico</a></strong> (Località Casazza, 3, Rocca Susella), situato a 15 minuti da Montesegale.</p>
-            <p>Cliccate <a href="https://maps.app.goo.gl/PF2f5xKQ6qoAgY1p7?g_st=aw" target="_blank">qui</a> per farvi portare da Google Maps all'Agriturismo.</p>
+            <p>Clicca <a href="https://maps.app.goo.gl/PF2f5xKQ6qoAgY1p7?g_st=aw" target="_blank">qui</a> per farti portare da Google Maps all'Agriturismo.</p>
         </div>
     </div>
 
@@ -468,16 +661,15 @@ body::before {
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('partecipa')">&times;</button>
             <h2>Partecipa</h2>
-            <div class="modal-image" style="background-image: url('partecipa.jpg');"></div>
+            <div class="modal-image" style="background-image: url('partecipa.JPG');"></div>
 
             
             <div class="deadline-box">
-                <p><strong>Vi preghiamo di confermare la vostra presenza entro il 30 Aprile.</strong></p>
+                <p><strong>Vi preghiamo di confermare la vostra presenza entro il 15 Aprile.</strong></p>
             </div>
 
-<p>Abbiamo un sogno nel cassetto e una valigia pronta: il nostro viaggio di nozze.</p>
-<p>Se desiderate contribuire, qui trovate le coordinate:</p>
-
+            <p>Se volete contribuire al nostro sogno, noi ne abbiamo uno in partenza...destinazione Spagna!<br>
+            Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN:</p>
             
             <div class="iban-box">IT76U0306985516100000002269</div>
             <p><strong>Intestatario:</strong> Alexandra Stefana Jorea</p>
@@ -488,7 +680,7 @@ body::before {
                 <p><strong>Alexandra:</strong> +39 3802495660</p>
             </div>
 
-<p style="text-align: center; font-style: italic; margin-top: 30px;">
+            <p style="text-align: center; font-style: italic; margin-top: 30px;">
   Grazie!
   <svg width="18" height="18" viewBox="0 0 24 24"
        xmlns="http://www.w3.org/2000/svg"
@@ -499,9 +691,6 @@ body::before {
       fill="#5B3A5C"/>
   </svg>
 </p>
-
-
-
         </div>
     </div>
 
@@ -522,6 +711,32 @@ body::before {
         }
         
         preloadImages();
+
+        // Genera particelle fluttuanti
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                const isHeart = Math.random() > 0.7;
+                
+                particle.className = isHeart ? 'particle heart' : 'particle';
+                
+                // Posizione random
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Ritardo animazione random
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Crea particelle dopo il caricamento
+        setTimeout(createParticles, 4000);
 
         function openModal(name) {
             const modal = document.getElementById('modal-' + name);
