@@ -420,263 +420,6 @@ body::before {
 .modal-content::-webkit-scrollbar-thumb:hover {
     background: var(--lavender-dark);
 }
-
-/* Particelle di lavanda fluttuanti */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-    opacity: 0;
-    animation: fadeInParticles 2s ease 4s forwards;
-}
-
-@keyframes fadeInParticles {
-    to { opacity: 1; }
-}
-
-.particle {
-    position: absolute;
-    opacity: 0.6;
-    animation: floatLavender 20s infinite ease-in-out;
-}
-
-.particle.lavender {
-    width: 4px;
-    height: 12px;
-    background: linear-gradient(180deg, var(--lavender-medium) 0%, var(--lavender-light) 100%);
-    border-radius: 2px;
-}
-
-.particle.lavender::before {
-    content: '';
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: var(--lavender-medium);
-    border-radius: 50%;
-}
-
-/* Rametto di lavanda più dettagliato */
-.particle.lavender-sprig {
-    width: 20px;
-    height: 30px;
-    background: transparent;
-}
-
-.particle.lavender-sprig::before {
-    content: '🌿';
-    font-size: 20px;
-    position: absolute;
-    filter: hue-rotate(250deg) saturate(0.7);
-}
-
-@keyframes floatLavender {
-    0%, 100% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-    }
-    25% {
-        transform: translateY(-40px) translateX(20px) rotate(15deg);
-    }
-    50% {
-        transform: translateY(-80px) translateX(-15px) rotate(-10deg);
-    }
-    75% {
-        transform: translateY(-40px) translateX(-25px) rotate(20deg);
-    }
-}
-
-/* Trattorino animato */
-.tractor {
-    position: fixed;
-    bottom: -100px;
-    left: -150px;
-    width: 120px;
-    height: 80px;
-    z-index: 4;
-    opacity: 0;
-    animation: tractorDrive 30s linear 6s infinite;
-}
-
-@keyframes tractorDrive {
-    0% {
-        left: -150px;
-        opacity: 0;
-    }
-    5% {
-        opacity: 0.7;
-    }
-    95% {
-        opacity: 0.7;
-    }
-    100% {
-        left: 110%;
-        opacity: 0;
-    }
-}
-
-.tractor svg {
-    width: 100%;
-    height: 100%;
-}
-
-/* Effetto shimmer sui titoli */
-.main-title::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    animation: shimmer 3s infinite 5s;
-}
-
-@keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-/* Animazione hover pulsanti migliorata */
-.menu-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(139, 106, 140, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.menu-btn:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.menu-btn span {
-    position: relative;
-    z-index: 1;
-}
-
-/* Animazione linee decorative - effetto campo di lavanda */
-.line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(139, 106, 140, 0.8), transparent);
-    animation: lavenderWave 4s infinite 3s;
-}
-
-@keyframes lavenderWave {
-    0%, 100% { opacity: 0; transform: translateX(-100%); }
-    50% { opacity: 1; transform: translateX(100%); }
-}
-
-/* Animazione apertura modale migliorata */
-.modal-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, transparent, rgba(139, 106, 140, 0.1), transparent);
-    opacity: 0;
-    border-radius: 20px;
-    pointer-events: none;
-}
-
-.modal.active .modal-content::before {
-    animation: modalShine 1.5s ease-out 0.3s;
-}
-
-@keyframes modalShine {
-    0% { opacity: 0; transform: translateX(-100%) rotate(45deg); }
-    50% { opacity: 1; }
-    100% { opacity: 0; transform: translateX(100%) rotate(45deg); }
-}
-
-/* Effetto hover immagini modali */
-.modal-image {
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.5s ease;
-}
-
-.modal-image:hover {
-    transform: scale(1.02);
-}
-
-.modal-image::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.5s;
-}
-
-.modal-image:hover::after {
-    left: 100%;
-}
-
-/* Animazione pulsante chiusura */
-.close-btn {
-    position: relative;
-}
-
-.close-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(91, 58, 92, 0.1);
-    transform: translate(-50%, -50%);
-    transition: width 0.4s, height 0.4s;
-}
-
-.close-btn:hover::before {
-    width: 50px;
-    height: 50px;
-}
-
-/* Bordo lavanda decorativo */
-.modal-content::after {
-    content: '';
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 3px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--lavender-medium) 0px,
-        var(--lavender-medium) 5px,
-        transparent 5px,
-        transparent 10px
-    );
-    opacity: 0.3;
-    border-radius: 2px;
-}
 </style>
 </head>
 <body>
@@ -692,34 +435,10 @@ body::before {
         <div class="line line-bottom"></div>
 
         <div class="menu-container">
-            <button class="menu-btn" onclick="openModal('cerimonia')"><span>CERIMONIA</span></button>
-            <button class="menu-btn" onclick="openModal('festa')"><span>FESTA</span></button>
-            <button class="menu-btn" onclick="openModal('partecipa')"><span>PARTECIPA</span></button>
+            <button class="menu-btn" onclick="openModal('cerimonia')">CERIMONIA</button>
+            <button class="menu-btn" onclick="openModal('festa')">FESTA</button>
+            <button class="menu-btn" onclick="openModal('partecipa')">PARTECIPA</button>
         </div>
-    </div>
-
-    <!-- Particelle fluttuanti -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Trattorino animato -->
-    <div class="tractor">
-        <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-            <!-- Corpo trattore -->
-            <rect x="25" y="35" width="55" height="25" fill="#5B3A5C" rx="3"/>
-            <!-- Cabina -->
-            <rect x="50" y="20" width="25" height="15" fill="#8B6A8C" rx="2"/>
-            <!-- Finestra -->
-            <rect x="53" y="23" width="8" height="8" fill="#E8DFD4" rx="1"/>
-            <!-- Ruota posteriore grande -->
-            <circle cx="65" cy="60" r="15" fill="#4A2E4B" stroke="#3D2340" stroke-width="2"/>
-            <circle cx="65" cy="60" r="8" fill="#8B6A8C"/>
-            <!-- Ruota anteriore piccola -->
-            <circle cx="35" cy="55" r="10" fill="#4A2E4B" stroke="#3D2340" stroke-width="2"/>
-            <circle cx="35" cy="55" r="5" fill="#8B6A8C"/>
-            <!-- Dettagli -->
-            <rect x="28" y="38" width="4" height="4" fill="#E8DFD4" rx="1"/>
-            <circle cx="70" cy="28" r="2" fill="#E8DFD4"/>
-        </svg>
     </div>
 
     <!-- Modal Cerimonia -->
@@ -740,7 +459,7 @@ body::before {
             <h2>Festa</h2>
             <div class="modal-image" style="background-image: url('festa.jpg');"></div>
             <p>Saremo lieti di festeggiare con voi presso <strong><a href="https://www.agriturismo-mondoantico.it/" target="_blank">l'Agriturismo Mondo Antico</a></strong> (Località Casazza, 3, Rocca Susella), situato a 15 minuti da Montesegale.</p>
-            <p>Clicca <a href="https://maps.app.goo.gl/PF2f5xKQ6qoAgY1p7?g_st=aw" target="_blank">qui</a> per farti portare da Google Maps all'Agriturismo.</p>
+            <p>Cliccate <a href="https://maps.app.goo.gl/PF2f5xKQ6qoAgY1p7?g_st=aw" target="_blank">qui</a> per farvi portare da Google Maps all'Agriturismo.</p>
         </div>
     </div>
 
@@ -749,15 +468,16 @@ body::before {
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal('partecipa')">&times;</button>
             <h2>Partecipa</h2>
-            <div class="modal-image" style="background-image: url('partecipa.JPG');"></div>
+            <div class="modal-image" style="background-image: url('partecipa.jpg');"></div>
 
             
             <div class="deadline-box">
-                <p><strong>Vi preghiamo di confermare la vostra presenza entro il 15 Aprile.</strong></p>
+                <p><strong>Vi preghiamo di confermare la vostra presenza entro il 30 Aprile.</strong></p>
             </div>
 
-            <p>Se volete contribuire al nostro sogno, noi ne abbiamo uno in partenza...destinazione Spagna!<br>
-            Se vorrai <strong>unirti a noi</strong> nel renderlo realtà, questo è il nostro IBAN:</p>
+<p>Abbiamo un sogno nel cassetto e una valigia pronta: il nostro viaggio di nozze.</p>
+<p>Se desiderate contribuire, qui trovate le coordinate:</p>
+
             
             <div class="iban-box">IT76U0306985516100000002269</div>
             <p><strong>Intestatario:</strong> Alexandra Stefana Jorea</p>
@@ -768,7 +488,7 @@ body::before {
                 <p><strong>Alexandra:</strong> +39 3802495660</p>
             </div>
 
-            <p style="text-align: center; font-style: italic; margin-top: 30px;">
+<p style="text-align: center; font-style: italic; margin-top: 30px;">
   Grazie!
   <svg width="18" height="18" viewBox="0 0 24 24"
        xmlns="http://www.w3.org/2000/svg"
@@ -779,6 +499,9 @@ body::before {
       fill="#5B3A5C"/>
   </svg>
 </p>
+
+
+
         </div>
     </div>
 
@@ -799,32 +522,6 @@ body::before {
         }
         
         preloadImages();
-
-        // Genera particelle di lavanda fluttuanti
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 25;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                const isSprig = Math.random() > 0.6;
-                
-                particle.className = isSprig ? 'particle lavender-sprig' : 'particle lavender';
-                
-                // Posizione random
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                
-                // Ritardo animazione random
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (20 + Math.random() * 15) + 's';
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
-        
-        // Crea particelle dopo il caricamento
-        setTimeout(createParticles, 4000);
 
         function openModal(name) {
             const modal = document.getElementById('modal-' + name);
