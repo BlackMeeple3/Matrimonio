@@ -16,14 +16,14 @@
     --text-primary: #4A4240;
     --text-secondary: #8B7E74;
     --text-dark: #3D3532;
-    --accent-color: #B4A5D4;
-    --lavender-light: #D4C5E8;
-    --lavender-medium: #B4A5D4;
-    --lavender-dark: #9785B8;
+    --accent-color: #5B3A5C;
+    --lavender-light: #8B6A8C;
+    --lavender-medium: #5B3A5C;
+    --lavender-dark: #4A2E4B;
     --cream: #F8F6F3;
     --beige: #E8DFD4;
-    --warning-color: #B4A5D4;
-    --border-color: #B4A5D4;
+    --warning-color: #5B3A5C;
+    --border-color: #5B3A5C;
     --font-main: 'Cormorant Garamond', serif;
     --font-script: 'Great Vibes', cursive;
 }
@@ -125,7 +125,7 @@ body::before {
     position: relative;
     z-index: 10;
     color: var(--lavender-light);
-    text-shadow: 0 2px 8px rgba(180, 165, 212, 0.35);
+    text-shadow: 0 2px 8px rgba(91, 58, 92, 0.35);
     font-size: 2rem;
     font-weight: 400;
     letter-spacing: 8px;
@@ -141,7 +141,7 @@ body::before {
     position: relative;
     z-index: 10;
     color: var(--lavender-medium);
-    text-shadow: 0 1px 6px rgba(180, 165, 212, 0.25);
+    text-shadow: 0 1px 6px rgba(91, 58, 92, 0.25);
     font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 3px;
@@ -185,7 +185,7 @@ body::before {
 .menu-btn:hover {
     background: var(--lavender-light);
     border-color: var(--lavender-dark);
-    color: var(--text-dark);
+    color: var(--cream);
 }
 
 /* ANIMAZIONI */
@@ -256,7 +256,7 @@ body::before {
     max-width: 90%;
     max-height: 85vh;
     overflow-y: auto;
-    box-shadow: 0 20px 60px rgba(180, 165, 212, 0.3);
+    box-shadow: 0 20px 60px rgba(91, 58, 92, 0.3);
     transform: translateY(40px) scale(0.9);
     opacity: 0;
     color: var(--text-dark);
@@ -321,7 +321,7 @@ body::before {
     background-position: center;
     margin-bottom: 30px;
     border-radius: 10px;
-    background-color: rgba(180, 165, 212, 0.1);
+    background-color: rgba(91, 58, 92, 0.1);
     border: 1px solid var(--lavender-light);
 }
 
@@ -329,22 +329,22 @@ body::before {
     color: var(--text-dark);
     font-family: var(--font-main);
     line-height: 1.8;
-    font-size: 1.05rem;
+    font-size: 1.2rem;
 }
 
 .modal strong {
-    color: var(--lavender-dark);
+    color: #3D2340;
     font-weight: 600;
 }
 
 .modal a {
-    color: var(--lavender-dark);
+    color: #3D2340;
     text-decoration: underline;
     transition: all 0.3s ease;
 }
 
 .modal a:hover {
-    color: var(--lavender-medium);
+    color: #5B3A5C;
 }
 
 .modal a:active {
@@ -352,17 +352,19 @@ body::before {
 }
 
 .iban-box {
-    background: linear-gradient(135deg, var(--lavender-light) 0%, rgba(212, 197, 232, 0.5) 100%);
+    background: linear-gradient(135deg, var(--lavender-light) 0%, rgba(139, 106, 140, 0.5) 100%);
     border-left: 4px solid var(--lavender-dark);
-    padding: 18px;
+    padding: 18px 12px;
     margin: 30px 0;
     font-family: var(--font-main);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
     text-align: center;
-    color: var(--text-dark);
+    color: var(--cream);
     font-weight: 600;
     border-radius: 8px;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .deadline-box {
@@ -376,7 +378,7 @@ body::before {
 }
 
 .info-box {
-    background: rgba(180, 165, 212, 0.1);
+    background: rgba(91, 58, 92, 0.1);
     border: 1px solid var(--lavender-light);
     padding: 25px;
     margin: 30px 0;
@@ -485,7 +487,7 @@ body::before {
                 <p><strong>Alexandra:</strong> +39 3802495660</p>
             </div>
 
-            <p style="text-align: center; font-style: italic; margin-top: 30px;">Grazie! ❤️</p>
+            <p style="text-align: center; font-style: italic; margin-top: 30px;">Grazie! <span style="color: #5B3A5C;">❤️</span></p>
         </div>
     </div>
 
@@ -495,7 +497,7 @@ body::before {
             const imagesToPreload = [
                 'sfondo.jpg',
                 'Risto.JPG',
-                'festa.JPG',
+                'festa.jpg',
                 'partecipa.JPG'
             ];
             
