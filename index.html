@@ -277,22 +277,28 @@ body::before {
 
 .close-btn {
     position: absolute;
-    top: -22px;
-    right: -22px;
-    width: 44px;
-    height: 44px;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    
+    width: 42px;
+    height: 42px;
+
     background: var(--bg-modal);
     border: 1px solid var(--lavender-light);
     border-radius: 50%;
+
     font-size: 1.6rem;
     color: var(--text-dark);
+
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 18px rgba(91, 58, 92, 0.25);
+
+    box-shadow: 0 8px 20px rgba(91, 58, 92, 0.25);
     transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 20;
 }
     
 
