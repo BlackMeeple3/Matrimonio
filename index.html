@@ -277,20 +277,24 @@ body::before {
 
 .close-btn {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 45px;
-    height: 45px;
-    background: none;
-    border: none;
-    font-size: 1.8rem;
+    top: -22px;
+    right: -22px;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-modal);
+    border: 1px solid var(--lavender-light);
+    border-radius: 50%;
+    font-size: 1.6rem;
     color: var(--text-dark);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 18px rgba(91, 58, 92, 0.25);
+    transition: all 0.3s ease;
+    z-index: 10;
 }
+    
 
 .close-btn:hover {
     color: var(--lavender-dark);
