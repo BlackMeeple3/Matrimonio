@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FIX: forza il tema chiaro a livello meta — fondamentale per Safari/iOS e Chrome Android -->
+    <meta name="color-scheme" content="light only">
     <title>Alexandra & Davide</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Great+Vibes&display=swap');
@@ -26,12 +28,25 @@
     --border-color: #5B3A5C;
     --font-main: 'Cormorant Garamond', serif;
     --font-script: 'Great Vibes', cursive;
+
+    /* FIX 1: impedisce al browser di applicare dark mode automatica */
+    color-scheme: light only;
+    /* FIX 2: impedisce a Windows High Contrast Mode di riscrivere i colori */
+    forced-color-adjust: none;
+}
+
+/* FIX 3: background esplicito anche su html (alcuni browser lo usano come root) */
+html {
+    background-color: #F8F6F3 !important;
+    color: #3D3532 !important;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* FIX 4: impedisce l'inversione dei colori su alcuni browser/OS */
+    forced-color-adjust: none;
 }
 
 html, body {
@@ -42,7 +57,45 @@ html, body {
 body {
     font-family: var(--font-main);
     overflow-x: hidden;
-    background: var(--bg-primary);
+    background: var(--bg-primary) !important;
+    /* FIX 5: colore testo esplicito per evitare eredità scura */
+    color: var(--text-dark) !important;
+    -webkit-text-fill-color: var(--text-dark);
+}
+
+/* FIX 6: blocca la dark mode a livello media query — override esplicito */
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #F8F6F3 !important;
+        color: #3D3532 !important;
+    }
+    body {
+        background: #F8F6F3 !important;
+        color: #3D3532 !important;
+        -webkit-text-fill-color: #3D3532 !important;
+    }
+    .modal-content {
+        background: rgba(248, 246, 243, 0.98) !important;
+        color: #3D3532 !important;
+    }
+    .modal h2 {
+        color: #3D3532 !important;
+    }
+    .modal p, .iban-box, .deadline-box {
+        color: #3D3532 !important;
+    }
+    .menu-btn {
+        color: #3D3532 !important;
+        background: transparent !important;
+    }
+    .main-title {
+        color: #8B6A8C !important;
+        -webkit-text-fill-color: #8B6A8C !important;
+    }
+    .subtitle {
+        color: #5B3A5C !important;
+        -webkit-text-fill-color: #5B3A5C !important;
+    }
 }
 
 /* SFONDO GLOBALE */
@@ -125,6 +178,7 @@ body::before {
     position: relative;
     z-index: 10;
     color: var(--lavender-light);
+    -webkit-text-fill-color: var(--lavender-light);
     text-shadow: 0 2px 8px rgba(91, 58, 92, 0.35);
     font-size: 2rem;
     font-weight: 400;
@@ -141,6 +195,7 @@ body::before {
     position: relative;
     z-index: 10;
     color: var(--lavender-medium);
+    -webkit-text-fill-color: var(--lavender-medium);
     text-shadow: 0 1px 6px rgba(91, 58, 92, 0.25);
     font-size: 1.2rem;
     font-weight: 300;
@@ -169,6 +224,7 @@ body::before {
     padding: 20px 30px;
     background: transparent;
     color: var(--text-dark);
+    -webkit-text-fill-color: var(--text-dark);
     border: 1.5px solid var(--lavender-medium);
     font-size: 1rem;
     letter-spacing: 4px;
@@ -186,6 +242,7 @@ body::before {
     background: var(--lavender-light);
     border-color: var(--lavender-dark);
     color: var(--cream);
+    -webkit-text-fill-color: var(--cream);
 }
 
 /* ANIMAZIONI */
@@ -250,7 +307,7 @@ body::before {
 }
 
 .modal-content {
-    background: rgba(248, 246, 243, 0.98);
+    background: rgba(248, 246, 243, 0.98) !important;
     border-radius: 20px;
     padding: 50px 25px;
     max-width: 90%;
@@ -259,7 +316,8 @@ body::before {
     box-shadow: 0 20px 60px rgba(91, 58, 92, 0.3);
     transform: translateY(40px) scale(0.9);
     opacity: 0;
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
+    -webkit-text-fill-color: var(--text-dark);
     border: 1px solid var(--lavender-light);
     position: relative;
 }
@@ -285,6 +343,7 @@ body::before {
     border: none;
     font-size: 1.8rem;
     color: var(--text-dark);
+    -webkit-text-fill-color: var(--text-dark);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -294,6 +353,7 @@ body::before {
 
 .close-btn:hover {
     color: var(--lavender-dark);
+    -webkit-text-fill-color: var(--lavender-dark);
     transform: rotate(90deg);
 }
 
@@ -303,7 +363,8 @@ body::before {
 
 .modal h2 {
     font-size: 2rem;
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
+    -webkit-text-fill-color: var(--text-dark) !important;
     margin-bottom: 25px;
     font-weight: 400;
     letter-spacing: 4px;
@@ -326,25 +387,29 @@ body::before {
 }
 
 .modal p, .iban-box, .deadline-box {
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
+    -webkit-text-fill-color: var(--text-dark) !important;
     font-family: var(--font-main);
     line-height: 1.8;
     font-size: 1.2rem;
 }
 
 .modal strong {
-    color: #3D2340;
+    color: #3D2340 !important;
+    -webkit-text-fill-color: #3D2340 !important;
     font-weight: 600;
 }
 
 .modal a {
-    color: #3D2340;
+    color: #3D2340 !important;
+    -webkit-text-fill-color: #3D2340 !important;
     text-decoration: underline;
     transition: all 0.3s ease;
 }
 
 .modal a:hover {
-    color: #5B3A5C;
+    color: #5B3A5C !important;
+    -webkit-text-fill-color: #5B3A5C !important;
 }
 
 .modal a:active {
@@ -360,7 +425,8 @@ body::before {
     font-size: 1.15rem;
     letter-spacing: 1px;
     text-align: center;
-    color: var(--cream);
+    color: var(--cream) !important;
+    -webkit-text-fill-color: var(--cream) !important;
     font-weight: 600;
     border-radius: 8px;
     word-break: break-all;
@@ -373,7 +439,8 @@ body::before {
     padding: 20px;
     margin: 30px 0;
     text-align: center;
-    color: var(--text-dark);
+    color: var(--text-dark) !important;
+    -webkit-text-fill-color: var(--text-dark) !important;
     border-radius: 8px;
 }
 
@@ -388,19 +455,6 @@ body::before {
 
 .info-box p {
     margin: 8px 0;
-}
-
-/* Animazioni generali */
-@keyframes fadeInBg { to { opacity: 0.6; } }
-@keyframes fadeInOverlay { to { opacity: 1; } }
-@keyframes fadeInText { to { opacity: 1; } }
-@keyframes fadeInMenu { to { opacity: 1; } }
-@keyframes expandLine { to { width: 80vw; max-width: 400px; } }
-@keyframes fadeInLogo { 
-    to { 
-        opacity: 1; 
-        transform: scale(1);
-    } 
 }
 
 /* Scrollbar personalizzata */
