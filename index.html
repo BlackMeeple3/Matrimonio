@@ -27,10 +27,13 @@
     --border-color: #5B3A5C;
     --font-main: 'Cormorant Garamond', serif;
     --font-script: 'Great Vibes', cursive;
+
+    /* FIX colori: impedisce dark mode automatica */
     color-scheme: light only;
     forced-color-adjust: none;
 }
 
+/* FIX: background esplicito su html */
 html {
     background-color: #F8F6F3 !important;
     color: #3D3532 !important;
@@ -56,6 +59,7 @@ body {
     -webkit-text-fill-color: var(--text-dark);
 }
 
+/* FIX: override esplicito se il browser applica dark mode */
 @media (prefers-color-scheme: dark) {
     html { background-color: #F8F6F3 !important; color: #3D3532 !important; }
     body { background: #F8F6F3 !important; color: #3D3532 !important; -webkit-text-fill-color: #3D3532 !important; }
@@ -67,6 +71,7 @@ body {
     .subtitle { color: #5B3A5C !important; -webkit-text-fill-color: #5B3A5C !important; }
 }
 
+/* SFONDO GLOBALE */
 body::after {
     content: '';
     position: fixed;
@@ -81,6 +86,7 @@ body::after {
     z-index: -2;
 }
 
+/* OVERLAY */
 body::before {
     content: '';
     position: fixed;
@@ -91,6 +97,7 @@ body::before {
     z-index: -1;
 }
 
+/* Hero Section */
 .hero {
     position: relative;
     min-height: 100vh;
@@ -103,8 +110,11 @@ body::before {
     transition: filter 0.6s ease;
 }
 
-.hero.blur { filter: blur(8px); }
+.hero.blur {
+    filter: blur(8px);
+}
 
+/* Logo */
 .logo {
     position: relative;
     z-index: 10;
@@ -131,7 +141,8 @@ body::before {
     margin: 20px 0;
 }
 
-.line-top, .line-bottom {
+.line-top,
+.line-bottom {
     width: 0;
     animation: expandLine 1.5s ease-out 2.5s forwards;
 }
@@ -195,7 +206,7 @@ body::before {
     font-weight: 400;
     position: relative;
     overflow: hidden;
-    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.08s ease;
+    transition: all 0.3s ease;
     font-family: var(--font-main);
     margin: 8px 0;
     -webkit-tap-highlight-color: transparent;
@@ -208,27 +219,52 @@ body::before {
     -webkit-text-fill-color: var(--cream);
 }
 
-/* Feedback visivo al tap/click */
 .menu-btn:active {
     background: var(--lavender-dark) !important;
     border-color: var(--lavender-dark) !important;
     color: var(--cream) !important;
     -webkit-text-fill-color: var(--cream) !important;
     transform: scale(0.97);
-    transition: background 0.06s ease, transform 0.06s ease;
 }
 
+/* ANIMAZIONI */
 @keyframes bgReveal {
-    0%   { opacity: 0; filter: blur(20px) brightness(1.1) saturate(0.8); transform: scale(1.05); }
-    100% { opacity: 0.3; filter: blur(0) brightness(1.1) saturate(0.8); transform: scale(1); }
+    0% {
+        opacity: 0;
+        filter: blur(20px) brightness(1.1) saturate(0.8);
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.3;
+        filter: blur(0) brightness(1.1) saturate(0.8);
+        transform: scale(1);
+    }
 }
-@keyframes overlayReveal { to { opacity: 1; } }
-@keyframes fadeInText    { to { opacity: 1; } }
-@keyframes fadeInMenu    { to { opacity: 1; } }
-@keyframes expandLine    { to { width: 80vw; max-width: 400px; } }
-@keyframes fadeInLogo    { to { opacity: 1; transform: scale(1); } }
 
-/* ===== MODALI ===== */
+@keyframes overlayReveal {
+    to { opacity: 1; }
+}
+
+@keyframes fadeInText {
+    to { opacity: 1; }
+}
+
+@keyframes fadeInMenu {
+    to { opacity: 1; }
+}
+
+@keyframes expandLine {
+    to { width: 80vw; max-width: 400px; }
+}
+
+@keyframes fadeInLogo {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Modali */
 .modal {
     display: flex;
     justify-content: center;
@@ -251,7 +287,7 @@ body::before {
     pointer-events: auto;
 }
 
-/* Wrapper relativo: la X si aggancia a questo, non al contenuto */
+/* Wrapper relativo: permette alla X di uscire fuori dal riquadro */
 .modal-wrapper {
     position: relative;
     max-width: 90%;
@@ -263,7 +299,7 @@ body::before {
 .modal-content {
     background: rgba(248, 246, 243, 0.98) !important;
     border-radius: 20px;
-    padding: 40px 25px 50px;
+    padding: 50px 25px;
     width: 100%;
     max-height: 85vh;
     overflow-y: auto;
@@ -283,8 +319,8 @@ body::before {
 }
 
 @keyframes modalOpen {
-    0%   { transform: scale(0.85); opacity: 0; }
-    100% { transform: scale(1);    opacity: 1; }
+    0% { transform: scale(0.85); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 /* X cerchiata sul bordo esterno del popup */
@@ -334,6 +370,7 @@ body::before {
     letter-spacing: 4px;
     text-transform: uppercase;
     font-family: var(--font-main);
+    text-decoration: none;
     border-bottom: 2px solid var(--lavender-medium);
     padding-bottom: 15px;
 }
@@ -370,8 +407,14 @@ body::before {
     transition: all 0.3s ease;
 }
 
-.modal a:hover { color: #5B3A5C !important; -webkit-text-fill-color: #5B3A5C !important; }
-.modal a:active { opacity: 0.7; }
+.modal a:hover {
+    color: #5B3A5C !important;
+    -webkit-text-fill-color: #5B3A5C !important;
+}
+
+.modal a:active {
+    opacity: 0.7;
+}
 
 .iban-box {
     background: linear-gradient(135deg, var(--lavender-light) 0%, rgba(139, 106, 140, 0.5) 100%);
@@ -410,18 +453,36 @@ body::before {
     text-align: center;
 }
 
-.info-box p { margin: 8px 0; }
+.info-box p {
+    margin: 8px 0;
+}
 
-.modal-content::-webkit-scrollbar { width: 8px; }
-.modal-content::-webkit-scrollbar-track { background: var(--cream); }
-.modal-content::-webkit-scrollbar-thumb { background: var(--lavender-medium); border-radius: 4px; }
-.modal-content::-webkit-scrollbar-thumb:hover { background: var(--lavender-dark); }
+/* Scrollbar personalizzata */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--cream);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--lavender-medium);
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--lavender-dark);
+}
 </style>
 </head>
 <body>
 
+    <!-- Hero Section -->
     <div class="hero">
-        <div class="logo"><img src="logo.png" alt="Logo"></div>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
         <div class="line line-top"></div>
         <h1 class="main-title">CI SPOSIAMO!</h1>
         <p class="subtitle">20 Giugno 2026</p>
@@ -485,45 +546,72 @@ body::before {
                 </div>
 
                 <p style="text-align: center; font-style: italic; margin-top: 30px;">
-                    Grazie!
-                    <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-left: 4px;">
-                        <path d="M12 21s-7.5-4.7-10-9.3C-0.5 7.1 2.4 3 6.6 3c2.2 0 3.9 1.2 5.4 3 1.5-1.8 3.2-3 5.4-3 4.2 0 7.1 4.1 4.6 8.7C19.5 16.3 12 21 12 21z" fill="#5B3A5C"/>
-                    </svg>
+                  Grazie!
+                  <svg width="18" height="18" viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg"
+                       style="vertical-align: middle; margin-left: 4px;">
+                    <path
+                      d="M12 21s-7.5-4.7-10-9.3C-0.5 7.1 2.4 3 6.6 3c2.2 0 3.9 1.2 5.4 3
+                         1.5-1.8 3.2-3 5.4-3 4.2 0 7.1 4.1 4.6 8.7C19.5 16.3 12 21 12 21z"
+                      fill="#5B3A5C"/>
+                  </svg>
                 </p>
             </div>
         </div>
     </div>
 
     <script>
+        // Preload images
         function preloadImages() {
-            ['sfondo.jpg','Risto.JPG','festa.jpg','partecipa.JPG'].forEach(src => {
-                const img = new Image(); img.src = src;
+            const imagesToPreload = [
+                'sfondo.jpg',
+                'Risto.JPG',
+                'festa.jpg',
+                'partecipa.JPG'
+            ];
+            
+            imagesToPreload.forEach(src => {
+                const img = new Image();
+                img.src = src;
             });
         }
+        
         preloadImages();
 
         function openModal(name) {
-            document.getElementById('modal-' + name).classList.add('active');
-            document.querySelector('.hero').classList.add('blur');
+            const modal = document.getElementById('modal-' + name);
+            const hero = document.querySelector('.hero');
+            
+            modal.classList.add('active');
+            hero.classList.add('blur');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal(name) {
-            document.getElementById('modal-' + name).classList.remove('active');
-            document.querySelector('.hero').classList.remove('blur');
+            const modal = document.getElementById('modal-' + name);
+            const hero = document.querySelector('.hero');
+            
+            modal.classList.remove('active');
+            hero.classList.remove('blur');
             document.body.style.overflow = 'auto';
         }
 
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
-                if (e.target === this) closeModal(this.id.replace('modal-', ''));
+                if (e.target === this) {
+                    const modalId = this.id.replace('modal-', '');
+                    closeModal(modalId);
+                }
             });
         });
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
-                document.querySelector('.hero').classList.remove('blur');
+                const hero = document.querySelector('.hero');
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                hero.classList.remove('blur');
                 document.body.style.overflow = 'auto';
             }
         });
