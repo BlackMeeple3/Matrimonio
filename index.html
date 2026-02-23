@@ -465,7 +465,20 @@ body::before {
     <!-- Hero Section -->
     <div class="hero">
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <!--
+                Switch automatico logo dark/light mode.
+                - <picture> + <source media> è il metodo più robusto (supportato da tutti i browser moderni).
+                - Il JS sotto gestisce i casi edge: cambio tema a runtime (es. auto-switch al tramonto su iOS)
+                  e browser vecchi che non supportano <picture>.
+                - Fallback finale: logo_light.png (visibile senza JS e su browser antichi).
+            -->
+            <picture>
+                <source srcset="logo_night.png" media="(prefers-color-scheme: dark)">
+                <img src="logo_light.png" alt="Logo Alexandra e Davide"
+                     id="logo-img"
+                     image-rendering="high-quality"
+                     style="-webkit-print-color-adjust: exact; print-color-adjust: exact;">
+            </picture>
         </div>
         <div class="line line-top"></div>
         <h1 class="main-title">CI SPOSIAMO!</h1>
@@ -588,6 +601,41 @@ body::before {
                 }
             });
         });
+
+        // ── Logo dark/light switch ──────────────────────────────────────────
+        // Il tag <picture> gestisce il caricamento iniziale, ma NON reagisce
+        // al cambio di tema a runtime (es. iOS che switcha automaticamente al tramonto).
+        // Questo listener aggiorna il src dell'<img> quando il tema cambia mentre
+        // la pagina è già aperta.
+        (function() {
+            var LOGO_LIGHT = 'logo_light.png';
+            var LOGO_NIGHT = 'logo_night.png';
+
+            function applyLogo(isDark) {
+                var img = document.getElementById('logo-img');
+                if (!img) return;
+                img.src = isDark ? LOGO_NIGHT : LOGO_LIGHT;
+            }
+
+            // matchMedia è supportato ovunque, ma verifichiamo comunque
+            if (window.matchMedia) {
+                var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+                // Applica subito (ridondante con <picture>, ma copre browser
+                // che supportano matchMedia ma non <picture>)
+                applyLogo(mq.matches);
+
+                // Ascolta i cambi a runtime
+                // addEventListener('change') è lo standard; addListener è il fallback
+                // per Safari < 14 e Chrome < 79
+                if (mq.addEventListener) {
+                    mq.addEventListener('change', function(e) { applyLogo(e.matches); });
+                } else if (mq.addListener) {
+                    mq.addListener(function(e) { applyLogo(e.matches); });
+                }
+            }
+        })();
+        // ───────────────────────────────────────────────────────────────────
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
