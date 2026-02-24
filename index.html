@@ -62,7 +62,7 @@ body::after {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(20px) brightness(1.1) saturate(0.8);
+    filter: blur(20px) brightness(0.9) saturate(1.1) contrast(1.2);
     opacity: 0;
     animation: bgReveal 2.5s ease forwards;
     z-index: -2;
@@ -235,12 +235,12 @@ body::before {
 @keyframes bgReveal {
     0% {
         opacity: 0;
-        filter: blur(20px) brightness(1.1) saturate(0.8);
+        filter: blur(20px) brightness(0.9) saturate(1.1) contrast(1.2);
         transform: scale(1.05);
     }
     100% {
-        opacity: 0.3;
-        filter: blur(0) brightness(1.1) saturate(0.8);
+        opacity: 0.55;
+        filter: blur(0) brightness(0.9) saturate(1.1) contrast(1.2);
         transform: scale(1);
     }
 }
