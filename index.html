@@ -4,22 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alexandra & Davide</title>
-    <!--
-        COLOR CONSISTENCY NOTE:
-        The logo image inconsistency across devices is caused by embedded ICC color profiles in the PNG.
-        iOS/Safari uses Display P3 wide gamut by default, which shifts colors.
-        
-        Fix 1 (CSS): `color-scheme: light` + `forced-colors: none` prevents OS-level color overrides.
-        Fix 2 (CSS): `image-rendering: high-quality` + no CSS filters on the logo image prevents GPU resampling shifts.
-        Fix 3 (recommended): Re-export the logo PNG as sRGB (not Adobe RGB or Display P3) with
-                             "Flatten ICC profile to sRGB" in Photoshop/Illustrator/Figma.
-                             This is the definitive fix — CSS alone cannot override embedded ICC profiles.
-    -->
     <meta name="color-scheme" content="light">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Great+Vibes&display=swap');
 
-/* Force sRGB color space interpretation across all browsers */
 :root {
     color-scheme: light only;
 
@@ -31,6 +19,8 @@
     --text-primary: #4A4240;
     --text-secondary: #8B7E74;
     --text-dark: #3D3532;
+
+    /* LIGHT THEME — violetto originale, SVG e nomi neri */
     --accent-color: #5B3A5C;
     --lavender-light: #8B6A8C;
     --lavender-medium: #5B3A5C;
@@ -52,7 +42,6 @@
 html, body {
     width: 100%;
     min-height: 100%;
-    /* Prevent dark mode from overriding colors */
     forced-color-adjust: none;
 }
 
@@ -60,7 +49,6 @@ body {
     font-family: var(--font-main);
     overflow-x: hidden;
     background: var(--bg-primary);
-    /* Explicit background color prevents system theme override */
     background-color: #F8F6F3;
     color: #3D3532;
 }
@@ -123,23 +111,23 @@ body::before {
     gap: 0;
 }
 
+/* SVG: violetto, stroke sottile */
 .logo-svg {
     width: 100%;
     height: auto;
-    /* Viola lavanda marcato su sfondo chiaro */
-    color: #4A2E4B;
+    color: #5B3A5C;
     filter: drop-shadow(0 1px 3px rgba(74, 46, 75, 0.25));
-    transition: color 0.3s ease, filter 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-/* Scritta Alexandra & Davide */
+/* Scritta Alexandra & Davide — violetto */
 .logo-names {
     display: flex;
     align-items: center;
     gap: 12px;
     width: 100%;
     margin-top: 4px;
-    color: #4A2E4B;
+    color: #5B3A5C;
     transition: color 0.3s ease;
 }
 
@@ -162,7 +150,7 @@ body::before {
     position: relative;
     z-index: 10;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--lavender-medium), transparent);
+    background: linear-gradient(90deg, transparent, #5B3A5C, transparent);
     margin: 20px 0;
 }
 
@@ -172,10 +160,11 @@ body::before {
     animation: expandLine 1.5s ease-out 2.5s forwards;
 }
 
+/* CI SPOSIAMO e data: stesso stile, stesso colore violetto */
 .main-title {
     position: relative;
     z-index: 10;
-    color: var(--lavender-light);
+    color: #8B6A8C;
     text-shadow: 0 2px 8px rgba(91, 58, 92, 0.35);
     font-size: 2rem;
     font-weight: 400;
@@ -188,20 +177,22 @@ body::before {
     font-family: var(--font-main);
 }
 
+/* Stessa dimensione e peso di .main-title */
 .subtitle {
     position: relative;
     z-index: 10;
-    color: var(--lavender-medium);
-    text-shadow: 0 1px 6px rgba(91, 58, 92, 0.25);
-    font-size: 1.2rem;
-    font-weight: 300;
-    letter-spacing: 3px;
+    color: #8B6A8C;
+    text-shadow: 0 2px 8px rgba(91, 58, 92, 0.35);
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 8px;
     opacity: 0;
     animation: fadeInText 1.5s ease-out 3.2s forwards;
     text-align: center;
     margin-top: 10px;
     font-family: var(--font-main);
-    font-style: italic;
+    font-style: normal;
+    text-transform: uppercase;
 }
 
 .menu-container {
@@ -214,13 +205,14 @@ body::before {
     animation: fadeInMenu 1s ease-out 3.8s forwards;
 }
 
+/* Bottoni: bordo violetto, testo violetto (stesso colore di CI SPOSIAMO) */
 .menu-btn {
     width: 85vw;
     max-width: 320px;
     padding: 20px 30px;
     background: transparent;
-    color: var(--text-dark);
-    border: 1.5px solid var(--lavender-medium);
+    color: #5B3A5C;
+    border: 1.5px solid #5B3A5C;
     font-size: 1rem;
     letter-spacing: 4px;
     text-transform: uppercase;
@@ -234,8 +226,8 @@ body::before {
 }
 
 .menu-btn:hover {
-    background: var(--lavender-light);
-    border-color: var(--lavender-dark);
+    background: #8B6A8C;
+    border-color: #4A2E4B;
     color: var(--cream);
 }
 
@@ -276,12 +268,8 @@ body::before {
     }
 }
 
-
 /* ============================================
-   MODALI — Fix posizione X
-   La X deve stare FUORI dal modal-content,
-   dentro il wrapper .modal (che è fixed/full screen).
-   Usiamo un wrapper relativo per il contenuto.
+   MODALI
    ============================================ */
 
 .modal {
@@ -306,12 +294,10 @@ body::before {
     pointer-events: auto;
 }
 
-/* Wrapper relativo che contiene sia il contenuto che il bottone X */
 .modal-wrapper {
     position: relative;
     max-width: 90%;
     max-height: 85vh;
-    /* Permette alla X di sporgere fuori */
     overflow: visible;
     transform: translateY(40px) scale(0.9);
     opacity: 0;
@@ -335,32 +321,24 @@ body::before {
     box-shadow: 0 20px 60px rgba(91, 58, 92, 0.3);
     color: var(--text-dark);
     border: 1px solid var(--lavender-light);
-    /* overflow hidden NON va messo qui, altrimenti taglia la X */
 }
 
-/* X posizionata rispetto al .modal-wrapper, quindi fuori dal modal-content */
 .close-btn {
     position: absolute;
-    /* In alto a destra, metà fuori e metà dentro */
     top: -18px;
     right: -18px;
-    
     width: 42px;
     height: 42px;
-
     background: #F8F6F3;
     border: 1px solid var(--lavender-light);
     border-radius: 50%;
-
     font-size: 1.4rem;
     line-height: 1;
     color: var(--text-dark);
-
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-
     box-shadow: 0 8px 20px rgba(91, 58, 92, 0.25);
     transition: color 0.3s ease, transform 0.3s ease;
     z-index: 20;
@@ -488,11 +466,12 @@ body::before {
     <!-- Hero Section -->
     <div class="hero">
         <div class="logo">
+            <!-- SVG: stroke-width ridotto a 7 (era 14) per look più assottigliato -->
             <svg xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 1344 610"
                  aria-hidden="true"
                  class="logo-svg">
-                <g fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+                <g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M901.0,609.1Q890.6,609.2 832.0,609.4Q821.4,609.4 830.1,609.0Q830.7,608.3 835.8,605.0Q836.2,604.2 833.0,603.5Q751.3,603.3 291.0,603.5Q209.2,603.7 288.0,604.6Q287.2,605.5 286.0,609.5Q282.9,610.2 267.0,609.5Q263.8,609.4 264.9,609.0Q264.8,608.3 266.3,605.0Q266.1,604.2 264.0,603.5Q252.9,603.3 192.0,603.3Q181.2,598.2 192.0,569.8Q198.6,564.2 236.1,566.0Q241.2,563.5 225.5,553.0Q225.5,546.2 235.7,521.0Q238.3,515.1 242.3,514.0Q246.7,506.1 265.2,468.0Q269.7,458.1 272.7,448.0Q274.8,443.5 279.3,438.0Q281.3,433.9 286.3,421.0Q287.7,416.2 288.7,406.0Q291.1,401.5 302.3,391.0Q305.1,386.2 307.8,374.0Q309.6,370.7 314.0,369.0Q313.4,365.9 304.0,353.2Q301.0,353.7 294.3,372.0Q291.6,376.5 285.7,383.0Q284.1,386.0 283.5,392.0Q283.6,394.2 286.1,398.0Q285.7,400.2 280.3,407.0Q278.2,409.1 272.0,412.3Q269.8,412.3 265.7,407.0Q264.4,403.1 263.5,386.0Q262.6,381.2 259.5,375.0Q260.1,371.9 267.5,365.0Q269.1,352.7 270.5,293.0Q270.2,278.6 265.5,269.0Q265.8,263.9 272.3,259.0Q271.7,256.6 261.5,253.0Q259.2,250.6 256.8,243.0Q256.5,238.8 259.3,225.0Q257.6,221.8 245.6,222.0Q242.8,220.9 240.7,218.0Q240.3,216.7 242.7,213.0Q247.4,210.0 272.0,198.2Q276.5,194.9 272.7,191.0Q273.3,189.3 276.0,186.7Q277.2,185.7 281.0,184.5Q282.8,184.4 288.0,185.7Q293.4,187.7 317.0,197.6Q321.6,201.4 318.7,211.0Q320.9,214.4 331.4,220.0Q334.6,223.2 340.3,232.0Q341.6,234.8 340.2,239.0Q339.7,240.5 337.0,242.3Q336.1,242.7 333.9,242.0Q333.4,242.9 333.7,248.0Q335.5,250.4 346.0,258.3Q367.0,261.8 474.0,271.3Q493.8,271.1 477.7,257.0Q480.0,252.8 489.3,243.0Q491.1,240.0 489.7,237.0Q490.8,235.1 496.5,230.0Q497.0,228.6 493.0,227.5Q491.7,227.3 488.0,228.8Q485.8,230.4 478.0,238.3Q475.6,239.4 471.7,236.0Q472.5,231.9 483.5,211.0Q484.2,205.4 476.7,199.0Q475.7,195.4 476.7,187.0Q479.3,182.6 494.0,169.7Q498.5,166.1 507.0,163.0Q510.0,161.9 514.0,162.5Q516.3,163.0 522.4,166.0Q524.5,167.6 528.0,173.3Q531.7,174.1 547.0,171.7Q551.2,171.9 556.0,174.7Q558.6,176.2 564.3,182.0Q564.9,184.0 560.0,188.3Q556.5,190.4 540.7,196.0Q538.0,198.4 541.7,204.0Q542.7,206.4 547.5,212.0Q548.0,216.7 545.3,235.0Q544.5,238.9 542.0,238.3Q539.7,238.8 530.0,238.7Q528.2,239.6 530.0,244.2Q531.5,245.5 540.0,247.7Q544.5,250.9 560.0,265.3Q564.8,267.9 572.0,265.3Q576.2,263.3 588.0,251.8Q591.9,249.5 598.0,249.5Q600.3,249.7 603.3,253.0Q604.1,256.1 603.5,270.0Q604.1,273.2 607.0,274.3Q608.9,274.7 616.0,272.7Q619.1,272.8 628.0,274.5Q630.5,274.4 633.0,272.5Q636.0,272.5 648.0,274.3Q651.2,272.8 654.5,263.0Q656.9,260.4 664.0,256.7Q668.1,254.9 682.0,251.3Q691.4,247.6 726.4,232.0Q731.7,228.1 716.8,225.0Q715.2,223.2 715.5,220.0Q716.7,217.7 725.0,209.7Q728.7,207.6 740.0,205.7Q743.0,206.1 745.3,212.0Q745.8,214.1 743.8,220.0Q744.3,221.4 749.0,221.3Q751.0,220.8 757.0,216.8Q759.2,216.1 764.0,216.3Q767.0,214.9 777.0,207.7Q781.5,205.6 794.0,202.3Q800.4,199.6 819.4,190.0Q823.0,187.0 818.3,182.0Q816.8,178.1 809.5,164.0Q808.6,159.7 812.5,153.0Q812.7,150.6 811.3,148.0Q809.2,143.5 798.5,123.0Q796.9,115.7 800.7,99.0Q801.5,94.1 804.0,90.6Q805.5,88.8 811.0,86.7Q812.7,86.8 815.3,91.0Q816.7,93.6 820.5,104.0Q821.2,106.5 820.2,108.0Q819.4,108.9 815.0,109.8Q814.0,110.6 813.5,113.0Q813.8,115.9 816.7,129.0Q818.1,133.3 823.0,141.4Q826.1,144.5 837.3,150.0Q841.6,155.5 851.6,178.0Q854.7,182.2 858.0,178.2Q860.5,177.3 868.0,172.3Q869.8,170.0 870.0,162.6Q872.1,160.1 882.0,155.5Q884.9,154.6 889.0,156.8Q890.8,158.3 894.0,165.3Q895.5,166.1 899.0,162.5Q901.4,162.1 910.0,162.5Q912.2,162.8 914.0,164.3Q915.8,164.3 922.0,162.7Q924.1,163.0 928.0,165.7Q930.3,167.4 937.3,174.0Q938.4,176.3 935.7,181.0Q936.2,182.0 941.0,180.7Q942.3,181.2 944.3,184.0Q944.4,185.8 941.7,193.0Q942.6,194.8 950.3,196.0Q951.3,198.1 948.7,207.0Q949.8,209.1 957.5,210.0Q958.7,212.1 956.7,221.0Q958.2,223.8 967.3,229.0Q969.6,231.6 972.3,238.0Q973.3,241.2 974.0,250.4Q976.5,252.4 989.0,251.5Q991.9,252.1 993.2,254.0Q993.0,255.2 988.0,259.3Q985.3,260.1 975.0,259.7Q972.6,260.1 971.7,262.0Q971.4,262.6 972.5,264.0Q973.6,264.8 979.0,267.5Q982.4,267.7 995.0,265.7Q999.0,266.7 1006.0,274.3Q1009.5,275.8 1018.0,275.7Q1020.6,276.4 1023.2,279.0Q1024.0,280.2 1023.7,284.0Q1024.6,285.6 1029.0,289.5Q1031.3,291.0 1039.2,294.0Q1041.1,295.3 1042.3,298.0Q1042.8,300.2 1042.7,309.0Q1043.2,311.6 1045.7,315.0Q1047.3,316.9 1053.3,322.0Q1054.1,325.4 1051.5,338.0Q1052.0,342.5 1056.5,352.0Q1056.2,355.6 1049.7,362.0Q1048.6,366.5 1049.3,382.0Q1047.6,386.4 1038.7,391.0Q1036.5,394.9 1034.7,408.0Q1036.0,412.1 1047.0,418.6Q1049.9,422.5 1053.8,434.0Q1055.8,437.1 1060.0,439.3Q1063.5,437.2 1077.3,420.0Q1079.5,416.6 1075.0,416.7Q1073.1,415.7 1064.6,413.0Q1062.5,411.7 1060.7,408.0Q1060.6,406.2 1063.5,401.0Q1063.2,398.4 1058.7,391.0Q1058.6,388.8 1062.8,386.0Q1064.0,384.9 1067.0,383.7Q1069.1,383.8 1077.0,386.3Q1080.0,385.7 1087.0,379.7Q1089.4,378.7 1093.0,379.5Q1096.5,380.8 1110.4,388.0Q1114.4,391.5 1119.5,403.0Q1120.4,406.9 1116.5,414.0Q1116.5,416.4 1119.5,419.0Q1120.0,423.8 1119.7,446.0Q1122.4,456.4 1137.3,488.0Q1140.4,496.6 1140.7,503.0Q1142.8,508.4 1151.3,524.0Q1153.4,532.1 1154.8,557.0Q1158.1,563.6 1173.0,568.3Q1179.5,569.4 1198.0,564.5Q1202.4,564.6 1202.5,569.0Q1203.1,570.1 1202.0,572.2Q1199.2,573.8 1183.7,580.0Q1180.9,584.2 1183.0,600.0Q1182.4,603.5 1180.0,603.5Q1137.4,604.0 899.0,603.5Q856.4,603.7 896.2,605.0L901.0,609.1Z"/>
                     <path d="M581.5,569.0Q583.1,568.4 592.1,565.0Q592.8,563.8 586.0,560.7Q583.7,560.1 577.0,560.7Q574.3,559.6 568.0,553.8Q565.7,551.7 561.7,547.0Q560.7,544.8 561.3,539.0Q560.6,536.8 557.0,532.6Q555.2,531.4 549.6,531.0Q547.6,529.6 543.7,523.0Q542.1,519.9 538.7,510.0Q538.5,507.1 542.3,504.0Q542.3,501.9 539.3,496.0Q537.7,493.8 531.7,489.0Q530.3,486.3 529.5,478.0Q529.2,475.4 529.7,472.0Q530.6,469.3 535.5,460.0Q535.8,456.7 531.7,450.0Q531.0,446.8 531.0,438.7Q530.5,437.3 528.5,441.0Q528.1,444.2 528.3,460.0Q527.2,466.1 521.3,482.0Q519.2,487.0 514.0,493.4Q510.7,497.3 499.0,508.2Q495.9,510.8 493.0,510.5Q491.6,510.5 489.7,508.0Q489.2,506.9 489.7,503.0Q491.2,500.4 499.3,491.0Q501.6,486.9 505.3,476.0Q505.9,470.9 503.3,457.0Q502.0,450.9 496.5,435.0Q497.1,430.6 507.2,428.0Q509.6,424.4 512.7,411.0Q514.6,406.6 519.5,399.0Q519.6,396.6 513.8,395.0Q512.2,392.9 508.7,385.0Q506.5,379.1 499.3,356.0Q496.2,349.6 487.8,342.0Q486.3,339.1 489.3,337.0Q489.0,335.6 485.7,333.0Q484.7,330.3 482.3,319.0Q480.8,314.9 475.7,306.0Q474.8,300.9 476.2,285.0Q457.3,279.7 350.0,270.8Q330.8,270.2 348.3,281.0Q347.5,283.4 344.5,287.0Q345.0,289.6 351.5,298.0Q352.0,300.0 348.0,300.5Q345.4,300.9 333.8,301.0Q332.3,303.0 337.7,314.0Q340.9,318.7 355.0,332.4Q360.5,337.2 374.2,346.0Q378.1,350.1 381.0,359.4Q384.5,363.7 397.2,375.0Q400.3,379.1 401.7,387.0Q404.3,391.1 414.3,402.0Q417.3,407.9 421.5,426.0Q425.2,433.8 438.8,454.0Q443.3,459.9 451.3,465.0Q453.7,468.4 454.8,477.0Q460.8,484.8 491.0,517.2Q499.3,525.4 510.0,531.8Q517.1,538.1 538.6,559.0Q544.8,564.2 551.0,566.3L581.5,569.0Z"/>
                     <path d="M589.4,321.0Q590.1,320.2 594.2,316.0Q594.3,313.9 589.9,307.0Q589.5,305.2 591.8,304.0Q591.8,302.8 589.7,299.0Q589.8,297.8 592.0,296.0Q591.6,294.6 587.0,289.7Q584.5,291.0 575.0,304.2Q572.1,306.4 568.0,304.7Q566.8,305.1 566.7,307.0Q568.8,309.5 582.0,321.3L589.4,321.0Z"/>
@@ -603,58 +582,34 @@ body::before {
     </div>
 
     <script>
-        // Preload images
         function preloadImages() {
-            const imagesToPreload = [
-                'sfondo.jpg',
-                'Risto.JPG',
-                'festa.jpg',
-                'partecipa.JPG'
-            ];
-            
-            imagesToPreload.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
+            const imagesToPreload = ['sfondo.jpg','Risto.JPG','festa.jpg','partecipa.JPG'];
+            imagesToPreload.forEach(src => { const img = new Image(); img.src = src; });
         }
-        
         preloadImages();
 
         function openModal(name) {
-            const modal = document.getElementById('modal-' + name);
-            const hero = document.querySelector('.hero');
-            
-            modal.classList.add('active');
-            hero.classList.add('blur');
+            document.getElementById('modal-' + name).classList.add('active');
+            document.querySelector('.hero').classList.add('blur');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal(name) {
-            const modal = document.getElementById('modal-' + name);
-            const hero = document.querySelector('.hero');
-            
-            modal.classList.remove('active');
-            hero.classList.remove('blur');
+            document.getElementById('modal-' + name).classList.remove('active');
+            document.querySelector('.hero').classList.remove('blur');
             document.body.style.overflow = 'auto';
         }
 
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    const modalId = this.id.replace('modal-', '');
-                    closeModal(modalId);
-                }
+                if (e.target === this) closeModal(this.id.replace('modal-', ''));
             });
         });
 
-
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const hero = document.querySelector('.hero');
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.classList.remove('active');
-                });
-                hero.classList.remove('blur');
+                document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+                document.querySelector('.hero').classList.remove('blur');
                 document.body.style.overflow = 'auto';
             }
         });
