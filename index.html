@@ -555,18 +555,62 @@ body::before {
     <strong>
       Vi preghiamo di confermare la vostra presenza entro il 30 Aprile e di comunicarci eventuali intolleranze alimentari o specifiche esigenze (menù vegetariano 
 
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" fill-rule="evenodd" clip-rule="evenodd">
-<defs>
-<style>
-     .green-fill {
-       fill: #39B54A;
-     }
-</style>
-</defs>
-<path class="green-fill" d="M12.2,21.8c-0.2-2.1,1-3.6,3.3-3.6s16,40.1,16,40.1l2.2,6.1l3.3-9.1c0,0,12.4-34.1,12.6-34.9
-   c0.3-0.8,0.7-1.3,1.3-1.3s12.1,0.7,13.6,3c1.4,2.3,1.2,4.8-0.2,7.2c-1.4,2.4-12.7,29-14.3,32.9c-1.6,3.9-3.9,10.3-3.9,10.3
-   c-0.3,1.2-1,1.8-1.6,1.8h-0.3c-0.6,0-1.3-0.5-1.6-1.8c0,0-15.1-42-15.6-43.2C13.5,31.7,12.4,23.9,12.2,21.8z M48.7,35.2
-   c-5.2-8.5-13.3-11.4-13.3-11.4s-0.1,16.7,1.3,23.1c1.3,6.4,5.9,13.4,11.2,13.4c5.2,0,9.6-7,9.6-13.4C57.4,40.3,53.9,43.6,48.7,35.2z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <rect width="500" height="500" fill="#000000"/>
+
+  <!-- 
+    Ricostruzione vettoriale del logo V con foglia.
+    
+    Analisi dell'originale:
+    - Sfondo nero
+    - V verde (#3ab535) con spessore uniforme ~32px
+    - Braccio SX: parte da ~(148, 95) con un ricciolo verso SX, scende a (255, 390)
+    - Braccio DX: parte da ~(362, 95) scende a (255, 390)
+    - Foglia: nella parte alta interna del braccio DX, con ovale nero al centro
+  -->
+
+  <!-- Braccio sinistro: include il ricciolo/curl in alto -->
+  <path fill="#3ab535" d="
+    M 170,98
+    C 158,88 138,88 126,102
+    C 114,116 118,134 130,144
+    C 136,148 142,150 147,154
+    L 245,382
+    C 249,392 257,396 257,396
+    L 257,358
+    L 168,128
+    C 158,118 154,104 164,98
+    Z
+  "/>
+
+  <!-- Braccio destro (lato esterno) -->
+  <path fill="#3ab535" d="
+    M 362,95
+    L 332,95
+    L 257,358
+    L 257,396
+    C 257,396 265,392 269,382
+    L 367,108
+    Z
+  "/>
+
+  <!-- Foglia: forma organica nella parte alta interna del braccio DX -->
+  <path fill="#3ab535" d="
+    M 308,102
+    C 324,96 352,98 364,120
+    C 374,140 368,168 350,184
+    C 338,194 322,198 310,192
+    C 306,184 304,174 306,164
+    C 318,162 330,152 328,136
+    C 326,122 316,110 308,102
+    Z
+  "/>
+
+  <!-- Ovale nero interno della foglia (il 'seme') -->
+  <ellipse cx="336" cy="155" rx="11" ry="17"
+    transform="rotate(-18 336 155)"
+    fill="#000000"/>
+
 </svg>
          
       )
